@@ -1,0 +1,365 @@
+[gd_scene load_steps=31 format=3 uid="uid://36ikhbhgvvyl"]
+
+[ext_resource type="Texture2D" uid="uid://4cuxs1sddhph" path="res://Assets/character/Louis_20251025202216.png" id="1_g00xm"]
+[ext_resource type="Script" uid="uid://ducb1h1miy1oe" path="res://Script/story.gd" id="1_k83q4"]
+[ext_resource type="Texture2D" uid="uid://dbc11utli03jo" path="res://Assets/dialog UI/bgdial.png" id="2_f54qv"]
+[ext_resource type="Texture2D" uid="uid://cieirgeuy1jnd" path="res://Assets/character/Lynier_20251025201407.png" id="3_c4eo0"]
+[ext_resource type="Texture2D" uid="uid://dmulpfl0uirqx" path="res://Assets/character/Louis_Happy.png" id="4_of3q5"]
+[ext_resource type="Texture2D" uid="uid://boj07iewps1rs" path="res://Assets/dialog UI/dialogbox.png" id="5_vyd76"]
+[ext_resource type="FontFile" uid="uid://clookkjk5ecl0" path="res://Assets/Exoplanetaria-gxxJ5.ttf" id="5_w4u4o"]
+[ext_resource type="Texture2D" uid="uid://ch3jkrgo7l0mh" path="res://Assets/dialog UI/Auto-Normal.png" id="7_a60lp"]
+[ext_resource type="AudioStream" uid="uid://bfk61gnsehi18" path="res://Assets/dialog UI/computer-mouse-click-02-383961.mp3" id="7_m11r6"]
+[ext_resource type="Texture2D" uid="uid://bpmw4i631k6hi" path="res://Assets/dialog UI/indicator.png" id="7_no3vn"]
+[ext_resource type="Texture2D" uid="uid://ddnbkshja1l85" path="res://Assets/dialog UI/Auto-Hover.png" id="8_f54qv"]
+[ext_resource type="AudioStream" uid="uid://ctsw85dvkqfkn" path="res://Assets/dialog UI/springy-bounce.mp3" id="9_0eiog"]
+[ext_resource type="Texture2D" uid="uid://cct0re2cm6mld" path="res://Assets/dialog UI/Skip-Normal.png" id="9_f54qv"]
+[ext_resource type="Texture2D" uid="uid://dbq4ejaeain5p" path="res://Assets/dialog UI/chat-awfull.png" id="10_1piep"]
+[ext_resource type="Texture2D" uid="uid://bu08fek68sywm" path="res://Assets/Pop UP/Pop Up.png" id="10_a60lp"]
+[ext_resource type="Texture2D" uid="uid://dv3p7rfbqc5kt" path="res://Assets/dialog UI/Skip-Hover.png" id="10_rmufe"]
+[ext_resource type="Texture2D" uid="uid://dpcxi21n11fko" path="res://Assets/Pop UP/Confirm.png" id="11_f54qv"]
+[ext_resource type="AudioStream" uid="uid://chpg1r42adne" path="res://Assets/simple-whoosh-382724.mp3" id="11_hlynh"]
+[ext_resource type="AudioStream" uid="uid://4ime57n1gbwc" path="res://Assets/dialog UI/press_dial.mp3" id="11_rmufe"]
+[ext_resource type="AudioStream" uid="uid://3qffgf3fwlsw" path="res://Assets/dialog UI/wiggle1.wav" id="12_h3vb2"]
+[ext_resource type="Texture2D" uid="uid://bqbun8e86y3u3" path="res://Assets/Pop UP/Cancel.png" id="12_rmufe"]
+[ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="12_v6n5w"]
+[ext_resource type="AudioStream" uid="uid://weralh5v2162" path="res://Assets/dialog UI/zoom.wav" id="13_cv76p"]
+[ext_resource type="AudioStream" uid="uid://c8d8l23l4fp05" path="res://Assets/dialog UI/shake.mp3" id="14_23oft"]
+[ext_resource type="Texture2D" uid="uid://dwewa8cjbcvj6" path="res://Assets/Pop UP/ConfrimPressed.png" id="15_r1lx8"]
+[ext_resource type="Texture2D" uid="uid://bnyfxf4bnjffy" path="res://Assets/Pop UP/ConfirmHover.png" id="16_ddhvr"]
+[ext_resource type="AudioStream" uid="uid://biqxh12yvvpvw" path="res://Assets/dialog UI/Untitled Session 4_mixdown.mp3" id="16_vp4eg"]
+[ext_resource type="AudioStream" uid="uid://drlfsgvtabdh4" path="res://Assets/dialog UI/birds-chirping.mp3" id="17_mttym"]
+[ext_resource type="Texture2D" uid="uid://b7bxi6vx6pr3u" path="res://Assets/Pop UP/Cancel=Pressed.png" id="18_4tk5s"]
+[ext_resource type="Texture2D" uid="uid://bt8e2drxrufxr" path="res://Assets/Pop UP/Cancel=Hover.png" id="19_m11r6"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_k83q4")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.794828, 0.794828, 0.794828, 1)
+custom_minimum_size = Vector2(1366, 768)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f54qv")
+expand_mode = 2
+
+[node name="CharacterLayer" type="Control" parent="."]
+custom_minimum_size = Vector2(1366, 768)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterLeft" type="Control" parent="CharacterLayer"]
+custom_minimum_size = Vector2(1366, 768)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LouisHappy" type="TextureRect" parent="CharacterLayer/CharacterLeft"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -339.0
+offset_right = 526.0
+offset_bottom = 445.0
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(239.587, 80.4959)
+texture = ExtResource("4_of3q5")
+expand_mode = 1
+
+[node name="LouisNeutral" type="TextureRect" parent="CharacterLayer/CharacterLeft"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -339.0
+offset_right = 526.0
+offset_bottom = 445.0
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(239.587, 80.4959)
+texture = ExtResource("1_g00xm")
+expand_mode = 1
+
+[node name="CharacterRight" type="Control" parent="CharacterLayer"]
+custom_minimum_size = Vector2(1366, 768)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LynierNeutral" type="TextureRect" parent="CharacterLayer/CharacterRight"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -581.0
+offset_top = -339.0
+offset_right = -77.0
+offset_bottom = 492.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(238.019, 79.6039)
+texture = ExtResource("3_c4eo0")
+expand_mode = 1
+
+[node name="Dialog" type="Control" parent="."]
+custom_minimum_size = Vector2(1366, 768)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBox" type="TextureRect" parent="Dialog"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -544.5
+offset_top = -306.0
+offset_right = 544.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_vyd76")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Dialog"]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 498.0
+offset_right = 450.0
+offset_bottom = 527.0
+theme_override_fonts/font = ExtResource("5_w4u4o")
+theme_override_font_sizes/font_size = 28
+text = "Name"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialog"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 540.0
+offset_right = 1135.0
+offset_bottom = 692.0
+theme_override_fonts/normal_font = ExtResource("5_w4u4o")
+theme_override_font_sizes/normal_font_size = 28
+text = "Chat"
+
+[node name="Indikator" type="TextureRect" parent="Dialog"]
+layout_mode = 0
+offset_left = 1155.0
+offset_top = 663.0
+offset_right = 1197.0
+offset_bottom = 705.0
+texture = ExtResource("7_no3vn")
+
+[node name="Klik" type="AudioStreamPlayer" parent="Dialog"]
+stream = ExtResource("7_m11r6")
+
+[node name="Bounce" type="AudioStreamPlayer" parent="Dialog"]
+stream = ExtResource("9_0eiog")
+
+[node name="Slide" type="AudioStreamPlayer" parent="Dialog"]
+stream = ExtResource("11_hlynh")
+
+[node name="Wiggle" type="AudioStreamPlayer" parent="Dialog"]
+stream = ExtResource("12_h3vb2")
+pitch_scale = 1.5
+
+[node name="Zoom" type="AudioStreamPlayer" parent="Dialog"]
+stream = ExtResource("13_cv76p")
+pitch_scale = 1.5
+
+[node name="Shake" type="AudioStreamPlayer" parent="Dialog"]
+stream = ExtResource("14_23oft")
+pitch_scale = 1.5
+
+[node name="ChatAwfull" type="TextureRect" parent="Dialog"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -488.0
+offset_top = -298.0
+offset_right = -424.0
+offset_bottom = -234.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("10_1piep")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.854
+anchor_top = 0.055
+anchor_right = 0.854
+anchor_bottom = 0.055
+offset_left = 0.435913
+offset_top = -0.240002
+offset_right = 146.436
+offset_bottom = 80.76
+grow_horizontal = 0
+theme_override_constants/separation = 32
+
+[node name="ButtonAuto" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("7_a60lp")
+texture_hover = ExtResource("8_f54qv")
+
+[node name="ButtonSkip" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("9_f54qv")
+texture_hover = ExtResource("10_rmufe")
+
+[node name="Press" type="AudioStreamPlayer" parent="HBoxContainer"]
+stream = ExtResource("11_rmufe")
+
+[node name="Confirm" type="AudioStreamPlayer" parent="HBoxContainer"]
+stream = ExtResource("12_v6n5w")
+
+[node name="PanelPopUp" type="Panel" parent="."]
+visible = false
+modulate = Color(0.490196, 0.490196, 0.490196, 0.960784)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopUp" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(680, 374)
+
+[node name="Container" type="TextureRect" parent="PopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.5
+offset_top = -154.5
+offset_right = 266.5
+offset_bottom = 154.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_a60lp")
+
+[node name="Confirm" type="TextureButton" parent="PopUp/Container"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -267.0
+offset_top = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("11_f54qv")
+texture_pressed = ExtResource("15_r1lx8")
+texture_hover = ExtResource("16_ddhvr")
+
+[node name="Cancel" type="TextureButton" parent="PopUp/Container"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -62.0
+offset_right = 267.0
+grow_vertical = 0
+texture_normal = ExtResource("12_rmufe")
+texture_pressed = ExtResource("18_4tk5s")
+texture_hover = ExtResource("19_m11r6")
+
+[node name="Label" type="Label" parent="PopUp/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -29.5
+offset_right = 53.0
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("5_w4u4o")
+theme_override_font_sizes/font_size = 20
+text = "SKIP STORY"
+
+[node name="Label2" type="Label" parent="PopUp/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -4.5
+offset_right = 43.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("5_w4u4o")
+theme_override_font_sizes/font_size = 16
+text = "Yakin ingin melompati adegan ini?"
+
+[node name="FadeRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_vp4eg")
+volume_db = -4.0
+autoplay = true
+parameters/looping = true
+
+[node name="BGM2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_mttym")
+volume_db = -2.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="HBoxContainer/ButtonAuto" to="." method="_on_button_auto_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonSkip" to="." method="_on_button_skip_pressed"]
+[connection signal="pressed" from="PopUp/Container/Confirm" to="." method="_on_skip_confirm_pressed"]
+[connection signal="pressed" from="PopUp/Container/Cancel" to="." method="_on_skip_cancel_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hps7goiupwlp"
+path="res://.godot/imported/hovering-menu.mp3-bc2028cddeb0aed71b87c5372547f6a9.mp3str"
+
+[deps]
+
+source_file="res://Assets/dialog UI/hovering-menu.mp3"
+dest_files=["res://.godot/imported/hovering-menu.mp3-bc2028cddeb0aed71b87c5372547f6a9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

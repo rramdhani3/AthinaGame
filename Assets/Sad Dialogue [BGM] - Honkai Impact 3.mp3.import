@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkeh2424k02m5"
+path="res://.godot/imported/Sad Dialogue [BGM] - Honkai Impact 3.mp3-82ea29b45f84305d372d6fd18ae80c2e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sad Dialogue [BGM] - Honkai Impact 3.mp3"
+dest_files=["res://.godot/imported/Sad Dialogue [BGM] - Honkai Impact 3.mp3-82ea29b45f84305d372d6fd18ae80c2e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

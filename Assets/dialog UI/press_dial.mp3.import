@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4ime57n1gbwc"
+path="res://.godot/imported/press_dial.mp3-f3d15d65b9bee702521d765bee36f953.mp3str"
+
+[deps]
+
+source_file="res://Assets/dialog UI/press_dial.mp3"
+dest_files=["res://.godot/imported/press_dial.mp3-f3d15d65b9bee702521d765bee36f953.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://weralh5v2162"
+path="res://.godot/imported/zoom.wav-cfd3228f0f349e28ac4af75673f73209.sample"
+
+[deps]
+
+source_file="res://Assets/dialog UI/zoom.wav"
+dest_files=["res://.godot/imported/zoom.wav-cfd3228f0f349e28ac4af75673f73209.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drlfsgvtabdh4"
+path="res://.godot/imported/birds-chirping.mp3-65e9f1b28eaf40a833a24a9a469ac9e8.mp3str"
+
+[deps]
+
+source_file="res://Assets/dialog UI/birds-chirping.mp3"
+dest_files=["res://.godot/imported/birds-chirping.mp3-65e9f1b28eaf40a833a24a9a469ac9e8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfk61gnsehi18"
+path="res://.godot/imported/computer-mouse-click-02-383961.mp3-e5982680315b44900848baa079fb4658.mp3str"
+
+[deps]
+
+source_file="res://Assets/dialog UI/computer-mouse-click-02-383961.mp3"
+dest_files=["res://.godot/imported/computer-mouse-click-02-383961.mp3-e5982680315b44900848baa079fb4658.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfolfyu60kixd"
+path="res://.godot/imported/detune. _ ムシバメルモノ PV(MP3_320K).mp3-bc1d7ed1d800fdfb6c424c83f2ce8dab.mp3str"
+
+[deps]
+
+source_file="res://Assets/detune. _ ムシバメルモノ PV(MP3_320K).mp3"
+dest_files=["res://.godot/imported/detune. _ ムシバメルモノ PV(MP3_320K).mp3-bc1d7ed1d800fdfb6c424c83f2ce8dab.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

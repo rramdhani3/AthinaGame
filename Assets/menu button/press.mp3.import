@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://2pslyno2sv72"
+path="res://.godot/imported/press.mp3-032e133d4fd60c026b3d162a33578494.mp3str"
+
+[deps]
+
+source_file="res://Assets/menu button/press.mp3"
+dest_files=["res://.godot/imported/press.mp3-032e133d4fd60c026b3d162a33578494.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
