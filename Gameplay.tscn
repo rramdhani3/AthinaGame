@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://ddbi07s6j73ti"]
+[gd_scene load_steps=75 format=3 uid="uid://ddbi07s6j73ti"]
 
 [ext_resource type="Texture2D" uid="uid://b6n6owrp3mh21" path="res://Assets/bg.png" id="1_1vrhw"]
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
@@ -160,7 +160,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1j1yx"]
-size = Vector2(172.337, 547.053)
+size = Vector2(128.65, 547.053)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uc0yn"]
 animations = [{
@@ -254,6 +254,9 @@ animations = [{
 radius = 63.0784
 height = 180.224
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpsn3"]
+size = Vector2(180.581, 754.19)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yp6v"]
 size = Vector2(78, 78)
 
@@ -313,7 +316,7 @@ scale = Vector2(2.89269, 1.83091)
 texture = ExtResource("28_ip6xn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-305.065, 121.238)
+position = Vector2(-301.41, 121.238)
 scale = Vector2(1.38302, 1.38302)
 shape = SubResource("RectangleShape2D_1j1yx")
 
@@ -336,6 +339,12 @@ monitorable = false
 position = Vector2(-16.2201, 1.80225)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lpsn3")
+
+[node name="Hurtbox" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
+position = Vector2(-302.738, 119.502)
+shape = SubResource("RectangleShape2D_lpsn3")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("54_gi2gw")
@@ -420,7 +429,8 @@ offset_left = 100.0
 offset_top = 42.0
 offset_right = 447.0
 offset_bottom = 66.0
-value = 45.0
+max_value = 200.0
+value = 200.0
 nine_patch_stretch = true
 texture_under = ExtResource("65_vgqiu")
 texture_progress = ExtResource("66_1j2vb")
@@ -448,5 +458,6 @@ theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
 
+[connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/GameTimer" to="." method="_on_game_timer_timeout"]

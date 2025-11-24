@@ -1,4 +1,10 @@
 extends Node2D
+
+@onready var player_health_bar = $CanvasLayer/TextureProgressBar
+@export var enemy_scene: PackedScene
+@onready var player = $"CharacterBody2D"
+@onready var spawn_timer = $SpawnTimer
+var SPAWN_DISTANCE = 700 
 	
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")
@@ -27,14 +33,14 @@ func _on_game_timer_timeout() -> void:
 	#if countdown_time <= 0:
 		#$GameTimer.stop()
 
-@export var enemy_scene: PackedScene
-@onready var player = $"CharacterBody2D"
-@onready var spawn_timer = $SpawnTimer
-var SPAWN_DISTANCE = 700 
-
 func _ready():
 	spawn_timer.timeout.connect(spawn_enemy)
 	spawn_timer.start()
+	if player:
+		player.health_changed.connect(_on_player_health_changed)
+
+func _on_player_health_changed(new_health: int):
+	player_health_bar.value = new_health
 	
 func spawn_enemy():
 	var new_enemy = enemy_scene.instantiate()

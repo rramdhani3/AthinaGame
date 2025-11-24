@@ -4,13 +4,13 @@ extends CharacterBody2D
 @export var dash_speed := 600
 @export var dash_duration := 0.15
 @export var dash_cooldown := 0.5
-@export var afterimage_interval := 0.05 
-@export var afterimage_lifetime := 0.3    
+@export var afterimage_interval := 0.05
+@export var afterimage_lifetime := 0.3
 @export var footstep_delay := 0.3
-@export var attack_offset := Vector2(10, 0) 
-@export var attack_cooldown := 0.8         
-@export var attack_push_time := 0.15        
-@export var attack_return_time := 0.2      
+@export var attack_offset := Vector2(10, 0)
+@export var attack_cooldown := 0.8
+@export var attack_push_time := 0.15 
+@export var attack_return_time := 0.2
 @export var attack_effect_duration := 0.3
 @export var attack_effect_speed := 150
 @export var attack_effect_offset := Vector2(20, 0)
@@ -22,7 +22,6 @@ extends CharacterBody2D
 @onready var attack_effect = $AttackEffect
 @onready var attack_effect_anim = $AttackEffect/EffectSprite2D
 
-
 var original_sprite_position := Vector2.ZERO
 var is_dashing := false
 var dash_timer := 0.0
@@ -32,6 +31,7 @@ var afterimage_timer := 0.0
 var footstep_timer := 0.0
 var is_attacking := false
 var attack_timer := 0.0
+var current_health := 200
 
 
 func _ready():
@@ -155,3 +155,15 @@ func stop_footstep():
 	if footstep.playing:
 		footstep.stop()
 	footstep_timer = 0
+
+signal health_changed(new_health)
+func take_damage(amount: int):
+	current_health -= amount
+	health_changed.emit(current_health)
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyAttack"):
+		var enemy_root = area.get_parent()
+		var damage = enemy_root.attack_damage_enemy
+		take_damage(damage)
+		area.set_deferred("monitoring", false)

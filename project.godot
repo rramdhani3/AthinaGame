@@ -27,6 +27,7 @@ mouse_cursor/custom_image="uid://biasrhxnr3p06"
 
 PlayerAttack=""
 player=""
+EnemyAttack=""
 
 [input]
 

@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_attack: AnimationPlayer = $AnimationPlayer
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var attack_area: Area2D = $AttackAreaRange
 
 @export var speed: float = 80.0
 @export var player_y_offset: float = 108.0
+@export var attack_damage_enemy := 4
 
 enum { CHASE, ATTACK }
 var current_state = CHASE
@@ -27,8 +29,8 @@ func _physics_process(delta):
 		
 		ATTACK:
 			velocity = Vector2.ZERO
-			if anim_sprite.animation != "attack":
-				anim_sprite.play("attack")
+			if anim_attack.current_animation != "attack":
+				anim_attack.play("attack")
 			
 	move_and_slide()
 	
@@ -36,7 +38,6 @@ func chase_player():
 	var player_floor_y = player_target.global_position.y + player_y_offset
 	var target_position = Vector2(player_target.global_position.x, player_floor_y)
 	var direction = (target_position - global_position).normalized()
-	var distance_to_player = global_position.distance_to(target_position)
 	velocity.x = direction.x * speed
 	velocity.y = direction.y * speed
 	anim_sprite.play("walk")
@@ -89,7 +90,12 @@ func after_die():
 func _on_attack_area_range_body_entered(body: Node2D) -> void:
 	if body == player_target:
 		current_state = ATTACK
-
+		
 func _on_attack_area_range_body_exited(body: Node2D) -> void:
 	if body == player_target:
 		current_state = CHASE
+
+func give_damage_to_player():
+	if player_target:
+		if player_target.has_method("take_damage"):
+			player_target.take_damage(attack_damage_enemy)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://cyrfyod7bf3u0"]
+[gd_scene load_steps=112 format=3 uid="uid://cyrfyod7bf3u0"]
 
 [ext_resource type="Texture2D" uid="uid://3335cs3xholi" path="res://Assets/sprite enemy 2/PNG/8/8_enemies_1_idle_000.png" id="1_8q82m"]
 [ext_resource type="Script" uid="uid://gwmqbrjblyhi" path="res://Script/enemy.gd" id="1_kdav3"]
@@ -104,6 +104,80 @@
 [ext_resource type="Texture2D" uid="uid://op3temv7fkpu" path="res://Assets/sprite enemy 2/PNG/8/8_enemies_1_walk_017.png" id="79_ejgrc"]
 [ext_resource type="Texture2D" uid="uid://3aby81u834ry" path="res://Assets/sprite enemy 2/PNG/8/8_enemies_1_walk_018.png" id="80_qj6x8"]
 [ext_resource type="Texture2D" uid="uid://b6gdcg1swj4p3" path="res://Assets/sprite enemy 2/PNG/8/8_enemies_1_walk_019.png" id="81_yp7td"]
+
+[sub_resource type="Animation" id="Animation_0ir7j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_0lamw"]
+resource_name = "attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.433333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"give_damage_to_player"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tc3qs"]
+_data = {
+&"RESET": SubResource("Animation_0ir7j"),
+&"attack": SubResource("Animation_0lamw")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dxifv"]
 animations = [{
@@ -433,10 +507,13 @@ animations = [{
 "speed": 20.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0lamw"]
-radius = 154.312
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0lamw"]
+radius = 60.1916
+height = 262.857
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ir7j"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ir7j"]
+radius = 57.8336
+height = 260.003
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdav3"]
 size = Vector2(181.429, 291.429)
@@ -448,6 +525,11 @@ scale = Vector2(0.7, 0.7)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_kdav3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyBody2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_tc3qs")
+}
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="EnemyBody2D"]
 offset_left = -348.0
@@ -472,16 +554,22 @@ modulate = Color(0.945098, 0.92549, 0.913725, 1)
 position = Vector2(-37.1429, 5.71429)
 sprite_frames = SubResource("SpriteFrames_dxifv")
 animation = &"attack"
+frame = 10
 offset = Vector2(37.1428, 4.28571)
 
 [node name="AttackAreaRange" type="Area2D" parent="EnemyBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody2D/AttackAreaRange"]
-shape = SubResource("CircleShape2D_0lamw")
+position = Vector2(1.42857, 48.5714)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_0lamw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody2D"]
-visible = false
-shape = SubResource("RectangleShape2D_0ir7j")
+[node name="Hitbox" type="Area2D" parent="EnemyBody2D" groups=["EnemyAttack"]]
+position = Vector2(1.42857, 48.5714)
+rotation = -1.52735
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody2D/Hitbox"]
+shape = SubResource("CapsuleShape2D_0ir7j")
 
 [node name="Hurtbox" type="Area2D" parent="EnemyBody2D"]
 
