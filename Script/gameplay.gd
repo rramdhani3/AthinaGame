@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var player_health_bar = $CanvasLayer/TextureProgressBar
+@onready var player_health_bar = $CanvasLayer/HealthBarPlayer/TextureProgressBar
 @export var enemy_scene: PackedScene
 @onready var player = $"CharacterBody2D"
 @onready var spawn_timer = $SpawnTimer
-var SPAWN_DISTANCE = 700 
+var SPAWN_DISTANCE = 700
 	
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")
@@ -20,7 +20,7 @@ func start_timer():
 	$CanvasLayer/GameTimer.start()
 	
 func format_time(t: int) -> String:
-	var minutes = t / 60
+	var minutes = t / 60.0
 	var seconds = t % 60
 	return "%02d:%02d" % [minutes, seconds]
 

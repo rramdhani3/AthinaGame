@@ -6,13 +6,16 @@ extends CharacterBody2D
 @onready var attack_area: Area2D = $AttackAreaRange
 
 @export var speed: float = 80.0
+@export var speed_run: float = 150.0
 @export var player_y_offset: float = 108.0
 @export var attack_damage_enemy := 4
 
-enum { CHASE, ATTACK }
+const MAX_HEALTH = 200 
+const FLEE_THRESHOLD = MAX_HEALTH / 2.0
+enum { CHASE, ATTACK, FLEE }
 var current_state = CHASE
 var player_target: CharacterBody2D = null
-var current_health := 200
+var current_health := MAX_HEALTH
 var fade_duration := 0.5
  
 func _ready():
@@ -31,6 +34,12 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			if anim_attack.current_animation != "attack":
 				anim_attack.play("attack")
+		
+		FLEE:
+			if player_target and current_health > 0:
+				flee_player()
+			else:
+				velocity = Vector2.ZERO
 			
 	move_and_slide()
 	
@@ -45,6 +54,18 @@ func chase_player():
 		anim_sprite.flip_h = false
 	elif direction.x < 0:
 		anim_sprite.flip_h = true
+		
+func flee_player():
+	var player_floor_y = player_target.global_position.y + player_y_offset
+	var target_position = Vector2(player_target.global_position.x, player_floor_y)
+	var flee_direction = (target_position - global_position).normalized() * -1
+	velocity.x = flee_direction.x * speed_run
+	velocity.y = flee_direction.y * speed_run
+	anim_sprite.play("run")
+	if flee_direction.x > 0:
+		anim_sprite.flip_h = false
+	elif flee_direction.x < 0:
+		anim_sprite.flip_h = true
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("PlayerAttack"):
@@ -56,14 +77,17 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func take_damage(amount: int):
 	current_health -= amount
 	$TextureProgressBar.value = current_health
+	if current_health <= FLEE_THRESHOLD and current_health > 0:
+		current_state = FLEE
+		return
 	if current_health <= 0:
 		die()
 		return
 	else:
-		if anim_sprite.animation_finished.is_connected(Callable(self, "back_to_chase")):
-			anim_sprite.animation_finished.disconnect(Callable(self, "back_to_chase"))
+		if anim_sprite.animation_finished.is_connected(Callable(self, "back_to_state")):
+			anim_sprite.animation_finished.disconnect(Callable(self, "back_to_state"))
 	anim_sprite.play("hurt")
-	anim_sprite.animation_finished.connect(Callable(self, "back_to_chase"), CONNECT_ONE_SHOT)
+	anim_sprite.animation_finished.connect(Callable(self, "back_to_state"), CONNECT_ONE_SHOT)
 	print("Enemy took damage. Health: ", current_health)
 
 func start_fade_out():
@@ -80,9 +104,12 @@ func die():
 		anim_sprite.animation_finished.disconnect(Callable(self, "start_fade_out"))
 	anim_sprite.animation_finished.connect(Callable(self, "start_fade_out"), CONNECT_ONE_SHOT)
 
-func back_to_chase():
+func back_to_state():
 	if current_health > 0:
-		current_state = CHASE
+		if current_health <= FLEE_THRESHOLD:
+			current_state = FLEE
+		else:
+			current_state = CHASE
 
 func after_die():
 		queue_free()
@@ -93,6 +120,10 @@ func _on_attack_area_range_body_entered(body: Node2D) -> void:
 		
 func _on_attack_area_range_body_exited(body: Node2D) -> void:
 	if body == player_target:
+		anim_attack.stop()
+	if current_health <= FLEE_THRESHOLD:
+		current_state = FLEE
+	else:
 		current_state = CHASE
 
 func give_damage_to_player():

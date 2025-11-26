@@ -1,9 +1,9 @@
-[gd_scene load_steps=75 format=3 uid="uid://ddbi07s6j73ti"]
+[gd_scene load_steps=81 format=3 uid="uid://ddbi07s6j73ti"]
 
-[ext_resource type="Texture2D" uid="uid://b6n6owrp3mh21" path="res://Assets/bg.png" id="1_1vrhw"]
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
 [ext_resource type="Texture2D" uid="uid://dx55l6sf6nnkc" path="res://Assets/A1.png" id="3_1p3ug"]
+[ext_resource type="Texture2D" uid="uid://c0bpfi1iaprab" path="res://building.png" id="3_lpsn3"]
 [ext_resource type="Texture2D" uid="uid://dmksrlt6cl0yo" path="res://Assets/A2.png" id="4_o7aap"]
 [ext_resource type="Texture2D" uid="uid://iybutxaxo4hd" path="res://Assets/A3.png" id="5_jxmmf"]
 [ext_resource type="Texture2D" uid="uid://djxqq7ixtq7nl" path="res://Assets/A4.png" id="6_ums1d"]
@@ -68,6 +68,12 @@
 [ext_resource type="Texture2D" uid="uid://ba15qyax8fu4l" path="res://Assets/UI gameplay/bg-bar.png" id="65_vgqiu"]
 [ext_resource type="Texture2D" uid="uid://dwowg4xgc3jis" path="res://Assets/UI gameplay/progress.png" id="66_1j2vb"]
 [ext_resource type="Texture2D" uid="uid://be23q8da1k2se" path="res://Assets/UI gameplay/Ellipse 73.png" id="67_1j2vb"]
+[ext_resource type="Texture2D" uid="uid://cwxddnkivcy1c" path="res://Assets/UI gameplay/under.png" id="67_4lqox"]
+[ext_resource type="Texture2D" uid="uid://bwrkqk86043dh" path="res://Assets/UI gameplay/over-bar.png" id="68_lce2u"]
+[ext_resource type="Script" uid="uid://1fthvjl42owa" path="res://Script/skill_display.gd" id="71_bu8ga"]
+[ext_resource type="Texture2D" uid="uid://dvgrmsovpc56o" path="res://Assets/UI gameplay/skill.png" id="71_lce2u"]
+[ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="73_e1ql5"]
+[ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="74_hfp18"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -268,9 +274,8 @@ enemy_scene = ExtResource("58_lpsn3")
 wait_time = 5.0
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(1730, 383)
-scale = Vector2(0.75723, 1.18847)
-texture = ExtResource("1_1vrhw")
+position = Vector2(2600, 383)
+texture = ExtResource("3_lpsn3")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(550, 506)
@@ -290,7 +295,7 @@ position = Vector2(154.025, -318.672)
 scale = Vector2(2.6556, 2.6556)
 process_callback = 0
 limit_left = 0
-limit_right = 2500
+limit_right = 4000
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -358,6 +363,8 @@ stream = ExtResource("56_wdyqx")
 volume_db = -8.0
 attenuation = 2.14355
 
+[node name="UltiTimer" type="Timer" parent="CharacterBody2D"]
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-31, 690)
 
@@ -424,23 +431,50 @@ grow_vertical = 0
 texture = ExtResource("64_ums1d")
 stretch_mode = 3
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 100.0
-offset_top = 42.0
-offset_right = 447.0
-offset_bottom = 66.0
+[node name="HealthBarPlayer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 31.0
+offset_top = -6.0
+offset_right = 439.0
+offset_bottom = 155.0
+pivot_offset = Vector2(206, 82)
+
+[node name="BgBar" type="TextureRect" parent="CanvasLayer/HealthBarPlayer"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = 27.0
+offset_right = 401.0
+offset_bottom = 141.0
+texture = ExtResource("65_vgqiu")
+
+[node name="Under" type="TextureRect" parent="CanvasLayer/HealthBarPlayer"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 66.0
+offset_right = 344.0
+offset_bottom = 98.0
+texture = ExtResource("67_4lqox")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/HealthBarPlayer"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 70.0
+offset_right = 341.0
+offset_bottom = 94.0
 max_value = 200.0
 value = 200.0
 nine_patch_stretch = true
-texture_under = ExtResource("65_vgqiu")
+texture_under = ExtResource("68_lce2u")
 texture_progress = ExtResource("66_1j2vb")
 tint_under = Color(0.705194, 0.705194, 0.705194, 1)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_left = 27.0
-offset_top = 14.0
-offset_right = 93.0
-offset_bottom = 80.0
+[node name="IconPP" type="TextureRect" parent="CanvasLayer/HealthBarPlayer"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 49.0
+offset_right = 99.0
+offset_bottom = 115.0
 texture = ExtResource("67_1j2vb")
 
 [node name="GameTimer" type="Timer" parent="CanvasLayer"]
@@ -457,6 +491,31 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
+
+[node name="SkillDisplay" type="Control" parent="CanvasLayer" groups=["Skill"]]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("71_bu8ga")
+
+[node name="Skill" type="TextureRect" parent="CanvasLayer/SkillDisplay"]
+layout_mode = 0
+offset_left = 484.0
+offset_top = -768.0
+offset_right = 1187.0
+pivot_offset = Vector2(0, 768)
+texture = ExtResource("71_lce2u")
+
+[node name="AudioSkill" type="AudioStreamPlayer" parent="CanvasLayer/SkillDisplay"]
+stream = ExtResource("73_e1ql5")
+volume_db = 2.5
+
+[node name="SFXSkill" type="AudioStreamPlayer" parent="CanvasLayer/SkillDisplay"]
+stream = ExtResource("74_hfp18")
 
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]

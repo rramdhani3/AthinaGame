@@ -1,0 +1,110 @@
+[gd_scene load_steps=25 format=3 uid="uid://cpcp4s2wjbged"]
+
+[ext_resource type="Script" uid="uid://dvgba3kwdqhfq" path="res://Script/ultimate.gd" id="1_8jiby"]
+[ext_resource type="Texture2D" uid="uid://ch5bhm1rx6lyf" path="res://Assets/Ulti/N1.png" id="2_tcwuw"]
+[ext_resource type="Texture2D" uid="uid://fwvmdgyk6o8f" path="res://Assets/Ulti/N2.png" id="3_diviv"]
+[ext_resource type="Texture2D" uid="uid://bocnupd2nkrhf" path="res://Assets/Ulti/N3.png" id="4_mu6w0"]
+[ext_resource type="Texture2D" uid="uid://b6lyeq6yiwqcr" path="res://Assets/Ulti/N4.png" id="5_rw58w"]
+[ext_resource type="Texture2D" uid="uid://umh73bkp6snr" path="res://Assets/Ulti/N5.png" id="6_cwxir"]
+[ext_resource type="Texture2D" uid="uid://vluilix0ws0m" path="res://Assets/Ulti/N6.png" id="7_4yf25"]
+[ext_resource type="Texture2D" uid="uid://cmdmy6mpoqpjf" path="res://Assets/Ulti/N7.png" id="8_0nskr"]
+[ext_resource type="Texture2D" uid="uid://csjpgsc3qirhk" path="res://Assets/Ulti/N8.png" id="9_wc5eo"]
+[ext_resource type="Texture2D" uid="uid://cunrd33ucq23b" path="res://Assets/Ulti/N9.png" id="10_m70tq"]
+[ext_resource type="Texture2D" uid="uid://ipv2hpjt64vb" path="res://Assets/Ulti/N10.png" id="11_aycwe"]
+[ext_resource type="Texture2D" uid="uid://dsionysqq7cno" path="res://Assets/Ulti/N11.png" id="12_52dge"]
+[ext_resource type="Texture2D" uid="uid://j2hr068w7kak" path="res://Assets/Ulti/N12.png" id="13_jukf4"]
+[ext_resource type="Texture2D" uid="uid://db337prth85pd" path="res://Assets/Ulti/N13.png" id="14_7y7mi"]
+[ext_resource type="Texture2D" uid="uid://i6rrekq63teu" path="res://Assets/Ulti/N14.png" id="15_d4b6q"]
+[ext_resource type="Texture2D" uid="uid://bxxgwibj60nxj" path="res://Assets/Ulti/N15.png" id="16_mswvv"]
+[ext_resource type="Texture2D" uid="uid://u50f8wgrknb5" path="res://Assets/Ulti/N16.png" id="17_22gln"]
+[ext_resource type="Texture2D" uid="uid://dcyyqpd2p02ru" path="res://Assets/Ulti/N17.png" id="18_p0wiu"]
+[ext_resource type="Texture2D" uid="uid://cvf2tm37iabns" path="res://Assets/Ulti/N18-1.png" id="19_x5jii"]
+[ext_resource type="Texture2D" uid="uid://ncqsgxohip7o" path="res://Assets/Ulti/N18-2.png" id="20_585w5"]
+[ext_resource type="Texture2D" uid="uid://kfhojf5xcnl1" path="res://Assets/Ulti/N18.png" id="21_egung"]
+[ext_resource type="AudioStream" uid="uid://boer2yglk7gjp" path="res://Assets/ikimashou.wav" id="22_tcwuw"]
+[ext_resource type="AudioStream" uid="uid://omwqf0hrdo1x" path="res://Assets/winter-wind-402331.mp3" id="23_diviv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tt71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tcwuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_diviv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mu6w0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rw58w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cwxir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4yf25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0nskr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wc5eo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_m70tq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_aycwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_52dge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_jukf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7y7mi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_d4b6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mswvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_22gln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_p0wiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_egung")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_x5jii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_585w5")
+}],
+"loop": false,
+"name": &"ulti",
+"speed": 14.0
+}]
+
+[node name="Ultimate" type="CanvasLayer"]
+script = ExtResource("1_8jiby")
+
+[node name="UltiSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(684, 384)
+sprite_frames = SubResource("SpriteFrames_1tt71")
+animation = &"ulti"
+
+[node name="AudioUlti" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_tcwuw")
+autoplay = true
+
+[node name="AudioUlti2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_diviv")
+volume_db = -5.0
+autoplay = true
