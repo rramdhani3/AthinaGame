@@ -1,9 +1,10 @@
-[gd_scene load_steps=81 format=3 uid="uid://ddbi07s6j73ti"]
+[gd_scene load_steps=91 format=3 uid="uid://ddbi07s6j73ti"]
 
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
+[ext_resource type="PackedScene" uid="uid://chydy8njjqrvs" path="res://EnemyBT.tscn" id="2_jmias"]
 [ext_resource type="Texture2D" uid="uid://dx55l6sf6nnkc" path="res://Assets/A1.png" id="3_1p3ug"]
-[ext_resource type="Texture2D" uid="uid://c0bpfi1iaprab" path="res://building.png" id="3_lpsn3"]
+[ext_resource type="Texture2D" uid="uid://kyujnwils2cf" path="res://Assets/menu button/bgaset.png" id="3_jmias"]
 [ext_resource type="Texture2D" uid="uid://dmksrlt6cl0yo" path="res://Assets/A2.png" id="4_o7aap"]
 [ext_resource type="Texture2D" uid="uid://iybutxaxo4hd" path="res://Assets/A3.png" id="5_jxmmf"]
 [ext_resource type="Texture2D" uid="uid://djxqq7ixtq7nl" path="res://Assets/A4.png" id="6_ums1d"]
@@ -58,12 +59,17 @@
 [ext_resource type="AudioStream" uid="uid://elc2lk8lenfb" path="res://Assets/hiya2.wav" id="55_33y5p"]
 [ext_resource type="AudioStream" uid="uid://chpg1r42adne" path="res://Assets/simple-whoosh-382724.mp3" id="56_wdyqx"]
 [ext_resource type="Texture2D" uid="uid://bsgxx880qgs3b" path="res://Assets/RTS_Crate.png" id="57_yypqb"]
-[ext_resource type="PackedScene" uid="uid://cyrfyod7bf3u0" path="res://Enemy.tscn" id="58_lpsn3"]
 [ext_resource type="Texture2D" uid="uid://bl0n2rfngap4r" path="res://Assets/grass.png" id="58_mpeh0"]
 [ext_resource type="AudioStream" uid="uid://d1caeq5lani3d" path="res://Assets/Dove Instrumental (Karaoke) (Short ver).mp3" id="59_1vrhw"]
+[ext_resource type="Texture2D" uid="uid://2ivrxavaos2e" path="res://Assets/Frames/lightning_skill3_frame1.png" id="59_joxqx"]
 [ext_resource type="Script" uid="uid://dy0jcgl6h7ema" path="res://Script/background_music.gd" id="60_fhpl8"]
+[ext_resource type="Texture2D" uid="uid://dgkfhy0txpo0r" path="res://Assets/Frames/lightning_skill3_frame2.png" id="60_kmqga"]
+[ext_resource type="Texture2D" uid="uid://dhq7d3tr3so0g" path="res://Assets/Frames/lightning_skill3_frame3.png" id="61_6qdtm"]
 [ext_resource type="Texture2D" uid="uid://rif0bfps1tip" path="res://Assets/UI gameplay/pause.png" id="62_1p3ug"]
+[ext_resource type="Texture2D" uid="uid://gjtejqyg4dq6" path="res://Assets/Frames/lightning_skill3_frame4.png" id="62_jmias"]
+[ext_resource type="Texture2D" uid="uid://b8vpod0ip18ku" path="res://Assets/Frames/lightning_skill3_frame5.png" id="63_4bypd"]
 [ext_resource type="Texture2D" uid="uid://4da3vvt5aeno" path="res://Assets/UI gameplay/dash.png" id="63_jxmmf"]
+[ext_resource type="AudioStream" uid="uid://bkso2vrwle3gi" path="res://Assets/Meteor_Impactground_Stereo_01.wav" id="64_kmqga"]
 [ext_resource type="Texture2D" uid="uid://y37meut4b6df" path="res://Assets/UI gameplay/basic_attack.png" id="64_ums1d"]
 [ext_resource type="Texture2D" uid="uid://ba15qyax8fu4l" path="res://Assets/UI gameplay/bg-bar.png" id="65_vgqiu"]
 [ext_resource type="Texture2D" uid="uid://dwowg4xgc3jis" path="res://Assets/UI gameplay/progress.png" id="66_1j2vb"]
@@ -71,7 +77,9 @@
 [ext_resource type="Texture2D" uid="uid://cwxddnkivcy1c" path="res://Assets/UI gameplay/under.png" id="67_4lqox"]
 [ext_resource type="Texture2D" uid="uid://bwrkqk86043dh" path="res://Assets/UI gameplay/over-bar.png" id="68_lce2u"]
 [ext_resource type="Script" uid="uid://1fthvjl42owa" path="res://Script/skill_display.gd" id="71_bu8ga"]
+[ext_resource type="Texture2D" uid="uid://b73pqce861lui" path="res://Assets/UI gameplay/skill_q.png" id="71_jmias"]
 [ext_resource type="Texture2D" uid="uid://dvgrmsovpc56o" path="res://Assets/UI gameplay/skill.png" id="71_lce2u"]
+[ext_resource type="Texture2D" uid="uid://bhdo8sw02jk4y" path="res://Assets/UI gameplay/ulti_r.png" id="72_4bypd"]
 [ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="73_e1ql5"]
 [ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="74_hfp18"]
 
@@ -263,22 +271,111 @@ height = 180.224
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpsn3"]
 size = Vector2(180.581, 754.19)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbao3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("59_joxqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_kmqga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_6qdtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_jmias")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_4bypd")
+}],
+"loop": false,
+"name": &"vfxanim",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_ebqmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_opxba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_u5a08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_5pgd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_la7pg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_cji0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_j5c36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_by5na")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_bseey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_vtyru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_1tx16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_p3pay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_07ygh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_serht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_olba2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_2lrtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_jeql7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_r4d51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_yrf0e")
+}],
+"loop": false,
+"name": &"vfxanim2",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_joxqx"]
+size = Vector2(507.219, 838.858)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yp6v"]
 size = Vector2(78, 78)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_hvkmv")
-enemy_scene = ExtResource("58_lpsn3")
+enemy_scene = ExtResource("2_jmias")
+metadata/_edit_horizontal_guides_ = [726.0]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(2600, 383)
-texture = ExtResource("3_lpsn3")
+position = Vector2(2600, 384)
+texture = ExtResource("3_jmias")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(550, 506)
+position = Vector2(500, 506)
 scale = Vector2(0.376563, 0.376563)
 script = ExtResource("2_hvkmv")
 speed = 300
@@ -288,23 +385,20 @@ attack_cooldown = 0.65
 attack_effect_duration = 0.4
 attack_effect_speed = 500
 attack_effect_offset = Vector2(550, 0)
-attack_damage = 40
+attack_damage = 10
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(154.025, -318.672)
-scale = Vector2(2.6556, 2.6556)
+position = Vector2(700, -318.672)
 process_callback = 0
-limit_left = 0
-limit_right = 4000
+limit_left = -100
+limit_right = 5200
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_horizontal_offset = 1.0
-drag_left_margin = 0.35
 editor_draw_drag_margin = true
 
 [node name="PlayerSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(-262.904, -4.76837e-06)
 scale = Vector2(1.38302, 1.38302)
 sprite_frames = SubResource("SpriteFrames_j43mq")
 animation = &"walk"
@@ -321,7 +415,7 @@ scale = Vector2(2.89269, 1.83091)
 texture = ExtResource("28_ip6xn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-301.41, 121.238)
+position = Vector2(0, 121.238)
 scale = Vector2(1.38302, 1.38302)
 shape = SubResource("RectangleShape2D_1j1yx")
 
@@ -348,7 +442,7 @@ shape = SubResource("CapsuleShape2D_lpsn3")
 [node name="Hurtbox" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
-position = Vector2(-302.738, 119.502)
+position = Vector2(0, 119.502)
 shape = SubResource("RectangleShape2D_lpsn3")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
@@ -365,8 +459,33 @@ attenuation = 2.14355
 
 [node name="UltiTimer" type="Timer" parent="CharacterBody2D"]
 
+[node name="UltimateVFXDamage" type="Area2D" parent="CharacterBody2D"]
+process_mode = 3
+visible = false
+position = Vector2(-289.46, -45.1452)
+monitoring = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/UltimateVFXDamage"]
+position = Vector2(-31.8672, -390.373)
+scale = Vector2(8.76659, 8.76659)
+sprite_frames = SubResource("SpriteFrames_mbao3")
+animation = &"vfxanim"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/UltimateVFXDamage"]
+position = Vector2(26.556, 154.025)
+shape = SubResource("RectangleShape2D_joxqx")
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="CharacterBody2D/UltimateVFXDamage"]
+position = Vector2(-37.1785, 424.896)
+stream = ExtResource("64_kmqga")
+volume_db = 8.0
+
+[node name="SkillTimer" type="Timer" parent="CharacterBody2D"]
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-31, 690)
+position = Vector2(-156, 686)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(1, -1)
@@ -401,35 +520,63 @@ grow_horizontal = 0
 action_mode = 0
 texture_normal = ExtResource("62_1p3ug")
 
-[node name="BasicAttack" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -127.0
-offset_top = -137.0
-offset_right = -60.0
-offset_bottom = -42.0
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("63_jxmmf")
-stretch_mode = 3
-
 [node name="Dash" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -232.0
+offset_left = -206.0
 offset_top = -137.0
-offset_right = -165.0
+offset_right = -139.0
 offset_bottom = -42.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("64_ums1d")
+texture = ExtResource("63_jxmmf")
 stretch_mode = 3
+
+[node name="SkillQ" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -296.0
+offset_top = -137.0
+offset_right = -231.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("71_jmias")
+
+[node name="UltiR" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -128.0
+offset_right = -333.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("72_4bypd")
+stretch_mode = 3
+
+[node name="BasicAttack" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -111.0
+offset_top = -138.0
+offset_right = -46.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("64_ums1d")
 
 [node name="HealthBarPlayer" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -510,7 +657,7 @@ offset_right = 1187.0
 pivot_offset = Vector2(0, 768)
 texture = ExtResource("71_lce2u")
 
-[node name="AudioSkill" type="AudioStreamPlayer" parent="CanvasLayer/SkillDisplay"]
+[node name="VoiceSkill" type="AudioStreamPlayer" parent="CanvasLayer/SkillDisplay"]
 stream = ExtResource("73_e1ql5")
 volume_db = 2.5
 
@@ -518,5 +665,6 @@ volume_db = 2.5
 stream = ExtResource("74_hfp18")
 
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/GameTimer" to="." method="_on_game_timer_timeout"]

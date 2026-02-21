@@ -34,7 +34,8 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			if anim_attack.current_animation != "attack":
 				anim_attack.play("attack")
-		
+				$SfxAtt.play()
+			
 		FLEE:
 			if player_target and current_health > 0:
 				flee_player()
@@ -90,20 +91,22 @@ func take_damage(amount: int):
 	anim_sprite.animation_finished.connect(Callable(self, "back_to_state"), CONNECT_ONE_SHOT)
 	print("Enemy took damage. Health: ", current_health)
 
-func start_fade_out():
-	var fade_tween = create_tween()
-	fade_tween.tween_property(self, "modulate:a", 0.0, fade_duration)
-	fade_tween.tween_callback(Callable(self, "after_die"))
-
 func die():
 	hurtbox.set_deferred("monitoring", false)
 	anim_sprite.play("die")
+	$SfxDie.play()
 	set_physics_process(false)
 	set_process(false)
-	if anim_sprite.animation_finished.is_connected(Callable(self, "start_fade_out")):
-		anim_sprite.animation_finished.disconnect(Callable(self, "start_fade_out"))
-	anim_sprite.animation_finished.connect(Callable(self, "start_fade_out"), CONNECT_ONE_SHOT)
+	anim_sprite.animation_finished.connect(start_fade_out, CONNECT_ONE_SHOT)
 
+func start_fade_out():
+	var fade_tween = create_tween()
+	fade_tween.tween_property(self, "modulate:a", 0.0, fade_duration)
+	fade_tween.tween_callback(after_die)
+
+func after_die():
+	queue_free()
+		
 func back_to_state():
 	if current_health > 0:
 		if current_health <= FLEE_THRESHOLD:
@@ -111,12 +114,10 @@ func back_to_state():
 		else:
 			current_state = CHASE
 
-func after_die():
-		queue_free()
-
 func _on_attack_area_range_body_entered(body: Node2D) -> void:
 	if body == player_target:
 		current_state = ATTACK
+		
 		
 func _on_attack_area_range_body_exited(body: Node2D) -> void:
 	if body == player_target:

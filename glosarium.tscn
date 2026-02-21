@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1nb6xmad6bgo"]
+
+[ext_resource type="Texture2D" uid="uid://2sg6qci43eyp" path="res://Assets/Card/glosapage.png" id="1_xx8x0"]
+[ext_resource type="Script" uid="uid://bel8gded7ypjo" path="res://Script/glosapage.gd" id="1_yfmk6"]
+[ext_resource type="Texture2D" uid="uid://d37jv1v7vf5go" path="res://Assets/menu button/back.png" id="2_to55t"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_yfmk6")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_xx8x0")
+
+[node name="BackButton" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.031
+anchor_top = 0.053
+anchor_right = 0.068
+anchor_bottom = 0.118
+offset_left = 0.653999
+offset_top = 0.295998
+offset_right = 0.111992
+offset_bottom = 0.375992
+texture_normal = ExtResource("2_to55t")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

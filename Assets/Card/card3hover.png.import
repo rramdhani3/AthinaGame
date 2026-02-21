@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vrrik4i6a5e7"
-path="res://.godot/imported/menu.png-90821261217a338cff74104744ee1847.ctex"
+uid="uid://dst0kivdipign"
+path="res://.godot/imported/card3hover.png-7c5ed694da6cd4d037b93bf780d750b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/menu button/menu.png"
-dest_files=["res://.godot/imported/menu.png-90821261217a338cff74104744ee1847.ctex"]
+source_file="res://Assets/Card/card3hover.png"
+dest_files=["res://.godot/imported/card3hover.png-7c5ed694da6cd4d037b93bf780d750b4.ctex"]
 
 [params]
 

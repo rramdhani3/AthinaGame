@@ -6,6 +6,7 @@ const DURATION_FADE_OUT = 0.1
 const TARGET_Y_POSITION = 768
 const TARGET_X_POSITION = -484
 
+
 var current_tween: Tween = null
 var initial_global_position: Vector2
 
@@ -16,9 +17,8 @@ func activate_skill_ui():
 	initial_global_position = self.global_position
 	self.modulate.a = 1.0
 	self.show()
-	$AudioSkill.play()
+	$VoiceSkill.play()
 	$SFXSkill.play()
-	
 	
 	current_tween = create_tween()
 	current_tween.tween_property(self, "global_position:y", TARGET_Y_POSITION, DURATION_IN_MOVE)

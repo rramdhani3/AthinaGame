@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var press_sfx_player = $VBoxContainer/Press
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Story.tscn")
+	get_tree().change_scene_to_file("res://ChooseStory.tscn")
 
 
 func _on_quit_pressed() -> void:

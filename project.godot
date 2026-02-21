@@ -30,6 +30,7 @@ player=""
 EnemyAttack=""
 Skill=""
 Ulti=""
+Enemy=""
 
 [input]
 

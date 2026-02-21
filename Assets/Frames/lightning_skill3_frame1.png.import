@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vrrik4i6a5e7"
-path="res://.godot/imported/menu.png-90821261217a338cff74104744ee1847.ctex"
+uid="uid://2ivrxavaos2e"
+path="res://.godot/imported/lightning_skill3_frame1.png-bcbdce06b0fccf3d2af1c2d38d558611.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/menu button/menu.png"
-dest_files=["res://.godot/imported/menu.png-90821261217a338cff74104744ee1847.ctex"]
+source_file="res://Assets/Frames/lightning_skill3_frame1.png"
+dest_files=["res://.godot/imported/lightning_skill3_frame1.png-bcbdce06b0fccf3d2af1c2d38d558611.ctex"]
 
 [params]
 

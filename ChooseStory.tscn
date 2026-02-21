@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://buv8l4tsis1nn"]
+
+[ext_resource type="Texture2D" uid="uid://dtd8ddwhqa30k" path="res://Assets/menu button/choose.png" id="1_s3g64"]
+[ext_resource type="Script" uid="uid://cv124xt7uodu8" path="res://Script/choose_story.gd" id="1_t87rr"]
+[ext_resource type="Texture2D" uid="uid://djyufw45jrrgu" path="res://Assets/Card/card1.png" id="2_1ddlk"]
+[ext_resource type="Texture2D" uid="uid://d37jv1v7vf5go" path="res://Assets/menu button/back.png" id="2_2sr4w"]
+[ext_resource type="Texture2D" uid="uid://crbwcdelfjtwp" path="res://Assets/menu button/glosa.png" id="3_t87rr"]
+[ext_resource type="Texture2D" uid="uid://rqlj2lo0cioh" path="res://Assets/Card/card1hover.png" id="6_n7ckm"]
+[ext_resource type="Texture2D" uid="uid://d2o7vxrdfks3v" path="res://Assets/Card/card2.png" id="7_86ui5"]
+[ext_resource type="Texture2D" uid="uid://bj67i7mw7mk5w" path="res://Assets/Card/card2hover.png" id="8_62x04"]
+[ext_resource type="Texture2D" uid="uid://bvtfb86okyypw" path="res://Assets/Card/card3.png" id="9_jtyup"]
+[ext_resource type="Texture2D" uid="uid://dst0kivdipign" path="res://Assets/Card/card3hover.png" id="10_svnxj"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_t87rr")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.366
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_s3g64")
+
+[node name="BackButton" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.059
+anchor_right = 0.072
+anchor_bottom = 0.124
+offset_left = -0.176003
+offset_top = -0.312004
+offset_right = 0.647995
+offset_bottom = -0.232002
+texture_normal = ExtResource("2_2sr4w")
+
+[node name="GlosaButton" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.826
+anchor_right = 0.223
+anchor_bottom = 0.94
+offset_left = -0.176003
+offset_top = -0.368042
+offset_right = -0.618011
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_t87rr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.241
+anchor_top = 0.22
+anchor_right = 0.928
+anchor_bottom = 0.767
+offset_left = -10.206
+offset_top = -43.96
+offset_right = 80.3521
+offset_bottom = 24.944
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 42
+
+[node name="Stage1" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_1ddlk")
+texture_hover = ExtResource("6_n7ckm")
+stretch_mode = 3
+
+[node name="Stage2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_86ui5")
+texture_hover = ExtResource("8_62x04")
+stretch_mode = 3
+
+[node name="Stage3" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_jtyup")
+texture_hover = ExtResource("10_svnxj")
+stretch_mode = 3
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="GlosaButton" to="." method="_on_glosa_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Stage1" to="." method="_on_stage_1_pressed"]

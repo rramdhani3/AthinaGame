@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vrrik4i6a5e7"
-path="res://.godot/imported/menu.png-90821261217a338cff74104744ee1847.ctex"
+uid="uid://b73pqce861lui"
+path="res://.godot/imported/skill_q.png-b99a80ca5769a4cbc2f8f11bb28304b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/menu button/menu.png"
-dest_files=["res://.godot/imported/menu.png-90821261217a338cff74104744ee1847.ctex"]
+source_file="res://Assets/UI gameplay/skill_q.png"
+dest_files=["res://.godot/imported/skill_q.png-b99a80ca5769a4cbc2f8f11bb28304b6.ctex"]
 
 [params]
 
