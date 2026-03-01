@@ -141,6 +141,7 @@ var dialog_index := 0
 var is_typing := false
 var typing_speed := 0.03
 func _ready():
+	music_manager.stop_music()
 	_hide_all_characters()
 	show_dialog(dialog_index)
 

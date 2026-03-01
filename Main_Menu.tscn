@@ -53,15 +53,14 @@ stream = ExtResource("9_teegn")
 stream = ExtResource("10_3kq1t")
 volume_db = 2.0
 
-[node name="BgmMenu" type="AudioStreamPlayer2D" parent="."]
+[node name="BgmMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3mro0")
 volume_db = 5.0
 script = ExtResource("4_dnfjo")
 
-[node name="Greeting" type="AudioStreamPlayer2D" parent="."]
+[node name="Greeting" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_tu7k8")
 volume_db = 10.792
-attenuation = 0.5
 
 [node name="Control" type="Control" parent="."]
 visible = false

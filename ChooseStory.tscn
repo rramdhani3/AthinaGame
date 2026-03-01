@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://buv8l4tsis1nn"]
+[gd_scene load_steps=12 format=3 uid="uid://buv8l4tsis1nn"]
 
 [ext_resource type="Texture2D" uid="uid://dtd8ddwhqa30k" path="res://Assets/menu button/choose.png" id="1_s3g64"]
 [ext_resource type="Script" uid="uid://cv124xt7uodu8" path="res://Script/choose_story.gd" id="1_t87rr"]
@@ -10,9 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bj67i7mw7mk5w" path="res://Assets/Card/card2hover.png" id="8_62x04"]
 [ext_resource type="Texture2D" uid="uid://bvtfb86okyypw" path="res://Assets/Card/card3.png" id="9_jtyup"]
 [ext_resource type="Texture2D" uid="uid://dst0kivdipign" path="res://Assets/Card/card3hover.png" id="10_svnxj"]
+[ext_resource type="AudioStream" uid="uid://b5xq4d46chonh" path="res://Assets/Longing for AIR(MP3_320K).mp3" id="11_86ui5"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_t87rr")
+music = ExtResource("11_86ui5")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = -1
@@ -53,14 +55,13 @@ texture_normal = ExtResource("3_t87rr")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = -1
-anchor_left = 0.241
-anchor_top = 0.22
-anchor_right = 0.928
-anchor_bottom = 0.767
-offset_left = -10.206
-offset_top = -43.96
-offset_right = 80.3521
-offset_bottom = 24.944
+anchor_left = 0.234
+anchor_top = 0.163
+anchor_right = 0.987
+anchor_bottom = 0.799
+offset_top = -0.184013
+offset_right = -0.242065
+offset_bottom = 0.367981
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 42
@@ -86,3 +87,5 @@ stretch_mode = 3
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GlosaButton" to="." method="_on_glosa_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Stage1" to="." method="_on_stage_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Stage2" to="." method="_on_stage_2_pressed"]
+[connection signal="button_up" from="HBoxContainer/Stage3" to="." method="_on_stage_3_button_up"]

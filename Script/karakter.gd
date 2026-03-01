@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 200
+@export var speed :float= 300.0
 @export var dash_speed := 600
 @export var dash_duration := 0.15
 @export var dash_cooldown := 0.5
@@ -14,13 +14,15 @@ extends CharacterBody2D
 @export var attack_effect_duration := 0.3
 @export var attack_effect_speed := 150
 @export var attack_effect_offset := Vector2(20, 0)
-@export var attack_damage := 20
+@export var attack_damage :float= 20.0
+@export var max_hp :float= 200.0
 
 @onready var hitbox: Area2D = $AttackEffect/Hitbox
 @onready var sprite: AnimatedSprite2D = $PlayerSprite2D
 @onready var footstep = $PlayerSprite2D/FootstepPlayer
 @onready var attack_effect = $AttackEffect
 @onready var attack_effect_anim = $AttackEffect/EffectSprite2D
+
 
 var original_sprite_position := Vector2.ZERO
 var is_dashing := false
@@ -37,7 +39,6 @@ var current_health := 200
 
 func _ready():
 	original_sprite_position = sprite.position
-	get_parent().start_timer()
 	ultimate_cooldown_timer.timeout.connect(_on_ultimate_cooldown_timeout)
 	skill_cooldown_timer.timeout.connect(_on_skill_cooldown_timeout)
 	
@@ -133,7 +134,7 @@ func spawn_afterimage():
 	ghost.global_position = sprite.global_position
 	ghost.global_scale = sprite.global_scale
 	ghost.flip_h = sprite.flip_h
-	ghost.z_index = sprite.z_index + 1
+	ghost.z_index = sprite.z_index
 	get_tree().current_scene.add_child(ghost)
 	var tween = get_tree().create_tween()
 	tween.tween_property(ghost, "modulate:a", 0, afterimage_lifetime).set_trans(Tween.TRANS_LINEAR)
@@ -257,3 +258,14 @@ func _on_ultimate_vfx_damage_area_entered(area: Area2D) -> void:
 		if enemy_root and enemy_root.has_method("take_damage"):
 			enemy_root.take_damage(ultimate_damage_amount)
 			#has_ultimate_damage_applied = false
+			
+func apply_buff(buff_type):
+	match buff_type:
+		"speed":
+			speed *= 1.5
+		"damage":
+			attack_damage *= 2.0
+		"heal":
+			current_health *= 1.2
+			current_health = clamp(current_health, 0, max_hp)
+			health_changed.emit(current_health)

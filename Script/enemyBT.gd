@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
-@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_sprite: AnimatedSprite2D = $Visual/AnimatedSprite2D
 @onready var anim_attack: AnimationPlayer = $AnimationPlayer
+@onready var visual: Node2D = $Visual
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var attack_area: Area2D = $AttackAreaRange
 @export var speed: float = 80.0
 @export var speed_run: float = 150.0
 @export var player_y_offset: float = 108.0
 @export var attack_damage_enemy := 4
+
 
 const MAX_HEALTH = 200
 const FLEE_THRESHOLD = MAX_HEALTH / 2.0
@@ -124,7 +126,9 @@ func chase_player():
 
 	velocity = direction * speed
 	anim_sprite.play("walk")
-	anim_sprite.flip_h = direction.x < 0
+	#anim_sprite.flip_h = direction.x < 0
+	if direction.x != 0:
+		visual.scale.x = sign(direction.x)
 
 
 func flee_player():
@@ -134,7 +138,9 @@ func flee_player():
 
 	velocity = flee_direction * speed_run
 	anim_sprite.play("run")
-	anim_sprite.flip_h = flee_direction.x < 0
+	#anim_sprite.flip_h = flee_direction.x < 0
+	if flee_direction.x != 0:
+		visual.scale.x = sign(flee_direction.x)
 
 
 func attack_player():
@@ -151,10 +157,15 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		take_damage(damage)
 		area.set_deferred("monitoring", false)
 
-
+func flash_red():
+	var tween = create_tween()
+	visual.modulate = Color(1, 0.2, 0.2)
+	tween.tween_property(visual, "modulate", Color(1,1,1), 0.15)
+	
 func take_damage(amount: int):
 	current_health -= amount
 	$TextureProgressBar.value = current_health
+	flash_red()
 	log_bt(
 		"DAMAGE",
 		"HP:" + str(current_health) +

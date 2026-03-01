@@ -133,7 +133,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Visual/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -145,7 +145,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("Visual/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -174,7 +174,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/path = NodePath("Visual/AnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -186,7 +186,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/path = NodePath("Visual/AnimatedSprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -633,14 +633,15 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_u1qux")
 texture_progress = ExtResource("3_hcomd")
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyBody2D"]
+[node name="Visual" type="Node2D" parent="EnemyBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyBody2D/Visual"]
 position = Vector2(-12.8571, 121.429)
 scale = Vector2(1.5873, 1.07143)
 texture = ExtResource("4_htyhh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody2D/Visual"]
 modulate = Color(0.945098, 0.92549, 0.913725, 1)
-position = Vector2(-37.1429, 5.71429)
 sprite_frames = SubResource("SpriteFrames_dxifv")
 animation = &"attack"
 frame = 10
