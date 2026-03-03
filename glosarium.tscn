@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b1nb6xmad6bgo"]
 
-[ext_resource type="Texture2D" uid="uid://2sg6qci43eyp" path="res://Assets/Card/glosapage.png" id="1_xx8x0"]
 [ext_resource type="Script" uid="uid://bel8gded7ypjo" path="res://Script/glosapage.gd" id="1_yfmk6"]
 [ext_resource type="Texture2D" uid="uid://d37jv1v7vf5go" path="res://Assets/menu button/back.png" id="2_to55t"]
+[ext_resource type="Texture2D" uid="uid://pchwa7t6gbmf" path="res://Assets/Card/Glosarium.png" id="2_yfmk6"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_yfmk6")
@@ -19,7 +19,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_xx8x0")
+texture = ExtResource("2_yfmk6")
 
 [node name="BackButton" type="TextureButton" parent="."]
 anchors_preset = -1

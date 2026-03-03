@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://bkc25ctghsols"]
+[gd_scene load_steps=103 format=3 uid="uid://bkc25ctghsols"]
 
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
@@ -90,6 +90,9 @@
 [ext_resource type="Script" uid="uid://bmfu28j2127p3" path="res://Script/question_pop_up.gd" id="87_cji0u"]
 [ext_resource type="Texture2D" uid="uid://cx00awryk1u5o" path="res://Assets/Pop Up Question/contain.png" id="88_j5c36"]
 [ext_resource type="Texture2D" uid="uid://lkp7lkf1ahrw" path="res://Assets/Pop Up Question/option.png" id="89_by5na"]
+[ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="91_5j2dk"]
+[ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="92_xd6kg"]
+[ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="93_ebqmi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -877,7 +880,111 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "null"
 
+[node name="DefeatPopUp" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("91_5j2dk")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DefeatPopUp"]
+modulate = Color(0.176471, 0.0823529, 0.0823529, 1)
+self_modulate = Color(0.083392, 0.083392, 0.083392, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 152.0
+offset_right = 67.0
+offset_bottom = 284.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "DEFEAT"
+
+[node name="Label2" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -271.0
+offset_top = 306.0
+offset_right = -57.0
+offset_bottom = 340.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Perhatikan musuh"
+
+[node name="Label3" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -272.0
+offset_top = 350.0
+offset_right = 159.0
+offset_bottom = 384.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Ambil buff dengan bijak dan hati-hati"
+
+[node name="Label4" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 394.0
+offset_right = 285.0
+offset_bottom = 428.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Pelajari pertanyaan agar mendapat banyak buff"
+
+[node name="Retry" type="TextureButton" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -268.0
+offset_top = 137.0
+offset_right = -1.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("93_ebqmi")
+
+[node name="BackMenu" type="TextureButton" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = 136.0
+offset_right = 285.0
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("92_xd6kg")
+
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/DefeatPopUp/Retry" to="CanvasLayer/DefeatPopUp" method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/DefeatPopUp/BackMenu" to="CanvasLayer/DefeatPopUp" method="_on_back_menu_pressed"]

@@ -33,7 +33,7 @@ var afterimage_timer := 0.0
 var footstep_timer := 0.0
 var is_attacking := false
 var attack_timer := 0.0
-var current_health := 200
+var current_health :float= 200.0
 
 
 
@@ -169,6 +169,8 @@ func stop_footstep():
 signal health_changed(new_health)
 func take_damage(amount: int):
 	current_health -= amount
+	if current_health < 0:
+		current_health = 0
 	health_changed.emit(current_health)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

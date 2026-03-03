@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://cnfvn53167ars"]
+[gd_scene load_steps=105 format=3 uid="uid://cnfvn53167ars"]
 
 [ext_resource type="Script" uid="uid://d1dmhnnguuaae" path="res://Script/gameplay_s_3.gd" id="1_d52sy"]
 [ext_resource type="PackedScene" uid="uid://wjym1x87213y" path="res://EnemyUtility.tscn" id="2_uxsc3"]
@@ -90,6 +90,9 @@
 [ext_resource type="Script" uid="uid://bmfu28j2127p3" path="res://Script/question_pop_up.gd" id="88_uqof2"]
 [ext_resource type="Texture2D" uid="uid://cx00awryk1u5o" path="res://Assets/Pop Up Question/contain.png" id="89_kpxu4"]
 [ext_resource type="Texture2D" uid="uid://lkp7lkf1ahrw" path="res://Assets/Pop Up Question/option.png" id="90_h5tde"]
+[ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="91_551s5"]
+[ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="92_m6tbj"]
+[ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="93_o88ap"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -370,6 +373,13 @@ size = Vector2(507.219, 838.858)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yp6v"]
 size = Vector2(78, 78)
 
+[sub_resource type="Gradient" id="Gradient_551s5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6tbj"]
+gradient = SubResource("Gradient_551s5")
+fill_from = Vector2(0.478632, 0)
+fill_to = Vector2(0.507123, 0.977208)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5l1"]
 resource_local_to_scene = true
 shader = ExtResource("84_36yty")
@@ -408,10 +418,11 @@ drag_horizontal_offset = 1.0
 editor_draw_drag_margin = true
 
 [node name="PlayerSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+self_modulate = Color(0.801131, 0.878303, 0.971348, 0.996078)
 position = Vector2(0, 10)
 scale = Vector2(1.38302, 1.38302)
 sprite_frames = SubResource("SpriteFrames_j43mq")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 offset = Vector2(-21.7863, 104.943)
 
@@ -506,7 +517,15 @@ texture = ExtResource("65_gqsys")
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_4yp6v")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1105, 866)
+scale = Vector2(85.3595, 4.10938)
+energy = 2.98
+texture = SubResource("GradientTexture2D_m6tbj")
+offset = Vector2(17.4614, -56.8213)
+
 [node name="Foreground" type="Sprite2D" parent="."]
+light_mask = 2
 z_index = 1
 position = Vector2(2600, 384)
 texture = ExtResource("66_6vryq")
@@ -877,7 +896,111 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "null"
 
+[node name="DefeatPopUp" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("91_551s5")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/DefeatPopUp"]
+modulate = Color(0.176471, 0.0823529, 0.0823529, 1)
+self_modulate = Color(0.083392, 0.083392, 0.083392, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 152.0
+offset_right = 67.0
+offset_bottom = 284.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "DEFEAT"
+
+[node name="Label2" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -271.0
+offset_top = 306.0
+offset_right = -57.0
+offset_bottom = 340.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Perhatikan musuh"
+
+[node name="Label3" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -272.0
+offset_top = 350.0
+offset_right = 159.0
+offset_bottom = 384.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Ambil buff dengan bijak dan hati-hati"
+
+[node name="Label4" type="Label" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 394.0
+offset_right = 285.0
+offset_bottom = 428.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Pelajari pertanyaan agar mendapat banyak buff"
+
+[node name="Retry" type="TextureButton" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -268.0
+offset_top = 137.0
+offset_right = -1.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("92_m6tbj")
+
+[node name="BackMenu" type="TextureButton" parent="CanvasLayer/DefeatPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = 136.0
+offset_right = 285.0
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("93_o88ap")
+
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/DefeatPopUp/Retry" to="CanvasLayer/DefeatPopUp" method="_on_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer/DefeatPopUp/BackMenu" to="CanvasLayer/DefeatPopUp" method="_on_back_menu_pressed"]

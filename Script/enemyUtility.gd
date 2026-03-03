@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_sprite: AnimatedSprite2D = $Visual/AnimatedSprite2D
 @onready var anim_attack: AnimationPlayer = $AnimationPlayer
+@onready var visual: Node2D = $Visual
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var attack_area: Area2D = $AttackAreaRange
-
 @export var speed := 80.0
 @export var speed_run := 150.0
 @export var player_y_offset := 108.0
@@ -85,20 +85,24 @@ func attack_player():
 func chase_player():
 	var target_y = player_target.global_position.y + player_y_offset
 	var target_pos = Vector2(player_target.global_position.x, target_y)
-	var dir = (target_pos - global_position).normalized()
+	var direction = (target_pos - global_position).normalized()
 
-	velocity = dir * speed
+	velocity = direction * speed
 	anim_sprite.play("walk")
-	anim_sprite.flip_h = dir.x < 0
+	#anim_sprite.flip_h = dir.x < 0
+	if direction.x != 0:
+		visual.scale.x = sign(direction.x)
 
 func flee_player():
 	var target_y = player_target.global_position.y + player_y_offset
 	var target_pos = Vector2(player_target.global_position.x, target_y)
-	var dir = (target_pos - global_position).normalized() * -1
+	var flee_direction = (target_pos - global_position).normalized() * -1
 
-	velocity = dir * speed_run
+	velocity = flee_direction * speed_run
 	anim_sprite.play("run")
-	anim_sprite.flip_h = dir.x < 0
+	#anim_sprite.flip_h = dir.x < 0
+	if flee_direction.x != 0:
+		visual.scale.x = sign(flee_direction.x)
 
 # Damage & Death (Status System)
 func _on_hurtbox_area_entered(area: Area2D) -> void:
@@ -110,6 +114,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func take_damage(amount: int):
 	current_health -= amount
 	$TextureProgressBar.value = current_health
+	flash_red()
 	var u_attack := utility_attack()
 	var u_flee   := utility_flee()
 	var u_chase  := utility_chase()
@@ -124,7 +129,12 @@ func take_damage(amount: int):
 		anim_sprite.play("hurt")
 	if current_health <= 0:
 		die()
-
+		
+func flash_red():
+	var tween = create_tween()
+	visual.modulate = Color(1, 0.2, 0.2)
+	tween.tween_property(visual, "modulate", Color(1,1,1), 0.15)
+	
 func die():
 	hurtbox.set_deferred("monitoring", false)
 	anim_sprite.play("die")

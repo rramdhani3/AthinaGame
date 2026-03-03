@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crbwcdelfjtwp"
-path="res://.godot/imported/glosa.png-3bf0d7eb877e4e32e44654aaf1585022.ctex"
+uid="uid://d4jyhmv2ebsf7"
+path="res://.godot/imported/Retry.png-ae5820d1536196ad528ccdc0a86a0c12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/menu button/glosa.png"
-dest_files=["res://.godot/imported/glosa.png-3bf0d7eb877e4e32e44654aaf1585022.ctex"]
+source_file="res://Assets/Pop UP/Retry.png"
+dest_files=["res://.godot/imported/Retry.png-ae5820d1536196ad528ccdc0a86a0c12.ctex"]
 
 [params]
 

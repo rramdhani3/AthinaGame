@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cv124xt7uodu8" path="res://Script/choose_story.gd" id="1_t87rr"]
 [ext_resource type="Texture2D" uid="uid://djyufw45jrrgu" path="res://Assets/Card/card1.png" id="2_1ddlk"]
 [ext_resource type="Texture2D" uid="uid://d37jv1v7vf5go" path="res://Assets/menu button/back.png" id="2_2sr4w"]
-[ext_resource type="Texture2D" uid="uid://crbwcdelfjtwp" path="res://Assets/menu button/glosa.png" id="3_t87rr"]
+[ext_resource type="Texture2D" uid="uid://bcotfcwaalfpn" path="res://Assets/menu button/glosa btn.png" id="5_86ui5"]
 [ext_resource type="Texture2D" uid="uid://rqlj2lo0cioh" path="res://Assets/Card/card1hover.png" id="6_n7ckm"]
 [ext_resource type="Texture2D" uid="uid://d2o7vxrdfks3v" path="res://Assets/Card/card2.png" id="7_86ui5"]
 [ext_resource type="Texture2D" uid="uid://bj67i7mw7mk5w" path="res://Assets/Card/card2hover.png" id="8_62x04"]
@@ -51,7 +51,7 @@ offset_right = -0.618011
 offset_bottom = 0.0799561
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("3_t87rr")
+texture_normal = ExtResource("5_86ui5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = -1

@@ -65,6 +65,8 @@ func resume_game():
 	
 func _on_player_health_changed(new_health: int):
 	player_health_bar.value = new_health
+	if new_health <= 0:
+		player_died()
 	
 func spawn_enemy():
 	var new_enemy = enemy_scene.instantiate()
@@ -96,6 +98,21 @@ func spawn_enemy():
 	#spawned_enemy.global_position = Vector2(spawn_x, spawn_y)
 #
 	#get_tree().current_scene.add_child(spawned_enemy)
+var is_dead = false
+func player_died():
+	if is_dead:
+		return
+	is_dead = true
+	Engine.time_scale = 0.2
+	await get_tree().create_timer(0.2).timeout
+	Engine.time_scale = 1
+	get_tree().paused = true
+
+	var tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(1.2,1.2), 1.2)
+	
+	$CanvasLayer/DefeatPopUp.show_defeat()
 	
 func setup_questions():
 	question_pool = [

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2sg6qci43eyp"
-path="res://.godot/imported/glosapage.png-fe4491e5773085bc6f847a57f6f08431.ctex"
+uid="uid://1x7evtke6hld"
+path="res://.godot/imported/BackMenu.png-d944c4b2aaed065ac8365bdbe63dfb6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Card/glosapage.png"
-dest_files=["res://.godot/imported/glosapage.png-fe4491e5773085bc6f847a57f6f08431.ctex"]
+source_file="res://Assets/Pop UP/BackMenu.png"
+dest_files=["res://.godot/imported/BackMenu.png-d944c4b2aaed065ac8365bdbe63dfb6c.ctex"]
 
 [params]
 
