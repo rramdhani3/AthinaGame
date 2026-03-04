@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://da5ake27jq3at"]
+
+[ext_resource type="Script" uid="uid://uj3nduw854vg" path="res://Script/koin.gd" id="1_wxtkl"]
+[ext_resource type="Texture2D" uid="uid://bvgo04y380ji3" path="res://Assets/menu button/book koin.png" id="2_nvef1"]
+[ext_resource type="AudioStream" uid="uid://c0v3bfgn07xk1" path="res://Assets/sfx/freesound_crunchpixstudio-drop-coin-384921.mp3" id="3_nvef1"]
+[ext_resource type="AudioStream" uid="uid://isabao6nb4yr" path="res://Assets/sfx/universfield-bubble-pop-07-487896.mp3" id="4_lo0ig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lo0ig"]
+radius = 27.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_wxtkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nvef1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lo0ig")
+
+[node name="PickupDelay" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="CoinDrop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nvef1")
+autoplay = true
+
+[node name="CoinReceived" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lo0ig")
+
+[connection signal="timeout" from="PickupDelay" to="." method="_on_pickup_delay_timeout"]

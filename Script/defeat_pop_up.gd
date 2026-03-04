@@ -3,7 +3,6 @@ extends Control
 @onready var color_rect = $ColorRect
 @onready var retry_button = $Retry
 @onready var backmenu_button = $BackMenu
-
 @onready var label1 = $Label
 @onready var slide_labels = [$Label2, $Label3, $Label4 ]
 
@@ -14,6 +13,7 @@ func _ready():
 		original_positions[lbl] = lbl.position
 
 func show_defeat():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	visible = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	

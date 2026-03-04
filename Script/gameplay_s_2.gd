@@ -39,7 +39,7 @@ func _on_game_timer_timeout() -> void:
 	$CanvasLayer/TimeLabel.text = format_time(countdown_time)
 	#if countdown_time % 60 == 0 and countdown_time != 180:
 		#trigger_question_phase()
-	if countdown_time % 5 == 0:
+	if countdown_time % 10 == 0:
 		trigger_question_phase()
 	if countdown_time <= 0:
 		game_timer.stop()

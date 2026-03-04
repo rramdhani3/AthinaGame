@@ -14,6 +14,7 @@ var elapsed_time := 0
 var countdown_time := 180
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	setup_questions()
 	spawn_timer.timeout.connect(spawn_enemy)
 	spawn_timer.start()
@@ -28,6 +29,14 @@ func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		_on_button_pressed()
 
+	if event.is_action_pressed("hold_cursor"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if event.is_action_released("hold_cursor"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _exit_tree():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func format_time(t: int) -> String:
 	var minutes = t / 60.0
@@ -39,7 +48,7 @@ func _on_game_timer_timeout() -> void:
 	$CanvasLayer/TimeLabel.text = format_time(countdown_time)
 	#if countdown_time % 60 == 0 and countdown_time != 180:
 		#trigger_question_phase()
-	if countdown_time % 5 == 0:
+	if countdown_time % 10 == 0:
 		trigger_question_phase()
 	if countdown_time <= 0:
 		game_timer.stop()

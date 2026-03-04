@@ -9,6 +9,8 @@ extends CharacterBody2D
 @export var speed_run: float = 150.0
 @export var player_y_offset: float = 108.0
 @export var attack_damage_enemy := 4
+@export var coin_scene: PackedScene
+@export var coin_drop_amount: int = 1
 
 
 const MAX_HEALTH = 200
@@ -193,7 +195,17 @@ func start_fade_out():
 
 func after_die():
 	queue_free()
+	spawn_coins()
 
 func give_damage_to_player():
 	if player_target and player_target.has_method("take_damage"):
 		player_target.take_damage(attack_damage_enemy)
+		
+func spawn_coins():
+	if coin_scene == null:
+		return
+	
+	for i in coin_drop_amount:
+		var coin = coin_scene.instantiate()
+		get_parent().add_child(coin)
+		coin.global_position = global_position

@@ -1,6 +1,7 @@
-[gd_scene load_steps=135 format=3 uid="uid://cyrfyod7bf3u0"]
+[gd_scene load_steps=136 format=3 uid="uid://cyrfyod7bf3u0"]
 
 [ext_resource type="Script" uid="uid://gwmqbrjblyhi" path="res://Script/enemyFSM.gd" id="1_b6ngj"]
+[ext_resource type="PackedScene" uid="uid://da5ake27jq3at" path="res://koin.tscn" id="2_hcomd"]
 [ext_resource type="Texture2D" uid="uid://dr38kkpj6daow" path="res://Assets/sprite enemy 2/health_bar/health_bar-02.png" id="2_u1qux"]
 [ext_resource type="Texture2D" uid="uid://wdj2k4im8vc1" path="res://Assets/sprite enemy 2/health_bar/health_bar-05.png" id="3_hcomd"]
 [ext_resource type="Texture2D" uid="uid://q77ytm2xrfis" path="res://Assets/sadow.png" id="4_htyhh"]
@@ -613,6 +614,7 @@ scale = Vector2(0.7, 0.7)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_b6ngj")
+coin_scene = ExtResource("2_hcomd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyBody2D"]
 libraries = {

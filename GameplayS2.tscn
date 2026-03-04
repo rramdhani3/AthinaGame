@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://djrhum67hn6n"]
+[gd_scene load_steps=104 format=3 uid="uid://djrhum67hn6n"]
 
 [ext_resource type="Script" uid="uid://d21373y1ax41x" path="res://Script/gameplay_s_2.gd" id="1_kcx5g"]
 [ext_resource type="PackedScene" uid="uid://chydy8njjqrvs" path="res://EnemyBT.tscn" id="2_06hdt"]
@@ -80,6 +80,7 @@
 [ext_resource type="Texture2D" uid="uid://dwowg4xgc3jis" path="res://Assets/UI gameplay/progress.png" id="77_l7och"]
 [ext_resource type="Texture2D" uid="uid://be23q8da1k2se" path="res://Assets/UI gameplay/Ellipse 73.png" id="78_v1d7x"]
 [ext_resource type="Script" uid="uid://1fthvjl42owa" path="res://Script/skill_display.gd" id="79_ekfq6"]
+[ext_resource type="Texture2D" uid="uid://bvgo04y380ji3" path="res://Assets/menu button/book koin.png" id="79_hmwuu"]
 [ext_resource type="Texture2D" uid="uid://dvgrmsovpc56o" path="res://Assets/UI gameplay/skill.png" id="80_b678u"]
 [ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="81_pfoo5"]
 [ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="82_ty5ac"]
@@ -652,6 +653,32 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
+
+[node name="CoinLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_top = 118.0
+offset_right = -66.0
+offset_bottom = 157.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="CoinPng" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 104.0
+offset_right = -29.0
+offset_bottom = 167.0
+grow_horizontal = 0
+texture = ExtResource("79_hmwuu")
+stretch_mode = 2
 
 [node name="SkillDisplay" type="Control" parent="CanvasLayer" groups=["Skill"]]
 visible = false

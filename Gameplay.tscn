@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bkc25ctghsols"]
+[gd_scene load_steps=104 format=3 uid="uid://bkc25ctghsols"]
 
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
@@ -82,6 +82,7 @@
 [ext_resource type="Texture2D" uid="uid://bhdo8sw02jk4y" path="res://Assets/UI gameplay/ulti_r.png" id="72_4bypd"]
 [ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="73_e1ql5"]
 [ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="74_hfp18"]
+[ext_resource type="Texture2D" uid="uid://bvgo04y380ji3" path="res://Assets/menu button/book koin.png" id="79_ebqmi"]
 [ext_resource type="Script" uid="uid://b2my80r8xi10b" path="res://Script/buff_pop_up.gd" id="82_ebqmi"]
 [ext_resource type="Shader" uid="uid://b3ma0rv5wsenm" path="res://Assets/blur_overlay.gdshader" id="83_opxba"]
 [ext_resource type="Texture2D" uid="uid://coufmy0e8rew4" path="res://Assets/Pop Up Buff/speed.png" id="84_u5a08"]
@@ -652,6 +653,32 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 28
+
+[node name="CoinLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_top = 118.0
+offset_right = -66.0
+offset_bottom = 157.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="CoinPng" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 104.0
+offset_right = -29.0
+offset_bottom = 167.0
+grow_horizontal = 0
+texture = ExtResource("79_ebqmi")
+stretch_mode = 2
 
 [node name="SkillDisplay" type="Control" parent="CanvasLayer" groups=["Skill"]]
 visible = false

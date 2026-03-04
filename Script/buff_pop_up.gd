@@ -46,5 +46,6 @@ func apply_buff(buff_type):
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(content, "scale", Vector2.ZERO, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	await tween.finished
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	visible = false
 	stage_ref.resume_game()

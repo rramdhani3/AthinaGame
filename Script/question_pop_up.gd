@@ -12,6 +12,7 @@ func _ready():
 func show_question(data, stage):
 	stage_ref = stage
 	current_question = data
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	visible = true
 	
 	pivot_offset = size / 2 
@@ -29,3 +30,4 @@ func _on_option_pressed(index):
 		stage_ref.answer_correct()
 	else:
 		stage_ref.answer_wrong()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
