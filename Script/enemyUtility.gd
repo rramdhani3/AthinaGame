@@ -8,7 +8,9 @@ extends CharacterBody2D
 @export var speed := 80.0
 @export var speed_run := 150.0
 @export var player_y_offset := 108.0
-@export var attack_damage_enemy := 4
+@export var attack_damage_enemy := 10
+@export var coin_scene: PackedScene
+@export var coin_drop_amount: int = 5
 
 const MAX_HEALTH := 200
 var current_health := MAX_HEALTH
@@ -150,6 +152,7 @@ func start_fade_out():
 
 func after_die():
 	queue_free()
+	spawn_coins()
 
 # Attack Range Sensor (Utility Input)
 func _on_attack_area_range_body_entered(body: Node2D) -> void:
@@ -165,3 +168,12 @@ func _on_attack_area_range_body_exited(body: Node2D) -> void:
 func give_damage_to_player():
 	if player_target and player_target.has_method("take_damage"):
 		player_target.take_damage(attack_damage_enemy)
+		
+func spawn_coins():
+	if coin_scene == null:
+		return
+	
+	for i in coin_drop_amount:
+		var coin = coin_scene.instantiate()
+		get_parent().add_child(coin)
+		coin.global_position = global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://bkc25ctghsols"]
+[gd_scene load_steps=113 format=3 uid="uid://bkc25ctghsols"]
 
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
@@ -82,7 +82,7 @@
 [ext_resource type="Texture2D" uid="uid://bhdo8sw02jk4y" path="res://Assets/UI gameplay/ulti_r.png" id="72_4bypd"]
 [ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="73_e1ql5"]
 [ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="74_hfp18"]
-[ext_resource type="Texture2D" uid="uid://bvgo04y380ji3" path="res://Assets/menu button/book koin.png" id="79_ebqmi"]
+[ext_resource type="Texture2D" uid="uid://5pek8mt0m7pv" path="res://Assets/menu button/book koin2.png" id="79_ebqmi"]
 [ext_resource type="Script" uid="uid://b2my80r8xi10b" path="res://Script/buff_pop_up.gd" id="82_ebqmi"]
 [ext_resource type="Shader" uid="uid://b3ma0rv5wsenm" path="res://Assets/blur_overlay.gdshader" id="83_opxba"]
 [ext_resource type="Texture2D" uid="uid://coufmy0e8rew4" path="res://Assets/Pop Up Buff/speed.png" id="84_u5a08"]
@@ -94,6 +94,15 @@
 [ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="91_5j2dk"]
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="92_xd6kg"]
 [ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="93_ebqmi"]
+[ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_u5a08"]
+[ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_5pgd7"]
+[ext_resource type="Script" uid="uid://6hg8gj3vpd60" path="res://Script/victory_pop_up.gd" id="97_la7pg"]
+[ext_resource type="Texture2D" uid="uid://cebv4sicnx77p" path="res://Assets/Pop UP/victory.png" id="98_cji0u"]
+[ext_resource type="Texture2D" uid="uid://dpcxi21n11fko" path="res://Assets/Pop UP/Confirm.png" id="99_cji0u"]
+[ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="100_j5c36"]
+[ext_resource type="Texture2D" uid="uid://dwewa8cjbcvj6" path="res://Assets/Pop UP/ConfrimPressed.png" id="100_vtyru"]
+[ext_resource type="Texture2D" uid="uid://bnyfxf4bnjffy" path="res://Assets/Pop UP/ConfirmHover.png" id="101_1tx16"]
+[ext_resource type="AudioStream" uid="uid://b6bnt2wo5dp3h" path="res://Assets/sfx/scratchonix-victory-chime-366449.mp3" id="101_by5na"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -652,6 +661,9 @@ offset_bottom = 87.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 28
 
 [node name="CoinLabel" type="Label" parent="CanvasLayer"]
@@ -665,6 +677,9 @@ offset_bottom = 157.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 28
 text = "0"
 
@@ -672,13 +687,12 @@ text = "0"
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -92.0
-offset_top = 104.0
-offset_right = -29.0
-offset_bottom = 167.0
+offset_left = -89.0
+offset_top = 109.0
+offset_right = -35.0
+offset_bottom = 163.0
 grow_horizontal = 0
 texture = ExtResource("79_ebqmi")
-stretch_mode = 2
 
 [node name="SkillDisplay" type="Control" parent="CanvasLayer" groups=["Skill"]]
 visible = false
@@ -1009,9 +1023,73 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("92_xd6kg")
 
+[node name="Defeat" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
+stream = ExtResource("95_u5a08")
+
+[node name="Defeat2" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
+stream = ExtResource("96_5pgd7")
+
+[node name="VictoryPopUp" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("97_la7pg")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/VictoryPopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0901961, 1)
+
+[node name="Container" type="TextureRect" parent="CanvasLayer/VictoryPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -150.0
+offset_right = 371.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("98_cji0u")
+
+[node name="Confirm" type="TextureButton" parent="CanvasLayer/VictoryPopUp/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.622
+anchor_right = 0.5
+anchor_bottom = 0.622
+offset_left = -133.0
+offset_top = 81.4
+offset_right = 134.0
+offset_bottom = 143.4
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("99_cji0u")
+texture_pressed = ExtResource("100_vtyru")
+texture_hover = ExtResource("101_1tx16")
+
+[node name="Confirmsfx" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
+stream = ExtResource("100_j5c36")
+
+[node name="Victory" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
+stream = ExtResource("101_by5na")
+
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/DefeatPopUp/Retry" to="CanvasLayer/DefeatPopUp" method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/DefeatPopUp/BackMenu" to="CanvasLayer/DefeatPopUp" method="_on_back_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryPopUp/Container/Confirm" to="CanvasLayer/VictoryPopUp" method="_on_confirm_pressed"]

@@ -13,8 +13,10 @@ func _ready():
 		original_positions[lbl] = lbl.position
 
 func show_defeat():
+	get_tree().current_scene.get_node("BackgroundMusic").stop()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	visible = true
+
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	color_rect.modulate.a = 0
@@ -37,10 +39,11 @@ func show_defeat():
 	
 	animate_main_label(tween, label1)
 	tween.tween_interval(0.2)
+	$Defeat.play()
 	
 	for lbl in slide_labels:
 		animate_slide_label(tween, lbl)
-		tween.tween_interval(0.2)
+		tween.tween_interval(0.1)
 	
 	tween.tween_callback(show_buttons)
 
@@ -67,7 +70,7 @@ func show_buttons():
 func _on_retry_pressed():
 	get_tree().paused = false
 	Engine.time_scale = 1
-	get_tree().change_scene_to_file("res://Gameplay.tscn")
+	get_tree().reload_current_scene()
 
 
 func _on_back_menu_pressed():

@@ -1,7 +1,8 @@
-[gd_scene load_steps=136 format=3 uid="uid://wjym1x87213y"]
+[gd_scene load_steps=137 format=3 uid="uid://wjym1x87213y"]
 
 [ext_resource type="Script" uid="uid://fb8mh8m8pbbo" path="res://Script/enemyUtility.gd" id="1_qfvm5"]
 [ext_resource type="Texture2D" uid="uid://dr38kkpj6daow" path="res://Assets/sprite enemy 2/health_bar/health_bar-02.png" id="2_bj47l"]
+[ext_resource type="PackedScene" uid="uid://da5ake27jq3at" path="res://koin.tscn" id="2_fiwei"]
 [ext_resource type="Texture2D" uid="uid://wdj2k4im8vc1" path="res://Assets/sprite enemy 2/health_bar/health_bar-05.png" id="3_fiwei"]
 [ext_resource type="Texture2D" uid="uid://q77ytm2xrfis" path="res://Assets/sadow.png" id="4_e6b7l"]
 [ext_resource type="Texture2D" uid="uid://cmbvnprujqpo0" path="res://Assets/sprite enemy 2/PNG/5/5_enemies_1_attack_000.png" id="5_qfvm5"]
@@ -616,6 +617,7 @@ scale = Vector2(0.7, 0.7)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_qfvm5")
+coin_scene = ExtResource("2_fiwei")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyBody2D"]
 libraries = {

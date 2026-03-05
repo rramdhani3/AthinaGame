@@ -271,3 +271,13 @@ func apply_buff(buff_type):
 			current_health *= 1.2
 			current_health = clamp(current_health, 0, max_hp)
 			health_changed.emit(current_health)
+
+var total_coins: int = 0
+@onready var coin_label: Label = $"../CanvasLayer/CoinLabel"
+func add_coin(amount: int):
+	total_coins += amount
+	update_coin_ui()
+
+func update_coin_ui():
+	if coin_label:
+		coin_label.text = str(total_coins)

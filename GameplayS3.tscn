@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://cnfvn53167ars"]
+[gd_scene load_steps=108 format=3 uid="uid://cnfvn53167ars"]
 
 [ext_resource type="Script" uid="uid://d1dmhnnguuaae" path="res://Script/gameplay_s_3.gd" id="1_d52sy"]
 [ext_resource type="PackedScene" uid="uid://wjym1x87213y" path="res://EnemyUtility.tscn" id="2_uxsc3"]
@@ -78,6 +78,7 @@
 [ext_resource type="Texture2D" uid="uid://bwrkqk86043dh" path="res://Assets/UI gameplay/over-bar.png" id="76_ntqtg"]
 [ext_resource type="Texture2D" uid="uid://dwowg4xgc3jis" path="res://Assets/UI gameplay/progress.png" id="77_nycea"]
 [ext_resource type="Texture2D" uid="uid://be23q8da1k2se" path="res://Assets/UI gameplay/Ellipse 73.png" id="78_telt8"]
+[ext_resource type="Texture2D" uid="uid://5pek8mt0m7pv" path="res://Assets/menu button/book koin2.png" id="79_m6tbj"]
 [ext_resource type="Script" uid="uid://1fthvjl42owa" path="res://Script/skill_display.gd" id="79_y3n23"]
 [ext_resource type="Texture2D" uid="uid://dvgrmsovpc56o" path="res://Assets/UI gameplay/skill.png" id="80_0it04"]
 [ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="81_drqns"]
@@ -93,6 +94,8 @@
 [ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="91_551s5"]
 [ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="92_m6tbj"]
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="93_o88ap"]
+[ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_ulsij"]
+[ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_ulsij"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -667,7 +670,38 @@ offset_bottom = 87.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 28
+
+[node name="CoinLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_top = 118.0
+offset_right = -66.0
+offset_bottom = 157.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.1333, 0.316265, 0.43, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="CoinPng" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 104.0
+offset_right = -29.0
+offset_bottom = 167.0
+grow_horizontal = 0
+texture = ExtResource("79_m6tbj")
 
 [node name="SkillDisplay" type="Control" parent="CanvasLayer" groups=["Skill"]]
 visible = false
@@ -997,6 +1031,12 @@ offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("93_o88ap")
+
+[node name="Defeat" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
+stream = ExtResource("95_ulsij")
+
+[node name="Defeat2" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
+stream = ExtResource("96_ulsij")
 
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]

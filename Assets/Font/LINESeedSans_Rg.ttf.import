@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://clookkjk5ecl0"
-path="res://.godot/imported/Exoplanetaria-gxxJ5.ttf-c2a754a43c7f65542dd6145e4008567c.fontdata"
+uid="uid://pxh6cul3krwl"
+path="res://.godot/imported/LINESeedSans_Rg.ttf-e9d81f3766d5292136e4188e3875b0ba.fontdata"
 
 [deps]
 
-source_file="res://Assets/Exoplanetaria-gxxJ5.ttf"
-dest_files=["res://.godot/imported/Exoplanetaria-gxxJ5.ttf-c2a754a43c7f65542dd6145e4008567c.fontdata"]
+source_file="res://Assets/Font/LINESeedSans_Rg.ttf"
+dest_files=["res://.godot/imported/LINESeedSans_Rg.ttf-e9d81f3766d5292136e4188e3875b0ba.fontdata"]
 
 [params]
 

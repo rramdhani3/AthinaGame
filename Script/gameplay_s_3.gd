@@ -14,6 +14,7 @@ var elapsed_time := 0
 var countdown_time := 180
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	setup_questions()
 	spawn_timer.timeout.connect(spawn_enemy)
 	spawn_timer.start()
@@ -27,6 +28,15 @@ func _on_button_pressed() -> void:
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		_on_button_pressed()
+		
+	if event.is_action_pressed("hold_cursor"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if event.is_action_released("hold_cursor"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _exit_tree():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	
 func format_time(t: int) -> String:
@@ -112,7 +122,7 @@ func player_died():
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(1.2,1.2), 1.2)
-	
+	$CanvasLayer/DefeatPopUp/Defeat2.play()
 	$CanvasLayer/DefeatPopUp.show_defeat()
 	
 func setup_questions():

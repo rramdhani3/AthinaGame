@@ -11,16 +11,18 @@ var question_pool = []
 var current_questions = []
 var question_index := 0
 var elapsed_time := 0
-var countdown_time := 180
+var countdown_time := 5
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	setup_questions()
 	spawn_timer.timeout.connect(spawn_enemy)
 	spawn_timer.start()
 	game_timer.start()
 	if player:
 		player.health_changed.connect(_on_player_health_changed)
+	
+
 	
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")
@@ -34,6 +36,8 @@ func _input(event):
 
 	if event.is_action_released("hold_cursor"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 
 func _exit_tree():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -49,9 +53,11 @@ func _on_game_timer_timeout() -> void:
 	#if countdown_time % 60 == 0 and countdown_time != 180:
 		#trigger_question_phase()
 	if countdown_time % 10 == 0:
-		trigger_question_phase()
+		#trigger_question_phase()
+		pass
 	if countdown_time <= 0:
 		game_timer.stop()
+		trigger_victory()
 		
 func trigger_question_phase():
 	get_tree().paused = true
@@ -60,11 +66,27 @@ func trigger_question_phase():
 	var question_data = current_questions[0]
 	$CanvasLayer/QuestionPopUp.show_question(question_data, self)
 
+func trigger_victory():
+	spawn_timer.stop()
+	
+	Engine.time_scale = 0.25
+	await get_tree().create_timer(0.6).timeout
+	
+	Engine.time_scale = 1
+	get_tree().paused = true
+	
+	var tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(0.8,0.8), 1.5)
+	
+	$CanvasLayer/VictoryPopUp.show_victory()
+
 func answer_correct():
 	start_buff_phase()
 
 func answer_wrong():
 	resume_game()
+	
 
 func start_buff_phase():
 	$CanvasLayer/BuffPopUp.show_buff(player, self)
@@ -120,7 +142,6 @@ func player_died():
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(1.2,1.2), 1.2)
-	
 	$CanvasLayer/DefeatPopUp.show_defeat()
 	
 func setup_questions():

@@ -1,7 +1,6 @@
 extends AudioStreamPlayer
 
 const JEDA_DETIK = 5.0
-
 func _ready():
 	music_manager.stop_music()
 	play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://36ikhbhgvvyl"]
+[gd_scene load_steps=33 format=3 uid="uid://36ikhbhgvvyl"]
 
 [ext_resource type="Texture2D" uid="uid://4cuxs1sddhph" path="res://Assets/character/Louis_20251025202216.png" id="1_g00xm"]
 [ext_resource type="Script" uid="uid://ducb1h1miy1oe" path="res://Script/story.gd" id="1_k83q4"]
@@ -6,11 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://cieirgeuy1jnd" path="res://Assets/character/Lynier_20251025201407.png" id="3_c4eo0"]
 [ext_resource type="Texture2D" uid="uid://dmulpfl0uirqx" path="res://Assets/character/Louis_Happy.png" id="4_of3q5"]
 [ext_resource type="Texture2D" uid="uid://boj07iewps1rs" path="res://Assets/dialog UI/dialogbox.png" id="5_vyd76"]
-[ext_resource type="FontFile" uid="uid://clookkjk5ecl0" path="res://Assets/Exoplanetaria-gxxJ5.ttf" id="5_w4u4o"]
 [ext_resource type="Texture2D" uid="uid://ch3jkrgo7l0mh" path="res://Assets/dialog UI/Auto-Normal.png" id="7_a60lp"]
 [ext_resource type="AudioStream" uid="uid://bfk61gnsehi18" path="res://Assets/dialog UI/computer-mouse-click-02-383961.mp3" id="7_m11r6"]
 [ext_resource type="Texture2D" uid="uid://bpmw4i631k6hi" path="res://Assets/dialog UI/indicator.png" id="7_no3vn"]
+[ext_resource type="FontFile" uid="uid://c8p2xqnputop8" path="res://Assets/Font/LINESeedSans_XBd.ttf" id="7_sodum"]
 [ext_resource type="Texture2D" uid="uid://ddnbkshja1l85" path="res://Assets/dialog UI/Auto-Hover.png" id="8_f54qv"]
+[ext_resource type="FontFile" uid="uid://pxh6cul3krwl" path="res://Assets/Font/LINESeedSans_Rg.ttf" id="8_sodum"]
+[ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="8_y813r"]
 [ext_resource type="AudioStream" uid="uid://ctsw85dvkqfkn" path="res://Assets/dialog UI/springy-bounce.mp3" id="9_0eiog"]
 [ext_resource type="Texture2D" uid="uid://cct0re2cm6mld" path="res://Assets/dialog UI/Skip-Normal.png" id="9_f54qv"]
 [ext_resource type="Texture2D" uid="uid://dbq4ejaeain5p" path="res://Assets/dialog UI/chat-awfull.png" id="10_1piep"]
@@ -151,7 +153,7 @@ offset_left = 373.0
 offset_top = 498.0
 offset_right = 450.0
 offset_bottom = 527.0
-theme_override_fonts/font = ExtResource("5_w4u4o")
+theme_override_fonts/font = ExtResource("7_sodum")
 theme_override_font_sizes/font_size = 28
 text = "Name"
 
@@ -161,8 +163,9 @@ offset_left = 288.0
 offset_top = 540.0
 offset_right = 1135.0
 offset_bottom = 692.0
-theme_override_fonts/normal_font = ExtResource("5_w4u4o")
+theme_override_fonts/normal_font = ExtResource("8_sodum")
 theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
 text = "Chat"
 
 [node name="Indikator" type="TextureRect" parent="Dialog"]
@@ -316,7 +319,7 @@ offset_bottom = -6.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
-theme_override_fonts/font = ExtResource("5_w4u4o")
+theme_override_fonts/font = ExtResource("7_sodum")
 theme_override_font_sizes/font_size = 20
 text = "SKIP STORY"
 
@@ -334,7 +337,7 @@ offset_bottom = 18.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
-theme_override_fonts/font = ExtResource("5_w4u4o")
+theme_override_fonts/font = ExtResource("8_y813r")
 theme_override_font_sizes/font_size = 16
 text = "Yakin ingin melompati adegan ini?"
 

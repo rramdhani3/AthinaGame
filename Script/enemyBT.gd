@@ -8,9 +8,9 @@ extends CharacterBody2D
 @export var speed: float = 80.0
 @export var speed_run: float = 150.0
 @export var player_y_offset: float = 108.0
-@export var attack_damage_enemy := 4
+@export var attack_damage_enemy := 10
 @export var coin_scene: PackedScene
-@export var coin_drop_amount: int = 1
+@export var coin_drop_amount: int = 5
 
 
 const MAX_HEALTH = 200
