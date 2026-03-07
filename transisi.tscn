@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cob07il5j4nb0"]
+
+[ext_resource type="Script" uid="uid://c46m2qmaxqkjj" path="res://Script/transisi.gd" id="1_4xebi"]
+[ext_resource type="Shader" uid="uid://cmdplj5elsql0" path="res://transisi.gdshader" id="2_hvy7w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6tfwl"]
+shader = ExtResource("2_hvy7w")
+shader_parameter/progress = 0.0
+shader_parameter/angle = 0.7
+shader_parameter/softness = 0.08
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_4xebi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6tfwl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
