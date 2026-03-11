@@ -35,8 +35,6 @@ var is_attacking := false
 var attack_timer := 0.0
 var current_health :float= 200.0
 
-
-
 func _ready():
 	original_sprite_position = sprite.position
 	ultimate_cooldown_timer.timeout.connect(_on_ultimate_cooldown_timeout)
@@ -48,9 +46,12 @@ func _physics_process(delta):
 		direction.x += 1
 	if Input.is_action_pressed("ui_left"):
 		direction.x -= 1
+		
 	if Input.is_action_just_pressed("skill_q"): 
 		if not is_skill_on_cooldown:
 			activate_skill_and_cooldown()
+			spawn_skill()
+
 	if Input.is_action_just_pressed("ulti_r"): 
 		if not is_ultimate_on_cooldown:
 			activate_ultimate_and_cooldown()
@@ -181,7 +182,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		take_damage(damage)
 		area.set_deferred("monitoring", false)
 		
-		
+@export var skill_scene: PackedScene
 @onready var skill_cooldown_timer: Timer = $SkillTimer
 var skill_cooldown_time: float = 3.0
 var is_skill_on_cooldown: bool = false
@@ -190,6 +191,15 @@ func activate_skill_and_cooldown():
 	is_skill_on_cooldown = true
 	skill_cooldown_timer.start(skill_cooldown_time)
 	
+
+func spawn_skill():
+	var skill = skill_scene.instantiate()
+	get_parent().add_child(skill)
+	var dir = -1 if $PlayerSprite2D.flip_h else 1
+	skill.global_position = global_position + Vector2(240 * dir, 100)
+	skill.direction = dir
+	skill.start()
+	
 func _on_skill_cooldown_timeout():
 	is_skill_on_cooldown = false
 
@@ -197,7 +207,7 @@ var has_ultimate_damage_applied: bool = false
 var is_ultimate_on_cooldown: bool = false 
 var current_ultimate_instance: CanvasLayer = null
 @export var ultimate_scene_prefab: PackedScene = preload("res://ultimate.tscn")
-@onready var ultimate_cooldown_timer: Timer = $UltiTimer 
+@onready var ultimate_cooldown_timer: Timer = $UltimateVFXDamage/UltiTimer
 @onready var ultimate_vfx_damage: Area2D = $UltimateVFXDamage
 @onready var ultimate_vfx_sprite: AnimatedSprite2D = $UltimateVFXDamage/AnimatedSprite2D
 @onready var ultimate_sfx: AudioStreamPlayer2D = $UltimateVFXDamage/Sfx
@@ -253,15 +263,13 @@ func _on_ultimate_scene_finished():
 func _on_vfx_animation_finished():
 	ultimate_vfx_damage.set_deferred("monitoring", false)
 	ultimate_vfx_damage.hide()
-	
-	
+
 func _on_ultimate_vfx_damage_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy") and not has_ultimate_damage_applied:
 		var enemy_root = area.get_parent()
 		if enemy_root and enemy_root.has_method("take_damage"):
 			enemy_root.take_damage(ultimate_damage_amount)
-			#has_ultimate_damage_applied = false
-			
+
 func apply_buff(buff_type):
 	match buff_type:
 		"speed":
@@ -269,10 +277,10 @@ func apply_buff(buff_type):
 		"damage":
 			attack_damage *= 2.0
 		"heal":
-			current_health *= 1.2
+			current_health *= 1.5
 			current_health = clamp(current_health, 0, max_hp)
 			health_changed.emit(current_health)
-			
+
 var total_coins: int = 0
 @onready var coin_label: Label = $"../CanvasLayer/CoinLabel"
 func add_coin(amount: int):

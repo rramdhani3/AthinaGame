@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var attack_damage_enemy := 10
 @export var coin_scene: PackedScene
 @export var coin_drop_amount: int = 5
+var knockback_velocity: Vector2 = Vector2.ZERO
 
 
 const MAX_HEALTH = 200 
@@ -24,6 +25,9 @@ var fade_duration := 0.5
 func _ready():
 	player_target = get_tree().get_first_node_in_group("player")
 	current_state = CHASE
+
+func apply_knockback(force: Vector2):
+	knockback_velocity = force
 
 func _physics_process(delta):
 	match current_state:
@@ -44,7 +48,9 @@ func _physics_process(delta):
 				flee_player()
 			else:
 				velocity = Vector2.ZERO
-			
+				
+	velocity += knockback_velocity
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 600 * delta)
 	move_and_slide()
 	
 func chase_player():
@@ -78,7 +84,7 @@ func flash_red():
 	var tween = create_tween()
 	visual.modulate = Color(1, 0.2, 0.2)
 	tween.tween_property(visual, "modulate", Color(1,1,1), 0.15)
-	
+
 func take_damage(amount: int):
 	current_health -= amount
 	$TextureProgressBar.value = current_health
@@ -96,7 +102,11 @@ func take_damage(amount: int):
 	anim_sprite.animation_finished.connect(Callable(self, "back_to_state"), CONNECT_ONE_SHOT)
 	print("Enemy took damage. Health: ", current_health)
 
+var is_dead := false
 func die():
+	if is_dead:
+		return
+	is_dead = true
 	hurtbox.set_deferred("monitoring", false)
 	anim_sprite.play("die")
 	$SfxDie.play()

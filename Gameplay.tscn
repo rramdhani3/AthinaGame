@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://bkc25ctghsols"]
+[gd_scene load_steps=116 format=3 uid="uid://bkc25ctghsols"]
 
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dx55l6sf6nnkc" path="res://Assets/A1.png" id="3_1p3ug"]
 [ext_resource type="Texture2D" uid="uid://doc6m6ckwibcn" path="res://Assets/World/bg stage 1.png" id="3_8js3f"]
 [ext_resource type="Texture2D" uid="uid://dmksrlt6cl0yo" path="res://Assets/A2.png" id="4_o7aap"]
+[ext_resource type="PackedScene" uid="uid://c3cn6fbivtqhv" path="res://Skill.tscn" id="5_07ygh"]
 [ext_resource type="Texture2D" uid="uid://iybutxaxo4hd" path="res://Assets/A3.png" id="5_jxmmf"]
 [ext_resource type="Texture2D" uid="uid://djxqq7ixtq7nl" path="res://Assets/A4.png" id="6_ums1d"]
 [ext_resource type="Texture2D" uid="uid://63ganbjrbwfy" path="res://Assets/A5.png" id="7_vgqiu"]
@@ -103,6 +104,8 @@
 [ext_resource type="Texture2D" uid="uid://dwewa8cjbcvj6" path="res://Assets/Pop UP/ConfrimPressed.png" id="100_vtyru"]
 [ext_resource type="Texture2D" uid="uid://bnyfxf4bnjffy" path="res://Assets/Pop UP/ConfirmHover.png" id="101_1tx16"]
 [ext_resource type="AudioStream" uid="uid://b6bnt2wo5dp3h" path="res://Assets/sfx/scratchonix-victory-chime-366449.mp3" id="101_by5na"]
+[ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="104_p3pay"]
+[ext_resource type="FontFile" uid="uid://c8p2xqnputop8" path="res://Assets/Font/LINESeedSans_XBd.ttf" id="105_07ygh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -407,7 +410,8 @@ scale = Vector2(0.376563, 0.376563)
 script = ExtResource("2_hvkmv")
 dash_speed = 1000
 attack_offset = Vector2(1000, 0)
-attack_effect_offset = Vector2(1000, 0)
+attack_effect_offset = Vector2(600, 0)
+skill_scene = ExtResource("5_07ygh")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(701.078, -325)
@@ -480,7 +484,7 @@ stream = ExtResource("56_wdyqx")
 volume_db = -8.0
 attenuation = 2.14355
 
-[node name="UltiTimer" type="Timer" parent="CharacterBody2D"]
+[node name="SkillTimer" type="Timer" parent="CharacterBody2D"]
 
 [node name="UltimateVFXDamage" type="Area2D" parent="CharacterBody2D"]
 process_mode = 3
@@ -505,7 +509,7 @@ position = Vector2(-37.1785, 424.896)
 stream = ExtResource("64_kmqga")
 volume_db = 8.0
 
-[node name="SkillTimer" type="Timer" parent="CharacterBody2D"]
+[node name="UltiTimer" type="Timer" parent="CharacterBody2D/UltimateVFXDamage"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-156, 686)
@@ -1062,6 +1066,55 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("98_cji0u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VictoryPopUp/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.331
+anchor_top = 0.452
+anchor_right = 0.662
+anchor_bottom = 0.577
+offset_left = -105.602
+offset_top = -22.6
+offset_right = 90.796
+offset_bottom = 35.9
+theme_override_constants/separation = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 170
+
+[node name="ResultQuestion" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("104_p3pay")
+theme_override_font_sizes/font_size = 24
+text = "Pertanyaan terjawab"
+
+[node name="ResultQuestionTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("105_07ygh")
+theme_override_font_sizes/font_size = 36
+text = "2"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="ResultBuff" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("104_p3pay")
+theme_override_font_sizes/font_size = 24
+text = "Buff yang terambil"
+
+[node name="ResultBuffTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("105_07ygh")
+theme_override_font_sizes/font_size = 36
+text = "4"
 
 [node name="Confirm" type="TextureButton" parent="CanvasLayer/VictoryPopUp/Container"]
 layout_mode = 1

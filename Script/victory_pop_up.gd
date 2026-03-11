@@ -29,6 +29,7 @@ func show_victory():
 	tween.parallel().tween_property(container,"scale",Vector2(1.1,1.1),0.5)
 	
 	tween.tween_property(container,"scale",Vector2(1,1),0.2)
+	
 	$Victory.play()
 	
 	tween.tween_callback(show_buttons)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1gafnorlgaou"
+path="res://.godot/imported/soundshmyak-loop-air-bubbles-159283.mp3-2d92e1a1789aadf35b224b3e236fa5da.mp3str"
+
+[deps]
+
+source_file="res://Assets/Skill/Water skill/soundshmyak-loop-air-bubbles-159283.mp3"
+dest_files=["res://.godot/imported/soundshmyak-loop-air-bubbles-159283.mp3-2d92e1a1789aadf35b224b3e236fa5da.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

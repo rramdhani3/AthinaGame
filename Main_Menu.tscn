@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://8ilrdw2nmmli"]
+[gd_scene load_steps=21 format=3 uid="uid://8ilrdw2nmmli"]
 
 [ext_resource type="Script" uid="uid://cbgweo3ahk0gb" path="res://Script/main_menu.gd" id="1_m625n"]
 [ext_resource type="Texture2D" uid="uid://dsfe80b6q7ebe" path="res://Assets/menu button/main menu.png" id="2_teegn"]
 [ext_resource type="AudioStream" uid="uid://c0il5oghiykb6" path="res://Assets/Bgm_menu.wav" id="3_3mro0"]
 [ext_resource type="Texture2D" uid="uid://b5ww5s3lb1cf8" path="res://Assets/menu button/Normal/button1.png" id="3_5cvai"]
+[ext_resource type="Texture2D" uid="uid://dudfjyj4usauw" path="res://Assets/menu button/sakura.png" id="3_5nrr4"]
 [ext_resource type="Texture2D" uid="uid://bwh0abldbngbt" path="res://Assets/menu button/char.png" id="3_spy7q"]
 [ext_resource type="Texture2D" uid="uid://kuuvfwp1ofdc" path="res://Assets/menu button/Title menu.png" id="4_5nrr4"]
 [ext_resource type="Script" uid="uid://x01foo6jf2v" path="res://Script/bgm_menu.gd" id="4_dnfjo"]
@@ -15,6 +16,20 @@
 [ext_resource type="Texture2D" uid="uid://ct7lvapi3ajos" path="res://Assets/menu button/Hover/button3.png" id="8_3kq1t"]
 [ext_resource type="AudioStream" uid="uid://dvo3km8lu8lu6" path="res://Assets/menu button/hover.mp3" id="9_teegn"]
 [ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="10_3kq1t"]
+[ext_resource type="Texture2D" uid="uid://dbq4ejaeain5p" path="res://Assets/dialog UI/chat-awfull.png" id="16_5nrr4"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3p3m7"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Gradient" id="Gradient_3p3m7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b3jh2"]
+gradient = SubResource("Gradient_3p3m7")
+width = 10
+height = 10
+fill = 1
+fill_from = Vector2(0.518519, 0.532764)
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_m625n")
@@ -28,6 +43,10 @@ grow_vertical = 2
 texture = ExtResource("2_teegn")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture = ExtResource("3_5nrr4")
+process_material = SubResource("ParticleProcessMaterial_3p3m7")
 
 [node name="Char" type="TextureRect" parent="."]
 anchors_preset = 11
@@ -104,6 +123,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+texture = ExtResource("16_5nrr4")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+texture = SubResource("GradientTexture2D_b3jh2")
 
 [connection signal="button_down" from="VBoxContainer/MarginContainer/Story" to="." method="_on_button_down"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer/Story" to="." method="_on_button_mouse_entered"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=26 format=3 uid="uid://c3cn6fbivtqhv"]
+
+[ext_resource type="Script" uid="uid://81bxl7k5cwev" path="res://Script/skill_damage.gd" id="1_o2kiw"]
+[ext_resource type="Texture2D" uid="uid://csjevbngymr3h" path="res://Assets/Skill/skill1.png" id="2_woa2u"]
+[ext_resource type="Texture2D" uid="uid://dsq6iyw65bhe" path="res://Assets/Skill/skill2.png" id="3_oglum"]
+[ext_resource type="Texture2D" uid="uid://gvqusc8c0sy6" path="res://Assets/Skill/skill3.png" id="4_wv1lt"]
+[ext_resource type="Texture2D" uid="uid://xbdmo0v7u52p" path="res://Assets/Skill/skill4.png" id="5_odwfi"]
+[ext_resource type="Texture2D" uid="uid://bss40vltyn6h8" path="res://Assets/Skill/Water skill/water1.png" id="6_7e076"]
+[ext_resource type="Texture2D" uid="uid://d0q2v2akc1i8v" path="res://Assets/Skill/Water skill/water2.png" id="7_paxh8"]
+[ext_resource type="Texture2D" uid="uid://c85lh04lo24hl" path="res://Assets/Skill/Water skill/water3.png" id="8_ka1e7"]
+[ext_resource type="Texture2D" uid="uid://dcp7co8gxdw6n" path="res://Assets/Skill/Water skill/water4.png" id="9_072y3"]
+[ext_resource type="Texture2D" uid="uid://cdy8320dt1og0" path="res://Assets/Skill/Water skill/water5.png" id="10_00s7n"]
+[ext_resource type="Texture2D" uid="uid://bmm17q58jmcay" path="res://Assets/Skill/Water skill/water6.png" id="11_jgcw1"]
+[ext_resource type="Texture2D" uid="uid://ccf1gaecghbgj" path="res://Assets/Skill/Water skill/water7.png" id="12_lwqf3"]
+[ext_resource type="Texture2D" uid="uid://bp6gk8a0v6pdc" path="res://Assets/Skill/Water skill/water8.png" id="13_321ua"]
+[ext_resource type="Texture2D" uid="uid://cpg72wkxacflq" path="res://Assets/Skill/Water skill/water9.png" id="14_xxxj3"]
+[ext_resource type="Texture2D" uid="uid://c8bww5xcroh0m" path="res://Assets/Skill/Water skill/water10.png" id="15_orkg3"]
+[ext_resource type="Texture2D" uid="uid://8k6vc4nrpchl" path="res://Assets/Skill/Water skill/water11.png" id="16_3ophk"]
+[ext_resource type="Texture2D" uid="uid://b5tkryahoegvb" path="res://Assets/Skill/Water skill/water12.png" id="17_6jgn3"]
+[ext_resource type="Texture2D" uid="uid://bv5xb5weymohp" path="res://Assets/Skill/Water skill/water13.png" id="18_dyl6d"]
+[ext_resource type="Texture2D" uid="uid://c6duatdjxykce" path="res://Assets/Skill/Water skill/water14.png" id="19_t5gpb"]
+[ext_resource type="Texture2D" uid="uid://cj2hi2s86xxbg" path="res://Assets/Skill/Water skill/water15.png" id="20_hrhw2"]
+[ext_resource type="Texture2D" uid="uid://bv7l3gvjx568s" path="res://Assets/Skill/Water skill/water16.png" id="21_uq6xd"]
+[ext_resource type="AudioStream" uid="uid://1gafnorlgaou" path="res://Assets/Skill/Water skill/soundshmyak-loop-air-bubbles-159283.mp3" id="22_paxh8"]
+[ext_resource type="AudioStream" uid="uid://b6sw4kj07272a" path="res://Assets/Skill/Water skill/freesound_community-water-splash-46402.mp3" id="23_ka1e7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aklpv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_woa2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oglum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wv1lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_odwfi")
+}],
+"loop": true,
+"name": &"skill",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7e076")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_paxh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ka1e7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_072y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_00s7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jgcw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_lwqf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_321ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xxxj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_orkg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3ophk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6jgn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_dyl6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_t5gpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_hrhw2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_uq6xd")
+}],
+"loop": true,
+"name": &"skill2",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uki7y"]
+size = Vector2(648, 334)
+
+[node name="SkillVfx" type="Area2D"]
+script = ExtResource("1_o2kiw")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
+position = Vector2(53, -107)
+scale = Vector2(1.17004, 1.17004)
+sprite_frames = SubResource("SpriteFrames_aklpv")
+animation = &"skill2"
+frame = 15
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_uki7y")
+
+[node name="SFXwaves" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_paxh8")
+volume_db = 12.0
+
+[node name="SFXwaves2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_ka1e7")
+volume_db = 12.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

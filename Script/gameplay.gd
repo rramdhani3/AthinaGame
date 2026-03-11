@@ -11,7 +11,7 @@ var question_pool = []
 var current_questions = []
 var question_index := 0
 var elapsed_time := 0
-var countdown_time := 5
+var countdown_time := 180
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -23,7 +23,6 @@ func _ready():
 		player.health_changed.connect(_on_player_health_changed)
 	
 
-	
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")
 
@@ -52,9 +51,9 @@ func _on_game_timer_timeout() -> void:
 	$CanvasLayer/TimeLabel.text = format_time(countdown_time)
 	#if countdown_time % 60 == 0 and countdown_time != 180:
 		#trigger_question_phase()
-	if countdown_time % 10 == 0:
-		#trigger_question_phase()
-		pass
+	if countdown_time % 30 == 0 and countdown_time !=0 and countdown_time !=180:
+		trigger_question_phase()
+		#pass
 	if countdown_time <= 0:
 		game_timer.stop()
 		trigger_victory()

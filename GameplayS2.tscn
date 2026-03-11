@@ -400,7 +400,7 @@ scale = Vector2(0.376563, 0.376563)
 script = ExtResource("3_06hdt")
 dash_speed = 1000
 attack_offset = Vector2(1000, 0)
-attack_effect_offset = Vector2(1000, 0)
+attack_effect_offset = Vector2(600, 0)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(701.078, -58.4232)

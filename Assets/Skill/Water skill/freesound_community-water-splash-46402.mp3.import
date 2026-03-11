@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6sw4kj07272a"
+path="res://.godot/imported/freesound_community-water-splash-46402.mp3-3cc2bf51c6963c6ba5bd86612b7d0d99.mp3str"
+
+[deps]
+
+source_file="res://Assets/Skill/Water skill/freesound_community-water-splash-46402.mp3"
+dest_files=["res://.godot/imported/freesound_community-water-splash-46402.mp3-3cc2bf51c6963c6ba5bd86612b7d0d99.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
