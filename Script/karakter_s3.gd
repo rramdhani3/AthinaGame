@@ -51,6 +51,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("skill_q"): 
 		if not is_skill_on_cooldown:
 			activate_skill_and_cooldown()
+			spawn_skill()
 	if Input.is_action_just_pressed("ulti_r"): 
 		if not is_ultimate_on_cooldown:
 			activate_ultimate_and_cooldown()
@@ -180,7 +181,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		take_damage(damage)
 		area.set_deferred("monitoring", false)
 		
-		
+@export var skill_scene: PackedScene
 @onready var skill_cooldown_timer: Timer = $SkillTimer
 var skill_cooldown_time: float = 3.0
 var is_skill_on_cooldown: bool = false
@@ -188,6 +189,14 @@ func activate_skill_and_cooldown():
 	get_tree().call_group("Skill", "activate_skill_ui")
 	is_skill_on_cooldown = true
 	skill_cooldown_timer.start(skill_cooldown_time)
+	
+func spawn_skill():
+	var skill = skill_scene.instantiate()
+	get_parent().add_child(skill)
+	var dir = -1 if $PlayerSprite2D.flip_h else 1
+	skill.global_position = global_position + Vector2(240 * dir, 100)
+	skill.direction = dir
+	skill.start()
 	
 func _on_skill_cooldown_timeout():
 	is_skill_on_cooldown = false

@@ -120,10 +120,12 @@ shape = SubResource("RectangleShape2D_uki7y")
 [node name="SFXwaves" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_paxh8")
 volume_db = 12.0
+bus = &"SFX"
 
 [node name="SFXwaves2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_ka1e7")
 volume_db = 12.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

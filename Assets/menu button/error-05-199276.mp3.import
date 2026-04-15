@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwf3lw1t7aw1p"
+path="res://.godot/imported/error-05-199276.mp3-14bf356cfea70fcd3b130cd70b13c9b6.mp3str"
+
+[deps]
+
+source_file="res://Assets/menu button/error-05-199276.mp3"
+dest_files=["res://.godot/imported/error-05-199276.mp3-14bf356cfea70fcd3b130cd70b13c9b6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

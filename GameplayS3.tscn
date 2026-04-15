@@ -1,9 +1,10 @@
-[gd_scene load_steps=108 format=3 uid="uid://cnfvn53167ars"]
+[gd_scene load_steps=118 format=3 uid="uid://cnfvn53167ars"]
 
 [ext_resource type="Script" uid="uid://d1dmhnnguuaae" path="res://Script/gameplay_s_3.gd" id="1_d52sy"]
 [ext_resource type="PackedScene" uid="uid://wjym1x87213y" path="res://EnemyUtility.tscn" id="2_uxsc3"]
 [ext_resource type="Texture2D" uid="uid://b3e8qvhbyoomu" path="res://Assets/World/bg stage 3.png" id="3_2ugco"]
 [ext_resource type="Script" uid="uid://ocnjlksm468s" path="res://Script/karakter_s3.gd" id="3_uxsc3"]
+[ext_resource type="PackedScene" uid="uid://c3cn6fbivtqhv" path="res://Skill.tscn" id="5_b6vev"]
 [ext_resource type="Texture2D" uid="uid://dx55l6sf6nnkc" path="res://Assets/A1.png" id="5_m6tbj"]
 [ext_resource type="Texture2D" uid="uid://dmksrlt6cl0yo" path="res://Assets/A2.png" id="6_o88ap"]
 [ext_resource type="Texture2D" uid="uid://iybutxaxo4hd" path="res://Assets/A3.png" id="7_ulsij"]
@@ -96,6 +97,15 @@
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="93_o88ap"]
 [ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_ulsij"]
 [ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_ulsij"]
+[ext_resource type="Script" uid="uid://6hg8gj3vpd60" path="res://Script/victory_pop_up.gd" id="98_p7umn"]
+[ext_resource type="Texture2D" uid="uid://cebv4sicnx77p" path="res://Assets/Pop UP/victory.png" id="99_qv03k"]
+[ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="100_16nyr"]
+[ext_resource type="FontFile" uid="uid://c8p2xqnputop8" path="res://Assets/Font/LINESeedSans_XBd.ttf" id="101_871u6"]
+[ext_resource type="Texture2D" uid="uid://dpcxi21n11fko" path="res://Assets/Pop UP/Confirm.png" id="102_j8aml"]
+[ext_resource type="Texture2D" uid="uid://dwewa8cjbcvj6" path="res://Assets/Pop UP/ConfrimPressed.png" id="103_olj0v"]
+[ext_resource type="Texture2D" uid="uid://bnyfxf4bnjffy" path="res://Assets/Pop UP/ConfirmHover.png" id="104_b7kk7"]
+[ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="105_t60tb"]
+[ext_resource type="AudioStream" uid="uid://b6bnt2wo5dp3h" path="res://Assets/sfx/scratchonix-victory-chime-366449.mp3" id="106_f5gqr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
@@ -408,6 +418,7 @@ script = ExtResource("3_uxsc3")
 dash_speed = 1000
 attack_offset = Vector2(1000, 0)
 attack_effect_offset = Vector2(600, 0)
+skill_scene = ExtResource("5_b6vev")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(701.078, -58.4232)
@@ -1038,9 +1049,118 @@ stream = ExtResource("95_ulsij")
 [node name="Defeat2" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
 stream = ExtResource("96_ulsij")
 
+[node name="VictoryPopUp" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("98_p7umn")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/VictoryPopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0901961, 1)
+
+[node name="Container" type="TextureRect" parent="CanvasLayer/VictoryPopUp"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -150.0
+offset_right = 371.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("99_qv03k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VictoryPopUp/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.331
+anchor_top = 0.452
+anchor_right = 0.662
+anchor_bottom = 0.577
+offset_left = -105.602
+offset_top = -22.6
+offset_right = 90.796
+offset_bottom = 35.9
+theme_override_constants/separation = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 170
+
+[node name="ResultQuestion" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("100_16nyr")
+theme_override_font_sizes/font_size = 24
+text = "Pertanyaan terjawab"
+
+[node name="ResultQuestionTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("101_871u6")
+theme_override_font_sizes/font_size = 36
+text = "2"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="ResultCoin" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("100_16nyr")
+theme_override_font_sizes/font_size = 24
+text = "Buku yang terambil"
+
+[node name="ResultCoinTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("101_871u6")
+theme_override_font_sizes/font_size = 36
+text = "2"
+
+[node name="Confirm" type="TextureButton" parent="CanvasLayer/VictoryPopUp/Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.622
+anchor_right = 0.5
+anchor_bottom = 0.622
+offset_left = -133.0
+offset_top = 81.4
+offset_right = 134.0
+offset_bottom = 143.4
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("102_j8aml")
+texture_pressed = ExtResource("103_olj0v")
+texture_hover = ExtResource("104_b7kk7")
+
+[node name="Confirmsfx" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
+stream = ExtResource("105_t60tb")
+bus = &"SFX"
+
+[node name="Victory" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
+stream = ExtResource("106_f5gqr")
+bus = &"SFX"
+
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]
 [connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/DefeatPopUp/Retry" to="CanvasLayer/DefeatPopUp" method="_on_retry_pressed"]
 [connection signal="pressed" from="CanvasLayer/DefeatPopUp/BackMenu" to="CanvasLayer/DefeatPopUp" method="_on_back_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryPopUp/Container/Confirm" to="CanvasLayer/VictoryPopUp" method="_on_confirm_pressed"]

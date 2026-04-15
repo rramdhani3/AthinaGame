@@ -5,13 +5,13 @@ extends Node2D
 @onready var player = $"CharacterBody2D"
 @onready var spawn_timer = $SpawnTimer
 @onready var game_timer = $CanvasLayer/GameTimer
-var SPAWN_DISTANCE = 700
+var SPAWN_DISTANCE = 400
 
 var question_pool = []
 var current_questions = []
 var question_index := 0
 var elapsed_time := 0
-var countdown_time := 180
+var countdown_time := 90
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -21,6 +21,7 @@ func _ready():
 	game_timer.start()
 	if player:
 		player.health_changed.connect(_on_player_health_changed)
+
 	
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")
@@ -47,12 +48,11 @@ func format_time(t: int) -> String:
 func _on_game_timer_timeout() -> void:
 	countdown_time -= 1
 	$CanvasLayer/TimeLabel.text = format_time(countdown_time)
-	#if countdown_time % 60 == 0 and countdown_time != 180:
-		#trigger_question_phase()
-	if countdown_time % 10 == 0:
+	if countdown_time % 15 == 0 and countdown_time != 0 and countdown_time !=90:
 		trigger_question_phase()
 	if countdown_time <= 0:
 		game_timer.stop()
+		trigger_victory()
 		
 func trigger_question_phase():
 	get_tree().paused = true
@@ -60,6 +60,21 @@ func trigger_question_phase():
 	current_questions.shuffle()
 	var question_data = current_questions[0]
 	$CanvasLayer/QuestionPopUp.show_question(question_data, self)
+
+func trigger_victory():
+	spawn_timer.stop()
+	
+	Engine.time_scale = 0.25
+	await get_tree().create_timer(0.6).timeout
+	
+	Engine.time_scale = 1
+	get_tree().paused = true
+	
+	var tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(0.8,0.8), 1.5)
+	
+	$CanvasLayer/VictoryPopUp.show_victory()
 
 func answer_correct():
 	start_buff_phase()
@@ -109,6 +124,7 @@ func spawn_enemy():
 #
 	#get_tree().current_scene.add_child(spawned_enemy)
 	
+
 var is_dead = false
 func player_died():
 	if is_dead:

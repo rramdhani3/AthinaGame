@@ -23,3 +23,6 @@ func _on_stage_2_pressed() -> void:
 
 func _on_stage_3_button_up() -> void:
 	get_tree().change_scene_to_file("res://GameplayS3.tscn")
+
+func _on_experimental_pressed() -> void:
+	get_tree().change_scene_to_file("res://GameplayS4.tscn")

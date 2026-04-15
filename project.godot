@@ -18,13 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 music_manager="*res://Script/music_manager.gd"
+username="*res://Script/username.gd"
 
 [display]
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
 window/size/mode=4
-window/size/initial_position_type=0
+window/stretch/mode="viewport"
 mouse_cursor/custom_image="uid://biasrhxnr3p06"
 
 [global_group]

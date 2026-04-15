@@ -57,7 +57,7 @@ func _on_area_entered(area):
 		if is_instance_valid(enemy) and enemy.has_method("take_damage"):
 			enemy.take_damage(damage)
 			if enemy.has_method("apply_knockback"):
-				enemy.apply_knockback(Vector2(knockback * direction, -20))
+				enemy.apply_knockback(Vector2(knockback * direction, 0))
 		if enemy not in enemies_inside:
 			enemies_inside.append(enemy)
 

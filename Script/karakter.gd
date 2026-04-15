@@ -23,7 +23,6 @@ extends CharacterBody2D
 @onready var attack_effect = $AttackEffect
 @onready var attack_effect_anim = $AttackEffect/EffectSprite2D
 
-
 var original_sprite_position := Vector2.ZERO
 var is_dashing := false
 var dash_timer := 0.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://8ilrdw2nmmli"]
+[gd_scene load_steps=31 format=3 uid="uid://8ilrdw2nmmli"]
 
 [ext_resource type="Script" uid="uid://cbgweo3ahk0gb" path="res://Script/main_menu.gd" id="1_m625n"]
 [ext_resource type="Texture2D" uid="uid://dsfe80b6q7ebe" path="res://Assets/menu button/main menu.png" id="2_teegn"]
@@ -17,6 +17,13 @@
 [ext_resource type="AudioStream" uid="uid://dvo3km8lu8lu6" path="res://Assets/menu button/hover.mp3" id="9_teegn"]
 [ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="10_3kq1t"]
 [ext_resource type="Texture2D" uid="uid://dbq4ejaeain5p" path="res://Assets/dialog UI/chat-awfull.png" id="16_5nrr4"]
+[ext_resource type="Texture2D" uid="uid://cl7vo3yyuxqdd" path="res://Assets/Pop Up Setting/container.png" id="18_a0mg5"]
+[ext_resource type="Script" uid="uid://cgcas5vgrrf3u" path="res://Script/pop_up_settings.gd" id="18_ooaj7"]
+[ext_resource type="Texture2D" uid="uid://bpbc74gwnyeho" path="res://Assets/Pop Up Setting/graber.png" id="19_0l6kj"]
+[ext_resource type="Texture2D" uid="uid://cduvq16bp0n44" path="res://Assets/Pop Up Setting/slider.png" id="19_i5k6c"]
+[ext_resource type="FontFile" uid="uid://c8p2xqnputop8" path="res://Assets/Font/LINESeedSans_XBd.ttf" id="21_0l6kj"]
+[ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="23_oudji"]
+[ext_resource type="AudioStream" uid="uid://cwf3lw1t7aw1p" path="res://Assets/menu button/error-05-199276.mp3" id="24_5ysut"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3p3m7"]
 particle_flag_disable_z = true
@@ -31,8 +38,33 @@ height = 10
 fill = 1
 fill_from = Vector2(0.518519, 0.532764)
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3jh2"]
+texture = ExtResource("19_i5k6c")
+expand_margin_left = 4.0
+expand_margin_top = 22.0
+expand_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p3m7"]
+bg_color = Color(0.592157, 0.764706, 0.870588, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+expand_margin_top = 18.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5k6c"]
+bg_color = Color(0.505882, 0.717647, 0.847059, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+expand_margin_top = 18.0
+expand_margin_bottom = 20.0
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("popup_settings")]
 script = ExtResource("1_m625n")
+popup_settings = NodePath("PopUpSettings")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -86,7 +118,7 @@ texture_hover = ExtResource("4_domf7")
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Challenge" type="TextureButton" parent="VBoxContainer/MarginContainer2"]
+[node name="Option" type="TextureButton" parent="VBoxContainer/MarginContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("5_t301m")
 texture_hover = ExtResource("6_wrfco")
@@ -101,19 +133,23 @@ texture_hover = ExtResource("8_3kq1t")
 
 [node name="Hover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_teegn")
+bus = &"SFX"
 
 [node name="Press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_3kq1t")
 volume_db = 2.0
+bus = &"SFX"
 
 [node name="BgmMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3mro0")
 volume_db = 5.0
+bus = &"Music"
 script = ExtResource("4_dnfjo")
 
 [node name="Greeting" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_tu7k8")
 volume_db = 10.792
+bus = &"SFX"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -130,15 +166,212 @@ texture = ExtResource("16_5nrr4")
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
 texture = SubResource("GradientTexture2D_b3jh2")
 
-[connection signal="button_down" from="VBoxContainer/MarginContainer/Story" to="." method="_on_button_down"]
+[node name="PopUpSettings" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_ooaj7")
+
+[node name="Container" type="TextureRect" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.316
+anchor_top = 0.32
+anchor_right = 0.706
+anchor_bottom = 0.68
+offset_left = 108.344
+offset_top = 57.24
+offset_right = -109.396
+offset_bottom = -57.24
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_a0mg5")
+
+[node name="HSliderMusic" type="HSlider" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.424
+anchor_right = 0.685
+anchor_bottom = 0.492
+offset_left = -0.380005
+offset_top = 0.367981
+offset_right = 0.289917
+offset_bottom = 0.143982
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("19_0l6kj")
+theme_override_icons/grabber_highlight = ExtResource("19_0l6kj")
+theme_override_styles/slider = SubResource("StyleBoxTexture_b3jh2")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3p3m7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_i5k6c")
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 10
+
+[node name="HSliderSFX" type="HSlider" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.43
+anchor_top = 0.424
+anchor_right = 0.685
+anchor_bottom = 0.492
+offset_left = -1.38
+offset_top = 95.368
+offset_right = -0.710083
+offset_bottom = 95.144
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("19_0l6kj")
+theme_override_icons/grabber_highlight = ExtResource("19_0l6kj")
+theme_override_styles/slider = SubResource("StyleBoxTexture_b3jh2")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3p3m7")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_i5k6c")
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 10
+
+[node name="LabelMusic" type="Label" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.448
+anchor_right = 0.4
+anchor_bottom = 0.479
+offset_left = -0.00201416
+offset_top = -0.0640259
+offset_right = -0.400024
+offset_bottom = 0.127991
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("21_0l6kj")
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="LabelMusicVolume" type="Label" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.448
+anchor_right = 0.4
+anchor_bottom = 0.479
+offset_left = 415.998
+offset_top = -37.064
+offset_right = 377.6
+offset_bottom = -41.872
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("21_0l6kj")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="LabelSFX" type="Label" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.569
+anchor_right = 0.385
+anchor_bottom = 0.6
+offset_left = 0.997986
+offset_top = 0.00799561
+offset_right = 0.0899658
+offset_bottom = 0.199982
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("21_0l6kj")
+theme_override_font_sizes/font_size = 24
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="LabelSFXVolume" type="Label" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.347
+anchor_top = 0.448
+anchor_right = 0.4
+anchor_bottom = 0.479
+offset_left = 415.998
+offset_top = 59.936
+offset_right = 376.6
+offset_bottom = 55.128
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_fonts/font = ExtResource("21_0l6kj")
+theme_override_font_sizes/font_size = 18
+
+[node name="Button" type="Button" parent="PopUpSettings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 244.0
+offset_top = -134.0
+offset_right = 278.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+
+[node name="NameInput" type="LineEdit" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.516
+anchor_top = 0.5
+anchor_right = 0.516
+anchor_bottom = 0.5
+offset_left = -115.856
+offset_top = 296.0
+offset_right = 116.144
+offset_bottom = 351.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("23_oudji")
+theme_override_font_sizes/font_size = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="NameInput"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = -0.473
+anchor_right = 0.06
+anchor_bottom = -0.473
+offset_left = 0.080061
+offset_top = 0.0149956
+offset_right = 205.08
+offset_bottom = 24.015
+theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("21_0l6kj")
+theme_override_font_sizes/font_size = 24
+text = "Masukkan Nama"
+
+[node name="Error" type="AudioStreamPlayer" parent="NameInput"]
+stream = ExtResource("24_5ysut")
+bus = &"SFX"
+
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer/Story" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/MarginContainer/Story" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/Story" to="." method="_on_button_pressed"]
-[connection signal="button_down" from="VBoxContainer/MarginContainer2/Challenge" to="." method="_on_button_down"]
-[connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Challenge" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/MarginContainer2/Challenge" to="." method="_on_button_mouse_exited"]
-[connection signal="button_down" from="VBoxContainer/MarginContainer3/Quit" to="." method="_on_button_down"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/Story" to="." method="_on_story_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer2/Option" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/MarginContainer2/Option" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/Option" to="." method="_on_option_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/MarginContainer3/Quit" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/MarginContainer3/Quit" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer3/Quit" to="." method="_on_quit_pressed"]
 [connection signal="ready" from="Greeting" to="." method="_on_greeting_ready"]
+[connection signal="pressed" from="PopUpSettings/Button" to="PopUpSettings" method="_on_button_pressed"]
+[connection signal="text_submitted" from="NameInput" to="." method="_on_name_input_text_submitted"]

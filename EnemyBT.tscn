@@ -621,10 +621,10 @@ libraries = {
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="EnemyBody2D"]
 modulate = Color(0.998343, 0.116397, 1.92523e-07, 1)
-offset_left = -348.0
-offset_top = -137.0
-offset_right = 503.0
-offset_bottom = -55.0
+offset_left = -348.571
+offset_top = -160.0
+offset_right = 502.429
+offset_bottom = -78.0
 scale = Vector2(0.235, 0.235)
 pivot_offset = Vector2(327.619, 18.1064)
 max_value = 200.0
@@ -635,17 +635,17 @@ texture_progress = ExtResource("3_jliub")
 
 [node name="Visual" type="Node2D" parent="EnemyBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="EnemyBody2D/Visual"]
-position = Vector2(-7.14286, 135.714)
-scale = Vector2(1.5873, 1.07143)
-texture = ExtResource("4_7263d")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody2D/Visual"]
 modulate = Color(0.945098, 0.92549, 0.913725, 1)
-position = Vector2(60, 0)
+position = Vector2(61.4286, -17.1429)
 sprite_frames = SubResource("SpriteFrames_dxifv")
 animation = &"attack"
 frame = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyBody2D/Visual"]
+position = Vector2(-7.143, 120)
+scale = Vector2(1.5873, 1.07143)
+texture = ExtResource("4_7263d")
 
 [node name="AttackAreaRange" type="Area2D" parent="EnemyBody2D"]
 
@@ -670,13 +670,16 @@ shape = SubResource("RectangleShape2D_kdav3")
 
 [node name="SfxAtt" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("125_7eymc")
+bus = &"SFX"
 
 [node name="SfxSummon" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("126_m1dsc")
 autoplay = true
+bus = &"SFX"
 
 [node name="SfxDie" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("127_r2lkf")
+bus = &"SFX"
 
 [connection signal="body_entered" from="EnemyBody2D/AttackAreaRange" to="EnemyBody2D" method="_on_attack_area_range_body_entered"]
 [connection signal="body_exited" from="EnemyBody2D/AttackAreaRange" to="EnemyBody2D" method="_on_attack_area_range_body_exited"]

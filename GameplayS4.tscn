@@ -1,144 +1,147 @@
-[gd_scene load_steps=116 format=3 uid="uid://bkc25ctghsols"]
+[gd_scene load_steps=119 format=3 uid="uid://brer47xrh8pf1"]
 
-[ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
-[ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
-[ext_resource type="PackedScene" uid="uid://cyrfyod7bf3u0" path="res://EnemyFSM.tscn" id="2_jmias"]
-[ext_resource type="Texture2D" uid="uid://dx55l6sf6nnkc" path="res://Assets/A1.png" id="3_1p3ug"]
-[ext_resource type="Texture2D" uid="uid://doc6m6ckwibcn" path="res://Assets/World/bg stage 1.png" id="3_8js3f"]
-[ext_resource type="Texture2D" uid="uid://dmksrlt6cl0yo" path="res://Assets/A2.png" id="4_o7aap"]
-[ext_resource type="PackedScene" uid="uid://c3cn6fbivtqhv" path="res://Skill.tscn" id="5_07ygh"]
-[ext_resource type="Texture2D" uid="uid://iybutxaxo4hd" path="res://Assets/A3.png" id="5_jxmmf"]
-[ext_resource type="Texture2D" uid="uid://djxqq7ixtq7nl" path="res://Assets/A4.png" id="6_ums1d"]
-[ext_resource type="Texture2D" uid="uid://63ganbjrbwfy" path="res://Assets/A5.png" id="7_vgqiu"]
-[ext_resource type="Texture2D" uid="uid://8dsdv1x6vf1q" path="res://Assets/A6.png" id="8_1j2vb"]
-[ext_resource type="Texture2D" uid="uid://dorubby2fgmlu" path="res://Assets/A7.png" id="9_lpsn3"]
-[ext_resource type="Texture2D" uid="uid://d3amc316c2hwq" path="res://Assets/A8.png" id="10_xj4x1"]
-[ext_resource type="Texture2D" uid="uid://boh0odoug1v1h" path="res://Assets/A9.png" id="11_4lqox"]
-[ext_resource type="Texture2D" uid="uid://2ut2gjxf6rki" path="res://Assets/A10.png" id="12_lce2u"]
-[ext_resource type="Texture2D" uid="uid://doyf7jby2qss0" path="res://Assets/idle/S1.png" id="13_bu8ga"]
-[ext_resource type="Texture2D" uid="uid://d4btr00hi1gfw" path="res://Assets/idle/S2.png" id="14_e1ql5"]
-[ext_resource type="Texture2D" uid="uid://jlxbbk4dvfgs" path="res://Assets/idle/S3.png" id="15_hfp18"]
-[ext_resource type="Texture2D" uid="uid://tlao34fe4eps" path="res://Assets/idle/S4.png" id="16_mehnk"]
-[ext_resource type="Texture2D" uid="uid://dhpyvjlyfoe1p" path="res://Assets/idle/S5.png" id="17_n58b5"]
-[ext_resource type="Texture2D" uid="uid://dt8a3lgxw8a66" path="res://Assets/idle/S6.png" id="18_epb65"]
-[ext_resource type="Texture2D" uid="uid://g3kq7x66xma0" path="res://Assets/W1.png" id="19_hx6f1"]
-[ext_resource type="Texture2D" uid="uid://dy4hpwj0iw7rq" path="res://Assets/W2.png" id="20_joxqx"]
-[ext_resource type="Texture2D" uid="uid://dq0i8badjb71x" path="res://Assets/W3.png" id="21_kmqga"]
-[ext_resource type="Texture2D" uid="uid://d2gr8hdch8wx0" path="res://Assets/W4.png" id="22_6qdtm"]
-[ext_resource type="Texture2D" uid="uid://bvynlupv7hxwd" path="res://Assets/W5.png" id="23_jmias"]
-[ext_resource type="Texture2D" uid="uid://gb7d4wmlxw26" path="res://Assets/W6.png" id="24_4bypd"]
-[ext_resource type="Texture2D" uid="uid://irtypwmesxi8" path="res://Assets/W7.png" id="25_mbao3"]
-[ext_resource type="Texture2D" uid="uid://b0vw8wg3kgrc8" path="res://Assets/W8.png" id="26_6fs7h"]
-[ext_resource type="AudioStream" uid="uid://brpxjsbucl3nw" path="res://Assets/mixkit-footsteps-in-the-forest-ground-1230.wav" id="27_l7s2j"]
-[ext_resource type="Texture2D" uid="uid://q77ytm2xrfis" path="res://Assets/sadow.png" id="28_ip6xn"]
-[ext_resource type="Texture2D" uid="uid://dv82vnps3mv86" path="res://Assets/slash1/File1.png" id="29_04xoy"]
-[ext_resource type="Texture2D" uid="uid://26btgfhi2mdm" path="res://Assets/slash1/File2.png" id="30_0lqfl"]
-[ext_resource type="Texture2D" uid="uid://clh76dkic4nlm" path="res://Assets/slash1/File3.png" id="31_8js3f"]
-[ext_resource type="Texture2D" uid="uid://bs7don0q2s5mi" path="res://Assets/slash1/File4.png" id="32_5j2dk"]
-[ext_resource type="Texture2D" uid="uid://btxy2yu213sp" path="res://Assets/slash1/File5.png" id="33_ukwde"]
-[ext_resource type="Texture2D" uid="uid://b5ydpddrr2rpd" path="res://Assets/slash1/File6.png" id="34_xd6kg"]
-[ext_resource type="Texture2D" uid="uid://cirnj87feu1en" path="res://Assets/File1.png" id="35_ebqmi"]
-[ext_resource type="Texture2D" uid="uid://crlbntbxmd24u" path="res://Assets/File2.png" id="36_opxba"]
-[ext_resource type="Texture2D" uid="uid://bui3gjc3qoo1j" path="res://Assets/File3.png" id="37_u5a08"]
-[ext_resource type="Texture2D" uid="uid://bi8udr4lxmqhj" path="res://Assets/File4.png" id="38_5pgd7"]
-[ext_resource type="Texture2D" uid="uid://5lvkthloflg4" path="res://Assets/File5.png" id="39_la7pg"]
-[ext_resource type="Texture2D" uid="uid://df21pp4gi2rf5" path="res://Assets/File6.png" id="40_cji0u"]
-[ext_resource type="Texture2D" uid="uid://d0cc0vexam4ix" path="res://Assets/File7.png" id="41_j5c36"]
-[ext_resource type="Texture2D" uid="uid://dhxocavuos0is" path="res://Assets/File8.png" id="42_by5na"]
-[ext_resource type="Texture2D" uid="uid://1c65omwtwwbb" path="res://Assets/File9.png" id="43_bseey"]
-[ext_resource type="Texture2D" uid="uid://dq8crhn0sdoxf" path="res://Assets/File11.png" id="44_vtyru"]
-[ext_resource type="Texture2D" uid="uid://qu4oj4clwnjn" path="res://Assets/File12.png" id="45_1tx16"]
-[ext_resource type="Texture2D" uid="uid://c4tsw4l18igxc" path="res://Assets/File13.png" id="46_p3pay"]
-[ext_resource type="Texture2D" uid="uid://fb7qp4gyyl6d" path="res://Assets/File14.png" id="47_07ygh"]
-[ext_resource type="Texture2D" uid="uid://bfthxct5b2n0r" path="res://Assets/File15.png" id="48_serht"]
-[ext_resource type="Texture2D" uid="uid://c5sag5lpoihw0" path="res://Assets/File16.png" id="49_olba2"]
-[ext_resource type="Texture2D" uid="uid://bwjl1xcsubxad" path="res://Assets/File17.png" id="50_2lrtn"]
-[ext_resource type="Texture2D" uid="uid://bv2ralmhdr3ml" path="res://Assets/File18.png" id="51_jeql7"]
-[ext_resource type="Texture2D" uid="uid://dsw6d5mrswh6u" path="res://Assets/File19.png" id="52_r4d51"]
-[ext_resource type="Texture2D" uid="uid://dra7q0lsqac0m" path="res://Assets/File20.png" id="53_yrf0e"]
-[ext_resource type="AudioStream" uid="uid://cqui81i4tlwon" path="res://Assets/idle/sword-slash.mp3" id="54_gi2gw"]
-[ext_resource type="AudioStream" uid="uid://elc2lk8lenfb" path="res://Assets/hiya2.wav" id="55_33y5p"]
-[ext_resource type="AudioStream" uid="uid://chpg1r42adne" path="res://Assets/simple-whoosh-382724.mp3" id="56_wdyqx"]
-[ext_resource type="Texture2D" uid="uid://bsgxx880qgs3b" path="res://Assets/RTS_Crate.png" id="57_yypqb"]
-[ext_resource type="Texture2D" uid="uid://2ivrxavaos2e" path="res://Assets/Frames/lightning_skill3_frame1.png" id="59_joxqx"]
-[ext_resource type="Script" uid="uid://dy0jcgl6h7ema" path="res://Script/background_music.gd" id="60_fhpl8"]
-[ext_resource type="Texture2D" uid="uid://dgkfhy0txpo0r" path="res://Assets/Frames/lightning_skill3_frame2.png" id="60_kmqga"]
-[ext_resource type="Texture2D" uid="uid://dhq7d3tr3so0g" path="res://Assets/Frames/lightning_skill3_frame3.png" id="61_6qdtm"]
-[ext_resource type="Texture2D" uid="uid://rif0bfps1tip" path="res://Assets/UI gameplay/pause.png" id="62_1p3ug"]
-[ext_resource type="Texture2D" uid="uid://gjtejqyg4dq6" path="res://Assets/Frames/lightning_skill3_frame4.png" id="62_jmias"]
-[ext_resource type="Texture2D" uid="uid://b8vpod0ip18ku" path="res://Assets/Frames/lightning_skill3_frame5.png" id="63_4bypd"]
-[ext_resource type="Texture2D" uid="uid://4da3vvt5aeno" path="res://Assets/UI gameplay/dash.png" id="63_jxmmf"]
-[ext_resource type="AudioStream" uid="uid://bkso2vrwle3gi" path="res://Assets/Meteor_Impactground_Stereo_01.wav" id="64_kmqga"]
-[ext_resource type="Texture2D" uid="uid://y37meut4b6df" path="res://Assets/UI gameplay/basic_attack.png" id="64_ums1d"]
-[ext_resource type="Texture2D" uid="uid://ba15qyax8fu4l" path="res://Assets/UI gameplay/bg-bar.png" id="65_vgqiu"]
-[ext_resource type="Texture2D" uid="uid://dwowg4xgc3jis" path="res://Assets/UI gameplay/progress.png" id="66_1j2vb"]
-[ext_resource type="Texture2D" uid="uid://bb8hyfenp15j7" path="res://Assets/World/fbg stage 1.png" id="66_5j2dk"]
-[ext_resource type="Texture2D" uid="uid://be23q8da1k2se" path="res://Assets/UI gameplay/Ellipse 73.png" id="67_1j2vb"]
-[ext_resource type="Texture2D" uid="uid://cwxddnkivcy1c" path="res://Assets/UI gameplay/under.png" id="67_4lqox"]
-[ext_resource type="AudioStream" uid="uid://c67w45mp1qeem" path="res://Assets/Medieval Vol. 2 7.ogg" id="67_8js3f"]
-[ext_resource type="Texture2D" uid="uid://bwrkqk86043dh" path="res://Assets/UI gameplay/over-bar.png" id="68_lce2u"]
-[ext_resource type="Script" uid="uid://1fthvjl42owa" path="res://Script/skill_display.gd" id="71_bu8ga"]
-[ext_resource type="Texture2D" uid="uid://b73pqce861lui" path="res://Assets/UI gameplay/skill_q.png" id="71_jmias"]
-[ext_resource type="Texture2D" uid="uid://dvgrmsovpc56o" path="res://Assets/UI gameplay/skill.png" id="71_lce2u"]
-[ext_resource type="Texture2D" uid="uid://bhdo8sw02jk4y" path="res://Assets/UI gameplay/ulti_r.png" id="72_4bypd"]
-[ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="73_e1ql5"]
-[ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="74_hfp18"]
-[ext_resource type="Texture2D" uid="uid://5pek8mt0m7pv" path="res://Assets/menu button/book koin2.png" id="79_ebqmi"]
-[ext_resource type="Script" uid="uid://b2my80r8xi10b" path="res://Script/buff_pop_up.gd" id="82_ebqmi"]
-[ext_resource type="Shader" uid="uid://b3ma0rv5wsenm" path="res://Assets/blur_overlay.gdshader" id="83_opxba"]
-[ext_resource type="Texture2D" uid="uid://coufmy0e8rew4" path="res://Assets/Pop Up Buff/speed.png" id="84_u5a08"]
-[ext_resource type="Texture2D" uid="uid://b401ithi6pj4x" path="res://Assets/Pop Up Buff/damage.png" id="85_5pgd7"]
-[ext_resource type="Texture2D" uid="uid://c0slqwqqjo1sp" path="res://Assets/Pop Up Buff/heal.png" id="86_la7pg"]
-[ext_resource type="Script" uid="uid://bmfu28j2127p3" path="res://Script/question_pop_up.gd" id="87_cji0u"]
-[ext_resource type="Texture2D" uid="uid://cx00awryk1u5o" path="res://Assets/Pop Up Question/contain.png" id="88_j5c36"]
-[ext_resource type="Texture2D" uid="uid://lkp7lkf1ahrw" path="res://Assets/Pop Up Question/option.png" id="89_by5na"]
-[ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="91_5j2dk"]
-[ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="92_xd6kg"]
-[ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="93_ebqmi"]
-[ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_u5a08"]
-[ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_5pgd7"]
-[ext_resource type="Script" uid="uid://6hg8gj3vpd60" path="res://Script/victory_pop_up.gd" id="97_la7pg"]
-[ext_resource type="Texture2D" uid="uid://cebv4sicnx77p" path="res://Assets/Pop UP/victory.png" id="98_cji0u"]
-[ext_resource type="Texture2D" uid="uid://dpcxi21n11fko" path="res://Assets/Pop UP/Confirm.png" id="99_cji0u"]
-[ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="100_j5c36"]
-[ext_resource type="Texture2D" uid="uid://dwewa8cjbcvj6" path="res://Assets/Pop UP/ConfrimPressed.png" id="100_vtyru"]
-[ext_resource type="Texture2D" uid="uid://bnyfxf4bnjffy" path="res://Assets/Pop UP/ConfirmHover.png" id="101_1tx16"]
-[ext_resource type="AudioStream" uid="uid://b6bnt2wo5dp3h" path="res://Assets/sfx/scratchonix-victory-chime-366449.mp3" id="101_by5na"]
-[ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="104_p3pay"]
-[ext_resource type="FontFile" uid="uid://c8p2xqnputop8" path="res://Assets/Font/LINESeedSans_XBd.ttf" id="105_07ygh"]
+[ext_resource type="Script" uid="uid://deeav3sx00nfi" path="res://Script/gameplay_s_4.gd" id="1_vnrog"]
+[ext_resource type="PackedScene" uid="uid://cyrfyod7bf3u0" path="res://EnemyFSM.tscn" id="2_q3l15"]
+[ext_resource type="PackedScene" uid="uid://chydy8njjqrvs" path="res://EnemyBT.tscn" id="3_craks"]
+[ext_resource type="Script" uid="uid://rk3g5myhk28j" path="res://Script/karakter_s4.gd" id="3_uk6d8"]
+[ext_resource type="PackedScene" uid="uid://s6wsofnht7wt" path="res://EnemyRBS.tscn" id="4_2j42k"]
+[ext_resource type="PackedScene" uid="uid://wjym1x87213y" path="res://EnemyUtility.tscn" id="5_wu2y5"]
+[ext_resource type="Texture2D" uid="uid://doc6m6ckwibcn" path="res://Assets/World/bg stage 1.png" id="6_5fdta"]
+[ext_resource type="PackedScene" uid="uid://c3cn6fbivtqhv" path="res://Skill.tscn" id="8_8nr11"]
+[ext_resource type="Texture2D" uid="uid://dx55l6sf6nnkc" path="res://Assets/A1.png" id="9_05pci"]
+[ext_resource type="Texture2D" uid="uid://dmksrlt6cl0yo" path="res://Assets/A2.png" id="10_4te35"]
+[ext_resource type="Texture2D" uid="uid://iybutxaxo4hd" path="res://Assets/A3.png" id="11_uygee"]
+[ext_resource type="Texture2D" uid="uid://djxqq7ixtq7nl" path="res://Assets/A4.png" id="12_pc85g"]
+[ext_resource type="Texture2D" uid="uid://63ganbjrbwfy" path="res://Assets/A5.png" id="13_mp7v4"]
+[ext_resource type="Texture2D" uid="uid://8dsdv1x6vf1q" path="res://Assets/A6.png" id="14_ptwlb"]
+[ext_resource type="Texture2D" uid="uid://dorubby2fgmlu" path="res://Assets/A7.png" id="15_dylnp"]
+[ext_resource type="Texture2D" uid="uid://d3amc316c2hwq" path="res://Assets/A8.png" id="16_jn7er"]
+[ext_resource type="Texture2D" uid="uid://boh0odoug1v1h" path="res://Assets/A9.png" id="17_omcsg"]
+[ext_resource type="Texture2D" uid="uid://2ut2gjxf6rki" path="res://Assets/A10.png" id="18_vmsk6"]
+[ext_resource type="Texture2D" uid="uid://doyf7jby2qss0" path="res://Assets/idle/S1.png" id="19_sup42"]
+[ext_resource type="Texture2D" uid="uid://d4btr00hi1gfw" path="res://Assets/idle/S2.png" id="20_3y55i"]
+[ext_resource type="Texture2D" uid="uid://jlxbbk4dvfgs" path="res://Assets/idle/S3.png" id="21_pqd6p"]
+[ext_resource type="Texture2D" uid="uid://tlao34fe4eps" path="res://Assets/idle/S4.png" id="22_t41q2"]
+[ext_resource type="Texture2D" uid="uid://dhpyvjlyfoe1p" path="res://Assets/idle/S5.png" id="23_5bg2f"]
+[ext_resource type="Texture2D" uid="uid://dt8a3lgxw8a66" path="res://Assets/idle/S6.png" id="24_kwpdl"]
+[ext_resource type="Texture2D" uid="uid://g3kq7x66xma0" path="res://Assets/W1.png" id="25_6nwrf"]
+[ext_resource type="Texture2D" uid="uid://dy4hpwj0iw7rq" path="res://Assets/W2.png" id="26_vdjwn"]
+[ext_resource type="Texture2D" uid="uid://dq0i8badjb71x" path="res://Assets/W3.png" id="27_afwpk"]
+[ext_resource type="Texture2D" uid="uid://d2gr8hdch8wx0" path="res://Assets/W4.png" id="28_3lan6"]
+[ext_resource type="Texture2D" uid="uid://bvynlupv7hxwd" path="res://Assets/W5.png" id="29_y07m8"]
+[ext_resource type="Texture2D" uid="uid://gb7d4wmlxw26" path="res://Assets/W6.png" id="30_jbcsd"]
+[ext_resource type="Texture2D" uid="uid://irtypwmesxi8" path="res://Assets/W7.png" id="31_hynie"]
+[ext_resource type="Texture2D" uid="uid://b0vw8wg3kgrc8" path="res://Assets/W8.png" id="32_53i6y"]
+[ext_resource type="AudioStream" uid="uid://brpxjsbucl3nw" path="res://Assets/mixkit-footsteps-in-the-forest-ground-1230.wav" id="33_mcnjp"]
+[ext_resource type="Texture2D" uid="uid://q77ytm2xrfis" path="res://Assets/sadow.png" id="34_esecc"]
+[ext_resource type="Texture2D" uid="uid://dv82vnps3mv86" path="res://Assets/slash1/File1.png" id="35_h68d5"]
+[ext_resource type="Texture2D" uid="uid://26btgfhi2mdm" path="res://Assets/slash1/File2.png" id="36_mugx0"]
+[ext_resource type="Texture2D" uid="uid://clh76dkic4nlm" path="res://Assets/slash1/File3.png" id="37_xh0by"]
+[ext_resource type="Texture2D" uid="uid://bs7don0q2s5mi" path="res://Assets/slash1/File4.png" id="38_em5wg"]
+[ext_resource type="Texture2D" uid="uid://btxy2yu213sp" path="res://Assets/slash1/File5.png" id="39_j8woy"]
+[ext_resource type="Texture2D" uid="uid://b5ydpddrr2rpd" path="res://Assets/slash1/File6.png" id="40_sjmli"]
+[ext_resource type="Texture2D" uid="uid://cirnj87feu1en" path="res://Assets/File1.png" id="41_c1qey"]
+[ext_resource type="Texture2D" uid="uid://crlbntbxmd24u" path="res://Assets/File2.png" id="42_fssv4"]
+[ext_resource type="Texture2D" uid="uid://bui3gjc3qoo1j" path="res://Assets/File3.png" id="43_wi6be"]
+[ext_resource type="Texture2D" uid="uid://bi8udr4lxmqhj" path="res://Assets/File4.png" id="44_bb33g"]
+[ext_resource type="Texture2D" uid="uid://5lvkthloflg4" path="res://Assets/File5.png" id="45_wq7cu"]
+[ext_resource type="Texture2D" uid="uid://df21pp4gi2rf5" path="res://Assets/File6.png" id="46_n4xqy"]
+[ext_resource type="Texture2D" uid="uid://d0cc0vexam4ix" path="res://Assets/File7.png" id="47_efjss"]
+[ext_resource type="Texture2D" uid="uid://dhxocavuos0is" path="res://Assets/File8.png" id="48_15yhc"]
+[ext_resource type="Texture2D" uid="uid://1c65omwtwwbb" path="res://Assets/File9.png" id="49_iwm4u"]
+[ext_resource type="Texture2D" uid="uid://dq8crhn0sdoxf" path="res://Assets/File11.png" id="50_hbl1p"]
+[ext_resource type="Texture2D" uid="uid://qu4oj4clwnjn" path="res://Assets/File12.png" id="51_7tt4f"]
+[ext_resource type="Texture2D" uid="uid://c4tsw4l18igxc" path="res://Assets/File13.png" id="52_6ne7a"]
+[ext_resource type="Texture2D" uid="uid://fb7qp4gyyl6d" path="res://Assets/File14.png" id="53_avksg"]
+[ext_resource type="Texture2D" uid="uid://bfthxct5b2n0r" path="res://Assets/File15.png" id="54_v7cq4"]
+[ext_resource type="Texture2D" uid="uid://c5sag5lpoihw0" path="res://Assets/File16.png" id="55_y8l3s"]
+[ext_resource type="Texture2D" uid="uid://bwjl1xcsubxad" path="res://Assets/File17.png" id="56_3sw2m"]
+[ext_resource type="Texture2D" uid="uid://bv2ralmhdr3ml" path="res://Assets/File18.png" id="57_3pea3"]
+[ext_resource type="Texture2D" uid="uid://dsw6d5mrswh6u" path="res://Assets/File19.png" id="58_rsfty"]
+[ext_resource type="Texture2D" uid="uid://dra7q0lsqac0m" path="res://Assets/File20.png" id="59_qhe6i"]
+[ext_resource type="AudioStream" uid="uid://cqui81i4tlwon" path="res://Assets/idle/sword-slash.mp3" id="60_84gp8"]
+[ext_resource type="AudioStream" uid="uid://elc2lk8lenfb" path="res://Assets/hiya2.wav" id="61_gbdrj"]
+[ext_resource type="AudioStream" uid="uid://chpg1r42adne" path="res://Assets/simple-whoosh-382724.mp3" id="62_h84dw"]
+[ext_resource type="Texture2D" uid="uid://2ivrxavaos2e" path="res://Assets/Frames/lightning_skill3_frame1.png" id="63_gk2kj"]
+[ext_resource type="Texture2D" uid="uid://dgkfhy0txpo0r" path="res://Assets/Frames/lightning_skill3_frame2.png" id="64_rmo5j"]
+[ext_resource type="Texture2D" uid="uid://dhq7d3tr3so0g" path="res://Assets/Frames/lightning_skill3_frame3.png" id="65_ikv2w"]
+[ext_resource type="Texture2D" uid="uid://gjtejqyg4dq6" path="res://Assets/Frames/lightning_skill3_frame4.png" id="66_n48ev"]
+[ext_resource type="Texture2D" uid="uid://b8vpod0ip18ku" path="res://Assets/Frames/lightning_skill3_frame5.png" id="67_rcm8h"]
+[ext_resource type="AudioStream" uid="uid://bkso2vrwle3gi" path="res://Assets/Meteor_Impactground_Stereo_01.wav" id="68_tovid"]
+[ext_resource type="Texture2D" uid="uid://bsgxx880qgs3b" path="res://Assets/RTS_Crate.png" id="69_8q48x"]
+[ext_resource type="Texture2D" uid="uid://bb8hyfenp15j7" path="res://Assets/World/fbg stage 1.png" id="70_sju1v"]
+[ext_resource type="AudioStream" uid="uid://c67w45mp1qeem" path="res://Assets/Medieval Vol. 2 7.ogg" id="71_5m24g"]
+[ext_resource type="Script" uid="uid://dy0jcgl6h7ema" path="res://Script/background_music.gd" id="72_p5t7c"]
+[ext_resource type="Texture2D" uid="uid://rif0bfps1tip" path="res://Assets/UI gameplay/pause.png" id="73_f4sx0"]
+[ext_resource type="Texture2D" uid="uid://4da3vvt5aeno" path="res://Assets/UI gameplay/dash.png" id="74_r038t"]
+[ext_resource type="Texture2D" uid="uid://b73pqce861lui" path="res://Assets/UI gameplay/skill_q.png" id="75_can8v"]
+[ext_resource type="Texture2D" uid="uid://bhdo8sw02jk4y" path="res://Assets/UI gameplay/ulti_r.png" id="76_k7xjl"]
+[ext_resource type="Texture2D" uid="uid://y37meut4b6df" path="res://Assets/UI gameplay/basic_attack.png" id="77_fn05u"]
+[ext_resource type="Texture2D" uid="uid://ba15qyax8fu4l" path="res://Assets/UI gameplay/bg-bar.png" id="78_u1vgi"]
+[ext_resource type="Texture2D" uid="uid://cwxddnkivcy1c" path="res://Assets/UI gameplay/under.png" id="79_oytsy"]
+[ext_resource type="Texture2D" uid="uid://bwrkqk86043dh" path="res://Assets/UI gameplay/over-bar.png" id="80_3mpv7"]
+[ext_resource type="Texture2D" uid="uid://dwowg4xgc3jis" path="res://Assets/UI gameplay/progress.png" id="81_77ddj"]
+[ext_resource type="Texture2D" uid="uid://be23q8da1k2se" path="res://Assets/UI gameplay/Ellipse 73.png" id="82_2voek"]
+[ext_resource type="Texture2D" uid="uid://5pek8mt0m7pv" path="res://Assets/menu button/book koin2.png" id="83_s13nd"]
+[ext_resource type="Script" uid="uid://1fthvjl42owa" path="res://Script/skill_display.gd" id="84_c5pf7"]
+[ext_resource type="Texture2D" uid="uid://dvgrmsovpc56o" path="res://Assets/UI gameplay/skill.png" id="85_2l2yj"]
+[ext_resource type="AudioStream" uid="uid://cm0xxep1pibf5" path="res://Assets/kono.wav" id="86_vycvf"]
+[ext_resource type="AudioStream" uid="uid://cgfb2ggydndo2" path="res://Assets/sword-schwing-40520.mp3" id="87_vuqe3"]
+[ext_resource type="Script" uid="uid://b2my80r8xi10b" path="res://Script/buff_pop_up.gd" id="88_tm4gr"]
+[ext_resource type="Shader" uid="uid://b3ma0rv5wsenm" path="res://Assets/blur_overlay.gdshader" id="89_iq4y7"]
+[ext_resource type="Texture2D" uid="uid://coufmy0e8rew4" path="res://Assets/Pop Up Buff/speed.png" id="90_pjl1b"]
+[ext_resource type="Texture2D" uid="uid://b401ithi6pj4x" path="res://Assets/Pop Up Buff/damage.png" id="91_5hbhw"]
+[ext_resource type="Texture2D" uid="uid://c0slqwqqjo1sp" path="res://Assets/Pop Up Buff/heal.png" id="92_cmrn2"]
+[ext_resource type="Script" uid="uid://bmfu28j2127p3" path="res://Script/question_pop_up.gd" id="93_onkxe"]
+[ext_resource type="Texture2D" uid="uid://cx00awryk1u5o" path="res://Assets/Pop Up Question/contain.png" id="94_siv45"]
+[ext_resource type="Texture2D" uid="uid://lkp7lkf1ahrw" path="res://Assets/Pop Up Question/option.png" id="95_x3hbr"]
+[ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="96_qqi2y"]
+[ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="97_2hnab"]
+[ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="98_blrf0"]
+[ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="99_fwym0"]
+[ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="100_ca64u"]
+[ext_resource type="Script" uid="uid://6hg8gj3vpd60" path="res://Script/victory_pop_up.gd" id="101_6fbxs"]
+[ext_resource type="Texture2D" uid="uid://cebv4sicnx77p" path="res://Assets/Pop UP/victory.png" id="102_ho6ow"]
+[ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="103_55n45"]
+[ext_resource type="FontFile" uid="uid://c8p2xqnputop8" path="res://Assets/Font/LINESeedSans_XBd.ttf" id="104_m5gtk"]
+[ext_resource type="Texture2D" uid="uid://dpcxi21n11fko" path="res://Assets/Pop UP/Confirm.png" id="105_ky4ol"]
+[ext_resource type="Texture2D" uid="uid://dwewa8cjbcvj6" path="res://Assets/Pop UP/ConfrimPressed.png" id="106_ph2og"]
+[ext_resource type="Texture2D" uid="uid://bnyfxf4bnjffy" path="res://Assets/Pop UP/ConfirmHover.png" id="107_53gps"]
+[ext_resource type="AudioStream" uid="uid://2pslyno2sv72" path="res://Assets/menu button/press.mp3" id="108_up18i"]
+[ext_resource type="AudioStream" uid="uid://b6bnt2wo5dp3h" path="res://Assets/sfx/scratchonix-victory-chime-366449.mp3" id="109_xapj3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j43mq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_1p3ug")
+"texture": ExtResource("9_05pci")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_o7aap")
+"texture": ExtResource("10_4te35")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jxmmf")
+"texture": ExtResource("11_uygee")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ums1d")
+"texture": ExtResource("12_pc85g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_vgqiu")
+"texture": ExtResource("13_mp7v4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_1j2vb")
+"texture": ExtResource("14_ptwlb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_lpsn3")
+"texture": ExtResource("15_dylnp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_xj4x1")
+"texture": ExtResource("16_jn7er")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_4lqox")
+"texture": ExtResource("17_omcsg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_lce2u")
+"texture": ExtResource("18_vmsk6")
 }],
 "loop": false,
 "name": &"attack",
@@ -146,22 +149,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("13_bu8ga")
+"texture": ExtResource("19_sup42")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_e1ql5")
+"texture": ExtResource("20_3y55i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_hfp18")
+"texture": ExtResource("21_pqd6p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_mehnk")
+"texture": ExtResource("22_t41q2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_n58b5")
+"texture": ExtResource("23_5bg2f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_epb65")
+"texture": ExtResource("24_kwpdl")
 }],
 "loop": true,
 "name": &"idle",
@@ -169,28 +172,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("19_hx6f1")
+"texture": ExtResource("25_6nwrf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_joxqx")
+"texture": ExtResource("26_vdjwn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_kmqga")
+"texture": ExtResource("27_afwpk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_6qdtm")
+"texture": ExtResource("28_3lan6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("23_jmias")
+"texture": ExtResource("29_y07m8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_4bypd")
+"texture": ExtResource("30_jbcsd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("25_mbao3")
+"texture": ExtResource("31_hynie")
 }, {
 "duration": 1.0,
-"texture": ExtResource("26_6fs7h")
+"texture": ExtResource("32_53i6y")
 }],
 "loop": true,
 "name": &"walk",
@@ -204,22 +207,22 @@ size = Vector2(128.65, 547.053)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("29_04xoy")
+"texture": ExtResource("35_h68d5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("30_0lqfl")
+"texture": ExtResource("36_mugx0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("31_8js3f")
+"texture": ExtResource("37_xh0by")
 }, {
 "duration": 1.0,
-"texture": ExtResource("32_5j2dk")
+"texture": ExtResource("38_em5wg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("33_ukwde")
+"texture": ExtResource("39_j8woy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("34_xd6kg")
+"texture": ExtResource("40_sjmli")
 }],
 "loop": false,
 "name": &"slash",
@@ -227,61 +230,61 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("35_ebqmi")
+"texture": ExtResource("41_c1qey")
 }, {
 "duration": 1.0,
-"texture": ExtResource("36_opxba")
+"texture": ExtResource("42_fssv4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("37_u5a08")
+"texture": ExtResource("43_wi6be")
 }, {
 "duration": 1.0,
-"texture": ExtResource("38_5pgd7")
+"texture": ExtResource("44_bb33g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("39_la7pg")
+"texture": ExtResource("45_wq7cu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("40_cji0u")
+"texture": ExtResource("46_n4xqy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("41_j5c36")
+"texture": ExtResource("47_efjss")
 }, {
 "duration": 1.0,
-"texture": ExtResource("42_by5na")
+"texture": ExtResource("48_15yhc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("43_bseey")
+"texture": ExtResource("49_iwm4u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("44_vtyru")
+"texture": ExtResource("50_hbl1p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("45_1tx16")
+"texture": ExtResource("51_7tt4f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_p3pay")
+"texture": ExtResource("52_6ne7a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("47_07ygh")
+"texture": ExtResource("53_avksg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("48_serht")
+"texture": ExtResource("54_v7cq4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("49_olba2")
+"texture": ExtResource("55_y8l3s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("50_2lrtn")
+"texture": ExtResource("56_3sw2m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("51_jeql7")
+"texture": ExtResource("57_3pea3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("52_r4d51")
+"texture": ExtResource("58_rsfty")
 }, {
 "duration": 1.0,
-"texture": ExtResource("53_yrf0e")
+"texture": ExtResource("59_qhe6i")
 }],
 "loop": false,
 "name": &"slash_2",
@@ -299,19 +302,19 @@ size = Vector2(180.581, 754.19)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("59_joxqx")
+"texture": ExtResource("63_gk2kj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("60_kmqga")
+"texture": ExtResource("64_rmo5j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("61_6qdtm")
+"texture": ExtResource("65_ikv2w")
 }, {
 "duration": 1.0,
-"texture": ExtResource("62_jmias")
+"texture": ExtResource("66_n48ev")
 }, {
 "duration": 1.0,
-"texture": ExtResource("63_4bypd")
+"texture": ExtResource("67_rcm8h")
 }],
 "loop": false,
 "name": &"vfxanim",
@@ -319,61 +322,61 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("35_ebqmi")
+"texture": ExtResource("41_c1qey")
 }, {
 "duration": 1.0,
-"texture": ExtResource("36_opxba")
+"texture": ExtResource("42_fssv4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("37_u5a08")
+"texture": ExtResource("43_wi6be")
 }, {
 "duration": 1.0,
-"texture": ExtResource("38_5pgd7")
+"texture": ExtResource("44_bb33g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("39_la7pg")
+"texture": ExtResource("45_wq7cu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("40_cji0u")
+"texture": ExtResource("46_n4xqy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("41_j5c36")
+"texture": ExtResource("47_efjss")
 }, {
 "duration": 1.0,
-"texture": ExtResource("42_by5na")
+"texture": ExtResource("48_15yhc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("43_bseey")
+"texture": ExtResource("49_iwm4u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("44_vtyru")
+"texture": ExtResource("50_hbl1p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("45_1tx16")
+"texture": ExtResource("51_7tt4f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_p3pay")
+"texture": ExtResource("52_6ne7a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("47_07ygh")
+"texture": ExtResource("53_avksg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("48_serht")
+"texture": ExtResource("54_v7cq4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("49_olba2")
+"texture": ExtResource("55_y8l3s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("50_2lrtn")
+"texture": ExtResource("56_3sw2m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("51_jeql7")
+"texture": ExtResource("57_3pea3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("52_r4d51")
+"texture": ExtResource("58_rsfty")
 }, {
 "duration": 1.0,
-"texture": ExtResource("53_yrf0e")
+"texture": ExtResource("59_qhe6i")
 }],
 "loop": false,
 "name": &"vfxanim2",
@@ -388,13 +391,16 @@ size = Vector2(78, 78)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5l1"]
 resource_local_to_scene = true
-shader = ExtResource("83_opxba")
+shader = ExtResource("89_iq4y7")
 shader_parameter/lod = 1.0
 shader_parameter/darkness = 0.3
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_hvkmv")
-enemy_scene = ExtResource("2_jmias")
+script = ExtResource("1_vnrog")
+scene_fsm = ExtResource("2_q3l15")
+scene_bt = ExtResource("3_craks")
+scene_rbs = ExtResource("4_2j42k")
+scene_utility = ExtResource("5_wu2y5")
 metadata/_edit_horizontal_guides_ = [726.0]
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -402,16 +408,16 @@ wait_time = 5.0
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(2600, 384)
-texture = ExtResource("3_8js3f")
+texture = ExtResource("6_5fdta")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(500, 506)
 scale = Vector2(0.376563, 0.376563)
-script = ExtResource("2_hvkmv")
+script = ExtResource("3_uk6d8")
 dash_speed = 1000
 attack_offset = Vector2(1000, 0)
 attack_effect_offset = Vector2(600, 0)
-skill_scene = ExtResource("5_07ygh")
+skill_scene = ExtResource("8_8nr11")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(701.078, -325)
@@ -433,13 +439,13 @@ autoplay = "idle"
 offset = Vector2(-21.7863, 104.943)
 
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="CharacterBody2D/PlayerSprite2D"]
-stream = ExtResource("27_l7s2j")
+stream = ExtResource("33_mcnjp")
 pitch_scale = 1.25
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/PlayerSprite2D"]
 position = Vector2(-74.8856, 370.588)
 scale = Vector2(2.89269, 1.83091)
-texture = ExtResource("28_ip6xn")
+texture = ExtResource("34_esecc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 131.238)
@@ -473,14 +479,14 @@ position = Vector2(0, 129.502)
 shape = SubResource("RectangleShape2D_lpsn3")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
-stream = ExtResource("54_gi2gw")
+stream = ExtResource("60_84gp8")
 
 [node name="DubSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
-stream = ExtResource("55_33y5p")
+stream = ExtResource("61_gbdrj")
 volume_db = 7.849
 
 [node name="DubSoundDash" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
-stream = ExtResource("56_wdyqx")
+stream = ExtResource("62_h84dw")
 volume_db = -8.0
 attenuation = 2.14355
 
@@ -506,7 +512,7 @@ shape = SubResource("RectangleShape2D_joxqx")
 
 [node name="Sfx" type="AudioStreamPlayer2D" parent="CharacterBody2D/UltimateVFXDamage"]
 position = Vector2(-37.1785, 424.896)
-stream = ExtResource("64_kmqga")
+stream = ExtResource("68_tovid")
 volume_db = 8.0
 
 [node name="UltiTimer" type="Timer" parent="CharacterBody2D/UltimateVFXDamage"]
@@ -517,7 +523,7 @@ position = Vector2(-156, 686)
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(1, -1)
 scale = Vector2(0.150391, 0.150391)
-texture = ExtResource("57_yypqb")
+texture = ExtResource("69_8q48x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1, -1)
@@ -526,13 +532,13 @@ shape = SubResource("RectangleShape2D_4yp6v")
 [node name="Foreground" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(2600, 384)
-texture = ExtResource("66_5j2dk")
+texture = ExtResource("70_sju1v")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("67_8js3f")
+stream = ExtResource("71_5m24g")
 volume_db = -10.0
-script = ExtResource("60_fhpl8")
+script = ExtResource("72_p5t7c")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -546,7 +552,7 @@ offset_right = -42.0
 offset_bottom = 92.0
 grow_horizontal = 0
 action_mode = 0
-texture_normal = ExtResource("62_1p3ug")
+texture_normal = ExtResource("73_f4sx0")
 
 [node name="Dash" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 3
@@ -560,7 +566,7 @@ offset_right = -139.0
 offset_bottom = -42.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("63_jxmmf")
+texture = ExtResource("74_r038t")
 stretch_mode = 3
 
 [node name="SkillQ" type="TextureRect" parent="CanvasLayer"]
@@ -575,7 +581,7 @@ offset_right = -231.0
 offset_bottom = -36.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("71_jmias")
+texture = ExtResource("75_can8v")
 
 [node name="UltiR" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 3
@@ -589,7 +595,7 @@ offset_right = -333.0
 offset_bottom = -27.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("72_4bypd")
+texture = ExtResource("76_k7xjl")
 stretch_mode = 3
 
 [node name="BasicAttack" type="TextureRect" parent="CanvasLayer"]
@@ -604,7 +610,7 @@ offset_right = -46.0
 offset_bottom = -43.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("64_ums1d")
+texture = ExtResource("77_fn05u")
 
 [node name="HealthBarPlayer" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -621,7 +627,7 @@ offset_left = -10.0
 offset_top = 27.0
 offset_right = 401.0
 offset_bottom = 141.0
-texture = ExtResource("65_vgqiu")
+texture = ExtResource("78_u1vgi")
 
 [node name="Under" type="TextureRect" parent="CanvasLayer/HealthBarPlayer"]
 layout_mode = 0
@@ -629,7 +635,7 @@ offset_left = 107.0
 offset_top = 66.0
 offset_right = 344.0
 offset_bottom = 98.0
-texture = ExtResource("67_4lqox")
+texture = ExtResource("79_oytsy")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/HealthBarPlayer"]
 layout_mode = 0
@@ -640,8 +646,8 @@ offset_bottom = 94.0
 max_value = 200.0
 value = 200.0
 nine_patch_stretch = true
-texture_under = ExtResource("68_lce2u")
-texture_progress = ExtResource("66_1j2vb")
+texture_under = ExtResource("80_3mpv7")
+texture_progress = ExtResource("81_77ddj")
 tint_under = Color(0.705194, 0.705194, 0.705194, 1)
 
 [node name="IconPP" type="TextureRect" parent="CanvasLayer/HealthBarPlayer"]
@@ -650,7 +656,7 @@ offset_left = 33.0
 offset_top = 49.0
 offset_right = 99.0
 offset_bottom = 115.0
-texture = ExtResource("67_1j2vb")
+texture = ExtResource("82_2voek")
 
 [node name="GameTimer" type="Timer" parent="CanvasLayer"]
 
@@ -696,7 +702,7 @@ offset_top = 109.0
 offset_right = -35.0
 offset_bottom = 163.0
 grow_horizontal = 0
-texture = ExtResource("79_ebqmi")
+texture = ExtResource("83_s13nd")
 
 [node name="SkillDisplay" type="Control" parent="CanvasLayer" groups=["Skill"]]
 visible = false
@@ -706,7 +712,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("71_bu8ga")
+script = ExtResource("84_c5pf7")
 
 [node name="Skill" type="TextureRect" parent="CanvasLayer/SkillDisplay"]
 layout_mode = 0
@@ -714,16 +720,14 @@ offset_left = 484.0
 offset_top = -768.0
 offset_right = 1187.0
 pivot_offset = Vector2(0, 768)
-texture = ExtResource("71_lce2u")
+texture = ExtResource("85_2l2yj")
 
 [node name="VoiceSkill" type="AudioStreamPlayer" parent="CanvasLayer/SkillDisplay"]
-stream = ExtResource("73_e1ql5")
+stream = ExtResource("86_vycvf")
 volume_db = 2.5
-bus = &"SFX"
 
 [node name="SFXSkill" type="AudioStreamPlayer" parent="CanvasLayer/SkillDisplay"]
-stream = ExtResource("74_hfp18")
-bus = &"SFX"
+stream = ExtResource("87_vuqe3")
 
 [node name="BuffPopUp" type="Control" parent="CanvasLayer"]
 process_mode = 2
@@ -734,7 +738,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("82_ebqmi")
+script = ExtResource("88_tm4gr")
 
 [node name="BlurOverlay" type="ColorRect" parent="CanvasLayer/BuffPopUp"]
 material = SubResource("ShaderMaterial_ku5l1")
@@ -763,15 +767,15 @@ alignment = 1
 
 [node name="Buff1" type="TextureButton" parent="CanvasLayer/BuffPopUp/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("84_u5a08")
+texture_normal = ExtResource("90_pjl1b")
 
 [node name="Buff2" type="TextureButton" parent="CanvasLayer/BuffPopUp/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("85_5pgd7")
+texture_normal = ExtResource("91_5hbhw")
 
 [node name="Buff3" type="TextureButton" parent="CanvasLayer/BuffPopUp/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("86_la7pg")
+texture_normal = ExtResource("92_cmrn2")
 
 [node name="QuestionPopUp" type="Control" parent="CanvasLayer"]
 process_mode = 2
@@ -782,7 +786,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("87_cji0u")
+script = ExtResource("93_onkxe")
 
 [node name="BlurOverlayQ" type="ColorRect" parent="CanvasLayer/QuestionPopUp"]
 material = SubResource("ShaderMaterial_ku5l1")
@@ -806,7 +810,7 @@ offset_right = 330.5
 offset_bottom = 193.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("88_j5c36")
+texture = ExtResource("94_siv45")
 
 [node name="Option1" type="TextureButton" parent="CanvasLayer/QuestionPopUp"]
 layout_mode = 1
@@ -821,7 +825,7 @@ offset_right = 266.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("89_by5na")
+texture_normal = ExtResource("95_x3hbr")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option1"]
 layout_mode = 0
@@ -847,7 +851,7 @@ offset_right = 266.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("89_by5na")
+texture_normal = ExtResource("95_x3hbr")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option2"]
 layout_mode = 0
@@ -873,7 +877,7 @@ offset_right = 266.0
 offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("89_by5na")
+texture_normal = ExtResource("95_x3hbr")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option3"]
 layout_mode = 0
@@ -899,7 +903,7 @@ offset_right = 266.0
 offset_bottom = 142.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("89_by5na")
+texture_normal = ExtResource("95_x3hbr")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option4"]
 layout_mode = 0
@@ -935,7 +939,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("91_5j2dk")
+script = ExtResource("96_qqi2y")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/DefeatPopUp"]
 modulate = Color(0.176471, 0.0823529, 0.0823529, 1)
@@ -1012,7 +1016,7 @@ offset_right = -1.0
 offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("93_ebqmi")
+texture_normal = ExtResource("97_2hnab")
 
 [node name="BackMenu" type="TextureButton" parent="CanvasLayer/DefeatPopUp"]
 layout_mode = 1
@@ -1027,15 +1031,13 @@ offset_right = 285.0
 offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("92_xd6kg")
+texture_normal = ExtResource("98_blrf0")
 
 [node name="Defeat" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
-stream = ExtResource("95_u5a08")
-bus = &"SFX"
+stream = ExtResource("99_fwym0")
 
 [node name="Defeat2" type="AudioStreamPlayer" parent="CanvasLayer/DefeatPopUp"]
-stream = ExtResource("96_5pgd7")
-bus = &"SFX"
+stream = ExtResource("100_ca64u")
 
 [node name="VictoryPopUp" type="Control" parent="CanvasLayer"]
 visible = false
@@ -1045,7 +1047,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("97_la7pg")
+script = ExtResource("101_6fbxs")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/VictoryPopUp"]
 layout_mode = 1
@@ -1069,7 +1071,7 @@ offset_right = 371.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("98_cji0u")
+texture = ExtResource("102_ho6ow")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VictoryPopUp/Container"]
 layout_mode = 1
@@ -1091,34 +1093,34 @@ theme_override_constants/separation = 170
 [node name="ResultQuestion" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
-theme_override_fonts/font = ExtResource("104_p3pay")
+theme_override_fonts/font = ExtResource("103_55n45")
 theme_override_font_sizes/font_size = 24
 text = "Pertanyaan terjawab"
 
 [node name="ResultQuestionTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
-theme_override_fonts/font = ExtResource("105_07ygh")
+theme_override_fonts/font = ExtResource("104_m5gtk")
 theme_override_font_sizes/font_size = 36
-text = "0"
+text = "2"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 190
+theme_override_constants/separation = 200
 
-[node name="ResultCoin" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+[node name="ResultBuff" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
-theme_override_fonts/font = ExtResource("104_p3pay")
+theme_override_fonts/font = ExtResource("103_55n45")
 theme_override_font_sizes/font_size = 24
-text = "Buku yang terambil"
+text = "Buff yang terambil"
 
-[node name="ResultCoinTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+[node name="ResultBuffTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
-theme_override_fonts/font = ExtResource("105_07ygh")
+theme_override_fonts/font = ExtResource("104_m5gtk")
 theme_override_font_sizes/font_size = 36
-text = "0"
+text = "4"
 
 [node name="Confirm" type="TextureButton" parent="CanvasLayer/VictoryPopUp/Container"]
 layout_mode = 1
@@ -1133,19 +1135,15 @@ offset_right = 134.0
 offset_bottom = 143.4
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("99_cji0u")
-texture_pressed = ExtResource("100_vtyru")
-texture_hover = ExtResource("101_1tx16")
+texture_normal = ExtResource("105_ky4ol")
+texture_pressed = ExtResource("106_ph2og")
+texture_hover = ExtResource("107_53gps")
 
 [node name="Confirmsfx" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
-stream = ExtResource("100_j5c36")
-bus = &"SFX"
+stream = ExtResource("108_up18i")
 
 [node name="Victory" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
-stream = ExtResource("101_by5na")
-bus = &"SFX"
-
-[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/VictoryPopUp"]
+stream = ExtResource("109_xapj3")
 
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]

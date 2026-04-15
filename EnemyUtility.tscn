@@ -641,19 +641,21 @@ texture_progress = ExtResource("3_fiwei")
 [node name="Visual" type="Node2D" parent="EnemyBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyBody2D/Visual"]
-position = Vector2(-4.28572, 124.286)
+position = Vector2(-4.286, 120)
 scale = Vector2(1.5873, 1.07143)
 texture = ExtResource("4_e6b7l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyBody2D/Visual"]
 modulate = Color(0.945098, 0.92549, 0.913725, 1)
 self_modulate = Color(0.8, 0.878431, 0.972549, 0.996078)
+position = Vector2(-0.285612, -3.9286)
 sprite_frames = SubResource("SpriteFrames_dxifv")
 animation = &"attack"
 frame = 10
 offset = Vector2(39.9999, 11.4286)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="EnemyBody2D/Visual"]
+position = Vector2(-0.285612, -3.9286)
 occluder = SubResource("OccluderPolygon2D_qfvm5")
 
 [node name="AttackAreaRange" type="Area2D" parent="EnemyBody2D"]
@@ -679,13 +681,16 @@ shape = SubResource("RectangleShape2D_kdav3")
 
 [node name="SfxAtt" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("125_yglbk")
+bus = &"SFX"
 
 [node name="SfxSummon" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("126_alp1o")
 autoplay = true
+bus = &"SFX"
 
 [node name="SfxDie" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("127_xkpe5")
+bus = &"SFX"
 
 [connection signal="body_entered" from="EnemyBody2D/AttackAreaRange" to="EnemyBody2D" method="_on_attack_area_range_body_entered"]
 [connection signal="body_exited" from="EnemyBody2D/AttackAreaRange" to="EnemyBody2D" method="_on_attack_area_range_body_exited"]

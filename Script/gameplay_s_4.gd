@@ -11,23 +11,21 @@ var question_pool = []
 var current_questions = []
 var question_index := 0
 var elapsed_time := 0
-var countdown_time := 30
-
-var correct_answers := 0
+var countdown_time := 180
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	setup_questions()
-	spawn_timer.timeout.connect(spawn_enemy)
-	spawn_timer.start()
+	#spawn_timer.timeout.connect(spawn_enemy)
+	#spawn_timer.start()
 	game_timer.start()
 	if player:
 		player.health_changed.connect(_on_player_health_changed)
 	
 	
-	#await get_tree().process_frame
-	#await get_tree().create_timer(5).timeout
-	#spawn_all_types_once()
+	await get_tree().process_frame
+	await get_tree().create_timer(5).timeout
+	spawn_all_types_once()
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main_Menu.tscn")
@@ -55,7 +53,7 @@ func format_time(t: int) -> String:
 func _on_game_timer_timeout() -> void:
 	countdown_time -= 1
 	$CanvasLayer/TimeLabel.text = format_time(countdown_time)
-	if countdown_time % 15 == 0 and countdown_time !=0 and countdown_time !=90:
+	if countdown_time % 30 == 0 and countdown_time !=0 and countdown_time !=180:
 		trigger_question_phase()
 	if countdown_time <= 0:
 		game_timer.stop()
@@ -70,20 +68,20 @@ func trigger_question_phase():
 
 func trigger_victory():
 	spawn_timer.stop()
+	
 	Engine.time_scale = 0.25
 	await get_tree().create_timer(0.6).timeout
+	
 	Engine.time_scale = 1
 	get_tree().paused = true
+	
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(0.8,0.8), 1.5)
-	var coins_total = $CharacterBody2D.total_coins
-	$CanvasLayer/VictoryPopUp.show_victory(correct_answers, coins_total)
-
-
+	
+	$CanvasLayer/VictoryPopUp.show_victory()
 
 func answer_correct():
-	correct_answers += 1
 	start_buff_phase()
 
 func answer_wrong():
@@ -102,17 +100,17 @@ func _on_player_health_changed(new_health: int):
 		player_died()
 	
 #lebih dari 1 tapi berjarak
-func spawn_enemy():
-	var new_enemy = enemy_scene.instantiate()
-	var random_side = randi() % 2 
-	var spawn_x: float
-	if random_side == 0:
-		spawn_x = player.global_position.x - SPAWN_DISTANCE
-	else:
-		spawn_x = player.global_position.x + SPAWN_DISTANCE
-	var spawn_y = player.global_position.y + 108
-	new_enemy.global_position = Vector2(spawn_x, spawn_y)
-	get_tree().current_scene.add_child(new_enemy)
+#func spawn_enemy():
+	#var new_enemy = enemy_scene.instantiate()
+	#var random_side = randi() % 2 
+	#var spawn_x: float
+	#if random_side == 0:
+		#spawn_x = player.global_position.x - SPAWN_DISTANCE
+	#else:
+		#spawn_x = player.global_position.x + SPAWN_DISTANCE
+	#var spawn_y = player.global_position.y + 108
+	#new_enemy.global_position = Vector2(spawn_x, spawn_y)
+	#get_tree().current_scene.add_child(new_enemy)
 
 #ini yang satu enemy
 #var spawned_enemy: Node2D = null
@@ -134,49 +132,49 @@ func spawn_enemy():
 	#get_tree().current_scene.add_child(spawned_enemy)
 
 
-#@export_group("Enemy Scenes")
-#@export var scene_fsm: PackedScene
-#@export var scene_bt: PackedScene
-#@export var scene_rbs: PackedScene
-#@export var scene_utility: PackedScene
-#
-#var spawned_enemies: Array[Node2D] = []
-#func spawn_enemy(type: String):
-	#var selected_scene: PackedScene
-	#
-	#match type.to_lower():
-		#"fsm": selected_scene = scene_fsm
-		#"bt": selected_scene = scene_bt
-		#"rbs": selected_scene = scene_rbs
-		#"utility": selected_scene = scene_utility
-		#_: 
-			#return
-#
-	#if selected_scene == null:
-		#return
-#
-	#var new_enemy = selected_scene.instantiate()
-	#
-	## Logika posisi agar tidak menumpuk
-	#var random_side = randi() % 2
-	#var offset_x = randf_range(-100, 100)
-	#var spawn_x = player.global_position.x + (SPAWN_DISTANCE if random_side == 1 else -SPAWN_DISTANCE) + offset_x
-	#var spawn_y = player.global_position.y + 108
-	#
-	#new_enemy.global_position = Vector2(spawn_x, spawn_y)
-	#
-	#get_tree().current_scene.add_child(new_enemy)
-	#spawned_enemies.append(new_enemy)
-	#
-	## Hapus dari array saat enemy mati
-	#new_enemy.tree_exited.connect(func(): spawned_enemies.erase(new_enemy))
-	#
-#func spawn_all_types_once():
-	#print("--- Memulai Spawn 1 Enemy per Algoritma ---")
-	#var types = ["fsm", "bt", "rbs", "utility"]
-	#for type in types:
-		#spawn_enemy(type)
-		#await get_tree().create_timer(1).timeout
+@export_group("Enemy Scenes")
+@export var scene_fsm: PackedScene
+@export var scene_bt: PackedScene
+@export var scene_rbs: PackedScene
+@export var scene_utility: PackedScene
+
+var spawned_enemies: Array[Node2D] = []
+func spawn_enemy(type: String):
+	var selected_scene: PackedScene
+	
+	match type.to_lower():
+		"fsm": selected_scene = scene_fsm
+		"bt": selected_scene = scene_bt
+		"rbs": selected_scene = scene_rbs
+		"utility": selected_scene = scene_utility
+		_: 
+			return
+
+	if selected_scene == null:
+		return
+
+	var new_enemy = selected_scene.instantiate()
+	
+	# Logika posisi agar tidak menumpuk
+	var random_side = randi() % 2
+	var offset_x = randf_range(-100, 100)
+	var spawn_x = player.global_position.x + (SPAWN_DISTANCE if random_side == 1 else -SPAWN_DISTANCE) + offset_x
+	var spawn_y = player.global_position.y + 108
+	
+	new_enemy.global_position = Vector2(spawn_x, spawn_y)
+	
+	get_tree().current_scene.add_child(new_enemy)
+	spawned_enemies.append(new_enemy)
+	
+	# Hapus dari array saat enemy mati
+	new_enemy.tree_exited.connect(func(): spawned_enemies.erase(new_enemy))
+	
+func spawn_all_types_once():
+	print("--- Memulai Spawn 1 Enemy per Algoritma ---")
+	var types = ["fsm", "bt", "rbs", "utility"]
+	for type in types:
+		spawn_enemy(type)
+		await get_tree().create_timer(1).timeout
 		
 var is_dead = false
 func player_died():

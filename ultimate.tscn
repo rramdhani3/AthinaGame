@@ -103,8 +103,10 @@ animation = &"ulti"
 [node name="AudioUlti" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_tcwuw")
 autoplay = true
+bus = &"SFX"
 
 [node name="AudioUlti2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_diviv")
 volume_db = -5.0
 autoplay = true
+bus = &"SFX"

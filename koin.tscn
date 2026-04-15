@@ -23,8 +23,10 @@ wait_time = 3.0
 [node name="CoinDrop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_nvef1")
 autoplay = true
+bus = &"SFX"
 
 [node name="CoinReceived" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lo0ig")
+bus = &"SFX"
 
 [connection signal="timeout" from="PickupDelay" to="." method="_on_pickup_delay_timeout"]

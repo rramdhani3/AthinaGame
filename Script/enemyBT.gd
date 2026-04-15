@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+# --- VARIABEL PERFORMA ---
+var logic_start_time: float = 0.0
+var logic_durations: Array = []
+var frame_counts: Array = []
+var monitoring_timer: float = 0.0
+const LOG_INTERVAL = 60.0
+
 @onready var anim_sprite: AnimatedSprite2D = $Visual/AnimatedSprite2D
 @onready var anim_attack: AnimationPlayer = $AnimationPlayer
 @onready var visual: Node2D = $Visual
@@ -8,10 +15,10 @@ extends CharacterBody2D
 @export var speed: float = 80.0
 @export var speed_run: float = 150.0
 @export var player_y_offset: float = 108.0
-@export var attack_damage_enemy := 10
+@export var attack_damage_enemy := 1
 @export var coin_scene: PackedScene
 @export var coin_drop_amount: int = 5
-
+var knockback_velocity: Vector2 = Vector2.ZERO
 
 const MAX_HEALTH = 200
 const FLEE_THRESHOLD = MAX_HEALTH / 2.0
@@ -52,9 +59,6 @@ class Sequence extends BTNode:
 				return status
 		return BTStatus.SUCCESS
 
-var has_logged_spawn := false
-func log_bt(context: String, detail: String):
-	print("[BT][", context, "] ", detail)
 
 # CONDITION NODES
 class CondLowHP extends BTNode:
@@ -109,18 +113,56 @@ func _ready():
 			ActChase.new()
 		])
 	])
-	if not has_logged_spawn:
-		log_bt("SPAWN", "HP:" + str(current_health))
-		has_logged_spawn = true
 
 func _physics_process(delta):
+	logic_start_time = Time.get_ticks_usec()
 	if current_health <= 0:
 		return
 
 	bt_root.tick(self)
+	var logic_end_time = Time.get_ticks_usec()
+	var duration_ms = (logic_end_time - logic_start_time) / 1000.0
+	logic_durations.append(duration_ms)
+	frame_counts.append(Engine.get_frames_per_second())
+	velocity += knockback_velocity
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 600 * delta)
 	move_and_slide()
+	
+	monitoring_timer += delta
+	if monitoring_timer >= LOG_INTERVAL:
+		calculate_and_log_performance()
+		monitoring_timer = 0.0
+		
+func calculate_and_log_performance():
+	if frame_counts.is_empty(): return
 
+	# Hitung FPS
+	var avg_fps = 0.0
+	var min_fps = frame_counts[0]
+	for f in frame_counts:
+		avg_fps += f
+		if f < min_fps: min_fps = f
+	avg_fps /= frame_counts.size()
 
+	# Hitung Waktu Logika
+	var avg_logic = 0.0
+	for d in logic_durations:
+		avg_logic += d
+	avg_logic /= logic_durations.size()
+
+	# OUTPUT DEBUG SESUAI TABEL
+	print("--- PERFORMA NPC Behavior Tree (Interval 1 Menit) ---")
+	print("FPS Rata-rata            : ", snapped(avg_fps, 0.01))
+	print("FPS Minimum             : ", min_fps)
+	print("Waktu Pemrosesan Logika : ", snapped(avg_logic, 0.0001), " ms")
+	print("-----------------------------------------------")
+
+	# Reset data untuk menit berikutnya
+	frame_counts.clear()
+	logic_durations.clear()
+func apply_knockback(force: Vector2):
+	knockback_velocity = force
+	
 func chase_player():
 	var player_floor_y = player_target.global_position.y + player_y_offset
 	var target_position = Vector2(player_target.global_position.x, player_floor_y)
@@ -128,7 +170,6 @@ func chase_player():
 
 	velocity = direction * speed
 	anim_sprite.play("walk")
-	#anim_sprite.flip_h = direction.x < 0
 	if direction.x != 0:
 		visual.scale.x = sign(direction.x)
 
@@ -140,7 +181,6 @@ func flee_player():
 
 	velocity = flee_direction * speed_run
 	anim_sprite.play("run")
-	#anim_sprite.flip_h = flee_direction.x < 0
 	if flee_direction.x != 0:
 		visual.scale.x = sign(flee_direction.x)
 
@@ -168,24 +208,25 @@ func take_damage(amount: int):
 	current_health -= amount
 	$TextureProgressBar.value = current_health
 	flash_red()
-	log_bt(
-		"DAMAGE",
-		"HP:" + str(current_health) +
-		" | LowHP:" + str(current_health <= FLEE_THRESHOLD)
-	)
+	if is_dead:
+		return
 	if anim_sprite.animation != "hurt":
 		anim_sprite.play("hurt")
 	if current_health <= 0:
 		die()
-	
 
+var is_dead := false
 func die():
+	if is_dead:
+		return
+	is_dead = true
 	hurtbox.set_deferred("monitoring", false)
 	anim_sprite.play("die")
+
 	$SfxDie.play()
 	set_physics_process(false)
 	set_process(false)
-	anim_sprite.animation_finished.connect(start_fade_out, CONNECT_ONE_SHOT)
+	anim_sprite.animation_finished.connect(Callable(start_fade_out), CONNECT_ONE_SHOT)
 
 
 func start_fade_out():
@@ -194,8 +235,9 @@ func start_fade_out():
 	fade_tween.tween_callback(after_die)
 
 func after_die():
-	queue_free()
 	spawn_coins()
+	queue_free()
+
 
 func give_damage_to_player():
 	if player_target and player_target.has_method("take_damage"):

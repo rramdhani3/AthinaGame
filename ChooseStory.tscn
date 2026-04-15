@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://buv8l4tsis1nn"]
+[gd_scene load_steps=13 format=3 uid="uid://buv8l4tsis1nn"]
 
 [ext_resource type="Texture2D" uid="uid://dtd8ddwhqa30k" path="res://Assets/menu button/choose.png" id="1_s3g64"]
 [ext_resource type="Script" uid="uid://cv124xt7uodu8" path="res://Script/choose_story.gd" id="1_t87rr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bvtfb86okyypw" path="res://Assets/Card/card3.png" id="9_jtyup"]
 [ext_resource type="Texture2D" uid="uid://dst0kivdipign" path="res://Assets/Card/card3hover.png" id="10_svnxj"]
 [ext_resource type="AudioStream" uid="uid://b5xq4d46chonh" path="res://Assets/Longing for AIR(MP3_320K).mp3" id="11_86ui5"]
+[ext_resource type="Texture2D" uid="uid://c02gh70rrju1o" path="res://Assets/Card/buttonex.png" id="12_62x04"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_t87rr")
@@ -83,8 +84,20 @@ texture_normal = ExtResource("9_jtyup")
 texture_hover = ExtResource("10_svnxj")
 stretch_mode = 3
 
+[node name="Experimental" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -369.0
+offset_top = -2.0
+offset_right = -3.0
+offset_bottom = 119.0
+grow_horizontal = 0
+texture_normal = ExtResource("12_62x04")
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="GlosaButton" to="." method="_on_glosa_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Stage1" to="." method="_on_stage_1_pressed"]
 [connection signal="pressed" from="HBoxContainer/Stage2" to="." method="_on_stage_2_pressed"]
 [connection signal="button_up" from="HBoxContainer/Stage3" to="." method="_on_stage_3_button_up"]
+[connection signal="pressed" from="Experimental" to="." method="_on_experimental_pressed"]

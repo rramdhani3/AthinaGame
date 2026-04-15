@@ -1,4 +1,10 @@
 extends CharacterBody2D
+# --- VARIABEL PERFORMA ---
+var logic_start_time: float = 0.0
+var logic_durations: Array = []
+var frame_counts: Array = []
+var monitoring_timer: float = 0.0
+const LOG_INTERVAL = 60.0
 
 @onready var anim_sprite: AnimatedSprite2D = $Visual/AnimatedSprite2D
 @onready var anim_attack: AnimationPlayer = $AnimationPlayer
@@ -8,7 +14,7 @@ extends CharacterBody2D
 @export var speed: float = 80.0
 @export var speed_run: float = 150.0
 @export var player_y_offset: float = 108.0
-@export var attack_damage_enemy := 10
+@export var attack_damage_enemy := 1
 @export var coin_scene: PackedScene
 @export var coin_drop_amount: int = 5
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -30,6 +36,7 @@ func apply_knockback(force: Vector2):
 	knockback_velocity = force
 
 func _physics_process(delta):
+	logic_start_time = Time.get_ticks_usec()
 	match current_state:
 		CHASE:
 			if player_target and current_health > 0:
@@ -48,11 +55,50 @@ func _physics_process(delta):
 				flee_player()
 			else:
 				velocity = Vector2.ZERO
-				
+
+	var logic_end_time = Time.get_ticks_usec()
+	var duration_ms = (logic_end_time - logic_start_time) / 1000.0
+	logic_durations.append(duration_ms)
+	frame_counts.append(Engine.get_frames_per_second())
+	
 	velocity += knockback_velocity
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 600 * delta)
 	move_and_slide()
 	
+	monitoring_timer += delta
+	if monitoring_timer >= LOG_INTERVAL:
+		calculate_and_log_performance()
+		monitoring_timer = 0.0
+	
+func calculate_and_log_performance():
+	if frame_counts.is_empty(): return
+
+	# Hitung FPS
+	var avg_fps = 0.0
+	var min_fps = frame_counts[0]
+	for f in frame_counts:
+		avg_fps += f
+		if f < min_fps: min_fps = f
+	avg_fps /= frame_counts.size()
+
+	# Hitung Waktu Logika
+	var avg_logic = 0.0
+	for d in logic_durations:
+		avg_logic += d
+	avg_logic /= logic_durations.size()
+
+	# OUTPUT DEBUG SESUAI TABEL
+	print("--- PERFORMA NPC Finite State Machine (Interval 1 Menit) ---")
+	print("FPS Rata-rata            : ", snapped(avg_fps, 0.01))
+	print("FPS Minimum             : ", min_fps)
+	print("Waktu Pemrosesan Logika : ", snapped(avg_logic, 0.0001), " ms")
+	print("-----------------------------------------------")
+
+	# Reset data untuk menit berikutnya
+	frame_counts.clear()
+	logic_durations.clear()
+
+
 func chase_player():
 	var player_floor_y = player_target.global_position.y + player_y_offset
 	var target_position = Vector2(player_target.global_position.x, player_floor_y)
@@ -100,7 +146,6 @@ func take_damage(amount: int):
 			anim_sprite.animation_finished.disconnect(Callable(self, "back_to_state"))
 	anim_sprite.play("hurt")
 	anim_sprite.animation_finished.connect(Callable(self, "back_to_state"), CONNECT_ONE_SHOT)
-	print("Enemy took damage. Health: ", current_health)
 
 var is_dead := false
 func die():
@@ -112,7 +157,7 @@ func die():
 	$SfxDie.play()
 	set_physics_process(false)
 	set_process(false)
-	anim_sprite.animation_finished.connect(start_fade_out, CONNECT_ONE_SHOT)
+	anim_sprite.animation_finished.connect(Callable(start_fade_out), CONNECT_ONE_SHOT)
 
 func start_fade_out():
 	var fade_tween = create_tween()

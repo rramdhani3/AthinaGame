@@ -150,6 +150,7 @@ func trigger_click_effect(pos: Vector2):
 	click_particles.global_position = pos
 	click_particles.restart()
 	click_particles.emitting = true
+	
 func _process(delta):
 	cursor_particles.global_position = get_viewport().get_mouse_position()
 	if !parallax_enabled:
@@ -244,8 +245,43 @@ func start_character_idle():
 	
 	tween.parallel().tween_property(chara,"scale",Vector2(1.02,1.02),1.6)
 
-func _on_button_pressed() -> void:
+func _on_story_pressed() -> void:
+	if not $NameInput.visible:
+			$NameInput.visible = true
+			$NameInput.grab_focus()
+			return
+	if $NameInput.text.strip_edges() == "":
+		shake_node($NameInput)
+		$NameInput/Error.play()
+		return
+	username.player_name = $NameInput.text
+	if press_sfx_player.is_playing():
+		press_sfx_player.stop()
+	press_sfx_player.play()
 	await change_scene_with_transition("res://ChooseStory.tscn")
+
+func _on_name_input_text_submitted(new_text: String) -> void:
+	if new_text.strip_edges() == "":
+		shake_node($NameInput)
+		$NameInput/Error.play()
+		return
+	username.player_name = new_text
+	if press_sfx_player.is_playing():
+		press_sfx_player.stop()
+	press_sfx_player.play()
+	await change_scene_with_transition("res://ChooseStory.tscn")
+
+var original_pos : Vector2 = Vector2.ZERO
+func shake_node(node: Control):
+	if original_pos == Vector2.ZERO:
+		original_pos = node.position
+	var tween = create_tween()
+	node.modulate = Color.RED 
+	tween.tween_property(node, "position:x", original_pos.x + 10, 0.07)
+	tween.tween_property(node, "position:x", original_pos.x - 10, 0.07)
+	tween.tween_property(node, "position:x", original_pos.x, 0.07)
+	await tween.finished
+	node.modulate = Color.WHITE
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -280,11 +316,7 @@ func _hover_exit(button):
 		0.15
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
-func _on_button_down() -> void:
-	if press_sfx_player.is_playing():
-		press_sfx_player.stop()
-		
-	press_sfx_player.play()
+
 
 func change_scene_with_transition(path):
 	var transition = preload("res://transisi.tscn").instantiate()
@@ -293,3 +325,11 @@ func change_scene_with_transition(path):
 	get_tree().change_scene_to_file(path)
 	await transition.play_out()
 	transition.queue_free()
+
+
+@export var popup_settings: Control
+func _on_option_pressed() -> void:
+	if press_sfx_player.is_playing():
+		press_sfx_player.stop()
+	press_sfx_player.play()
+	popup_settings.open_popup()

@@ -5,7 +5,9 @@ var current_stream: AudioStream = null
 
 func _ready():
 	bgm = AudioStreamPlayer.new()
+	bgm.bus = "Music"
 	add_child(bgm)
+
 
 func play_music(stream: AudioStream):
 	if current_stream == stream and bgm.playing:

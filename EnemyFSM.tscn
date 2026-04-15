@@ -638,7 +638,7 @@ texture_progress = ExtResource("3_hcomd")
 [node name="Visual" type="Node2D" parent="EnemyBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyBody2D/Visual"]
-position = Vector2(-12.8571, 121.429)
+position = Vector2(-12.857, 120)
 scale = Vector2(1.5873, 1.07143)
 texture = ExtResource("4_htyhh")
 
@@ -672,13 +672,16 @@ shape = SubResource("RectangleShape2D_kdav3")
 
 [node name="SfxAtt" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("125_d7iua")
+bus = &"SFX"
 
 [node name="SfxSummon" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("126_dots4")
 autoplay = true
+bus = &"SFX"
 
 [node name="SfxDie" type="AudioStreamPlayer2D" parent="EnemyBody2D"]
 stream = ExtResource("127_1c76n")
+bus = &"SFX"
 
 [connection signal="body_entered" from="EnemyBody2D/AttackAreaRange" to="EnemyBody2D" method="_on_attack_area_range_body_entered"]
 [connection signal="body_exited" from="EnemyBody2D/AttackAreaRange" to="EnemyBody2D" method="_on_attack_area_range_body_exited"]
