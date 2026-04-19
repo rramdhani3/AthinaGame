@@ -91,4 +91,4 @@ func _on_confirm_pressed() -> void:
 	await get_tree().create_timer(2.0).timeout
 	
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://ChooseStory.tscn")
+	get_tree().change_scene_to_file("res://Main_Menu.tscn")

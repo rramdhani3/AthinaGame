@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://djrhum67hn6n"]
+[gd_scene load_steps=117 format=3 uid="uid://djrhum67hn6n"]
 
 [ext_resource type="Script" uid="uid://d21373y1ax41x" path="res://Script/gameplay_s_2.gd" id="1_kcx5g"]
 [ext_resource type="PackedScene" uid="uid://chydy8njjqrvs" path="res://EnemyBT.tscn" id="2_06hdt"]
@@ -94,6 +94,7 @@
 [ext_resource type="Texture2D" uid="uid://c0slqwqqjo1sp" path="res://Assets/Pop Up Buff/heal.png" id="86_3gcx3"]
 [ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="91_as0an"]
 [ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="92_hmwuu"]
+[ext_resource type="Texture2D" uid="uid://rspy8pgtbkbj" path="res://Assets/Pop Up Question/option_hvr.png" id="93_lqlh7"]
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="93_ms6m6"]
 [ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_ucnr7"]
 [ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_hx881"]
@@ -531,6 +532,7 @@ texture = ExtResource("66_06hdt")
 process_mode = 3
 stream = ExtResource("67_slkbt")
 volume_db = -10.0
+bus = &"Music"
 script = ExtResource("68_bpvmb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -819,6 +821,7 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("85_kkuqm")
+texture_hover = ExtResource("93_lqlh7")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option1"]
 layout_mode = 0
@@ -845,6 +848,7 @@ offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("85_kkuqm")
+texture_hover = ExtResource("93_lqlh7")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option2"]
 layout_mode = 0
@@ -871,6 +875,7 @@ offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("85_kkuqm")
+texture_hover = ExtResource("93_lqlh7")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option3"]
 layout_mode = 0
@@ -897,6 +902,7 @@ offset_bottom = 142.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("85_kkuqm")
+texture_hover = ExtResource("93_lqlh7")
 
 [node name="Label" type="Label" parent="CanvasLayer/QuestionPopUp/Option4"]
 layout_mode = 0
@@ -922,7 +928,10 @@ offset_right = 265.0
 offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("100_jv4r2")
+theme_override_font_sizes/font_size = 28
 text = "null"
+autowrap_mode = 3
 
 [node name="DefeatPopUp" type="Control" parent="CanvasLayer"]
 visible = false
@@ -1088,32 +1097,32 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
 theme_override_fonts/font = ExtResource("100_jv4r2")
 theme_override_font_sizes/font_size = 24
-text = "Pertanyaan terjawab"
+text = "Pertanyaan Terjawab"
 
 [node name="ResultQuestionTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
 theme_override_fonts/font = ExtResource("101_pgpen")
 theme_override_font_sizes/font_size = 36
-text = "2"
+text = "0"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 200
+theme_override_constants/separation = 190
 
-[node name="ResultBuff" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+[node name="ResultCoin" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
 theme_override_fonts/font = ExtResource("100_jv4r2")
 theme_override_font_sizes/font_size = 24
-text = "Buff yang terambil"
+text = "Koin yang terambil"
 
-[node name="ResultBuffTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
+[node name="ResultCoinTotal" type="Label" parent="CanvasLayer/VictoryPopUp/Container/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133333, 0.313726, 0.427451, 1)
 theme_override_fonts/font = ExtResource("101_pgpen")
 theme_override_font_sizes/font_size = 36
-text = "4"
+text = "0"
 
 [node name="Confirm" type="TextureButton" parent="CanvasLayer/VictoryPopUp/Container"]
 layout_mode = 1
@@ -1139,6 +1148,8 @@ bus = &"SFX"
 [node name="Victory" type="AudioStreamPlayer" parent="CanvasLayer/VictoryPopUp"]
 stream = ExtResource("106_vtmf6")
 bus = &"SFX"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/VictoryPopUp"]
 
 [connection signal="area_entered" from="CharacterBody2D/Hurtbox" to="CharacterBody2D" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="CharacterBody2D/UltimateVFXDamage" to="CharacterBody2D" method="_on_ultimate_vfx_damage_area_entered"]

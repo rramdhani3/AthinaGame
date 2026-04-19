@@ -13,6 +13,8 @@ var question_index := 0
 var elapsed_time := 0
 var countdown_time := 90
 
+var correct_answers := 0
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	setup_questions()
@@ -62,20 +64,18 @@ func trigger_question_phase():
 
 func trigger_victory():
 	spawn_timer.stop()
-	
 	Engine.time_scale = 0.25
 	await get_tree().create_timer(0.6).timeout
-	
 	Engine.time_scale = 1
 	get_tree().paused = true
-	
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property($CharacterBody2D/Camera2D, "zoom", Vector2(0.8,0.8), 1.5)
-	
-	$CanvasLayer/VictoryPopUp.show_victory()
+	var coins_total = $CharacterBody2D.total_coins
+	$CanvasLayer/VictoryPopUp.show_victory(correct_answers, coins_total)
 
 func answer_correct():
+	correct_answers += 1
 	start_buff_phase()
 
 func answer_wrong():
@@ -141,24 +141,62 @@ func player_died():
 	
 func setup_questions():
 	question_pool = [
+		# === Bab 3: Usaha, Energi, Pesawat Sederhana ===
 		{
-			"question": "Besaran turunan dari panjang adalah?",
-			"options": ["Luas", "Massa", "Waktu", "Suhu"],
+			"question": "Rumus usaha adalah?",
+			"options": ["W = F x s", "W = m x a", "W = v x t", "W = F / s"],
 			"correct": 0
 		},
 		{
-			"question": "Rumus gaya adalah?",
-			"options": ["F = m.a", "F = m/v", "F = v/a", "F = m+v"],
+			"question": "Energi kinetik dipengaruhi oleh?",
+			"options": ["Massa dan kecepatan", "Gaya dan waktu", "Jarak dan waktu", "Tekanan dan volume"],
 			"correct": 0
 		},
 		{
-			"question": "Satuan SI energi adalah?",
-			"options": ["Joule", "Newton", "Pascal", "Watt"],
+			"question": "Rumus energi potensial adalah?",
+			"options": ["Ep = m g h", "Ep = m v", "Ep = F s", "Ep = v t"],
 			"correct": 0
 		},
 		{
-			"question": "Kecepatan adalah?",
-			"options": ["Perpindahan/waktu", "Jarak/waktu", "Massa/waktu", "Gaya/waktu"],
-			  "correct": 1
+			"question": "Alat yang termasuk pesawat sederhana adalah?",
+			"options": ["Tuas", "Mesin mobil", "Generator", "Komputer"],
+			"correct": 0
+		},
+		{
+			"question": "Keuntungan mekanis tuas dipengaruhi oleh?",
+			"options": ["Panjang lengan kuasa dan beban", "Waktu", "Kecepatan", "Suhu"],
+			"correct": 0
+		},
+
+		# === Bab 4: Getaran, Gelombang, Cahaya ===
+		{
+			"question": "Satu getaran adalah?",
+			"options": ["Gerak bolak-balik satu kali penuh", "Gerak lurus", "Gerak melingkar", "Gerak acak"],
+			"correct": 0
+		},
+		{
+			"question": "Frekuensi adalah?",
+			"options": ["Jumlah getaran per detik", "Waktu satu getaran", "Jarak tempuh", "Kecepatan"],
+			"correct": 0
+		},
+		{
+			"question": "Rumus cepat rambat gelombang adalah?",
+			"options": ["v = f x λ", "v = s/t", "v = m x a", "v = λ / f"],
+			"correct": 0
+		},
+		{
+			"question": "Gelombang yang tidak memerlukan medium adalah?",
+			"options": ["Gelombang cahaya", "Gelombang bunyi", "Gelombang air", "Gelombang tali"],
+			"correct": 0
+		},
+		{
+			"question": "Pemantulan cahaya mengikuti hukum?",
+			"options": ["Sudut datang = sudut pantul", "F = m.a", "v = s/t", "Ep = mgh"],
+			"correct": 0
+		},
+		{
+			"question": "Alat optik yang digunakan untuk melihat benda kecil adalah?",
+			"options": ["Mikroskop", "Teleskop", "Periskop", "Kamera"],
+			"correct": 0
 		}
 	]

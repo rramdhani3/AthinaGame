@@ -11,7 +11,7 @@ var question_pool = []
 var current_questions = []
 var question_index := 0
 var elapsed_time := 0
-var countdown_time := 30
+var countdown_time := 90
 
 var correct_answers := 0
 
