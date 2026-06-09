@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://djrhum67hn6n"]
+[gd_scene load_steps=119 format=3 uid="uid://djrhum67hn6n"]
 
 [ext_resource type="Script" uid="uid://d21373y1ax41x" path="res://Script/gameplay_s_2.gd" id="1_kcx5g"]
 [ext_resource type="PackedScene" uid="uid://chydy8njjqrvs" path="res://EnemyBT.tscn" id="2_06hdt"]
@@ -96,8 +96,10 @@
 [ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="92_hmwuu"]
 [ext_resource type="Texture2D" uid="uid://rspy8pgtbkbj" path="res://Assets/Pop Up Question/option_hvr.png" id="93_lqlh7"]
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="93_ms6m6"]
+[ext_resource type="AudioStream" uid="uid://12pesgrio703" path="res://Assets/sfx/freesound_community-wrong-47985.mp3" id="95_pgpen"]
 [ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_ucnr7"]
 [ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_hx881"]
+[ext_resource type="AudioStream" uid="uid://ds12qomq34nmt" path="res://Assets/sfx/dragon-studio-correct-472358.mp3" id="96_o4h1v"]
 [ext_resource type="Script" uid="uid://6hg8gj3vpd60" path="res://Script/victory_pop_up.gd" id="98_buefn"]
 [ext_resource type="Texture2D" uid="uid://cebv4sicnx77p" path="res://Assets/Pop UP/victory.png" id="99_lqlh7"]
 [ext_resource type="FontFile" uid="uid://cwy350qql7oym" path="res://Assets/Font/LINESeedSans_Bd.ttf" id="100_jv4r2"]
@@ -932,6 +934,12 @@ theme_override_fonts/font = ExtResource("100_jv4r2")
 theme_override_font_sizes/font_size = 28
 text = "null"
 autowrap_mode = 3
+
+[node name="Wrong" type="AudioStreamPlayer" parent="CanvasLayer/QuestionPopUp"]
+stream = ExtResource("95_pgpen")
+
+[node name="Correct" type="AudioStreamPlayer" parent="CanvasLayer/QuestionPopUp"]
+stream = ExtResource("96_o4h1v")
 
 [node name="DefeatPopUp" type="Control" parent="CanvasLayer"]
 visible = false

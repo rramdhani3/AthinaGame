@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bkc25ctghsols"]
+[gd_scene load_steps=119 format=3 uid="uid://bkc25ctghsols"]
 
 [ext_resource type="Script" uid="uid://d06fg5cdmdqxu" path="res://Script/gameplay.gd" id="1_hvkmv"]
 [ext_resource type="Script" uid="uid://drrk6nhj76kkl" path="res://Script/karakter.gd" id="2_hvkmv"]
@@ -96,8 +96,10 @@
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="92_xd6kg"]
 [ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="93_ebqmi"]
 [ext_resource type="Texture2D" uid="uid://rspy8pgtbkbj" path="res://Assets/Pop Up Question/option_hvr.png" id="93_serht"]
+[ext_resource type="AudioStream" uid="uid://12pesgrio703" path="res://Assets/sfx/freesound_community-wrong-47985.mp3" id="95_2lrtn"]
 [ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="95_u5a08"]
 [ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="96_5pgd7"]
+[ext_resource type="AudioStream" uid="uid://ds12qomq34nmt" path="res://Assets/sfx/dragon-studio-correct-472358.mp3" id="96_jeql7"]
 [ext_resource type="Script" uid="uid://6hg8gj3vpd60" path="res://Script/victory_pop_up.gd" id="97_la7pg"]
 [ext_resource type="Texture2D" uid="uid://cebv4sicnx77p" path="res://Assets/Pop UP/victory.png" id="98_cji0u"]
 [ext_resource type="Texture2D" uid="uid://dpcxi21n11fko" path="res://Assets/Pop UP/Confirm.png" id="99_cji0u"]
@@ -935,6 +937,13 @@ theme_override_fonts/font = ExtResource("104_p3pay")
 theme_override_font_sizes/font_size = 28
 text = "apakah itu sebuah kebetulan belaka yang menyebabkan kerusakan alami"
 autowrap_mode = 3
+
+[node name="Wrong" type="AudioStreamPlayer" parent="CanvasLayer/QuestionPopUp"]
+stream = ExtResource("95_2lrtn")
+
+[node name="Correct" type="AudioStreamPlayer" parent="CanvasLayer/QuestionPopUp"]
+stream = ExtResource("96_jeql7")
+bus = &"SFX"
 
 [node name="DefeatPopUp" type="Control" parent="CanvasLayer"]
 visible = false

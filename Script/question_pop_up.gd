@@ -13,6 +13,7 @@ func show_question(data, stage):
 	stage_ref = stage
 	current_question = data
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.warp_mouse(Vector2(1320, 30))
 	visible = true
 	
 	pivot_offset = size / 2 
@@ -28,6 +29,8 @@ func _on_option_pressed(index):
 	visible = false
 	if index == current_question["correct"]:
 		stage_ref.answer_correct()
+		$Correct.play()
 	else:
 		stage_ref.answer_wrong()
+		$Wrong.play()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

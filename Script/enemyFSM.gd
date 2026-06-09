@@ -5,6 +5,20 @@ var logic_durations: Array = []
 var frame_counts: Array = []
 var monitoring_timer: float = 0.0
 const LOG_INTERVAL = 60.0
+# ===== METRIK PENELITIAN =====
+# Response Time
+var response_times: Array = []
+var detection_time := 0
+var waiting_response := false
+# Decision Latency
+var decision_latencies: Array = []
+# Memory Usage
+var memory_samples: Array = []
+# Transition Frequency
+var transition_count := 0
+# Attack Success Rate
+var total_attacks := 0
+var successful_attacks := 0
 
 @onready var anim_sprite: AnimatedSprite2D = $Visual/AnimatedSprite2D
 @onready var anim_attack: AnimationPlayer = $AnimationPlayer
@@ -30,13 +44,22 @@ var fade_duration := 0.5
  
 func _ready():
 	player_target = get_tree().get_first_node_in_group("player")
-	current_state = CHASE
-
+	if player_target:
+		detection_time = Time.get_ticks_msec()
+		waiting_response = true
+	change_state(CHASE)
+	
+func change_state(new_state):
+	if current_state != new_state:
+		transition_count += 1
+		current_state = new_state
+		
 func apply_knockback(force: Vector2):
 	knockback_velocity = force
 
 func _physics_process(delta):
 	logic_start_time = Time.get_ticks_usec()
+	var decision_start = Time.get_ticks_usec()
 	match current_state:
 		CHASE:
 			if player_target and current_health > 0:
@@ -47,6 +70,7 @@ func _physics_process(delta):
 		ATTACK:
 			velocity = Vector2.ZERO
 			if anim_attack.current_animation != "attack":
+				total_attacks += 1
 				anim_attack.play("attack")
 				$SfxAtt.play()
 			
@@ -55,7 +79,10 @@ func _physics_process(delta):
 				flee_player()
 			else:
 				velocity = Vector2.ZERO
-
+	var decision_end = Time.get_ticks_usec()
+	decision_latencies.append(
+	(decision_end - decision_start) / 1000.0
+)
 	var logic_end_time = Time.get_ticks_usec()
 	var duration_ms = (logic_end_time - logic_start_time) / 1000.0
 	logic_durations.append(duration_ms)
@@ -66,40 +93,102 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	monitoring_timer += delta
+	var memory_mb = (
+		Performance.get_monitor(
+			Performance.MEMORY_STATIC
+		) / 1024.0 / 1024.0
+	)
+	memory_samples.append(memory_mb)
 	if monitoring_timer >= LOG_INTERVAL:
 		calculate_and_log_performance()
 		monitoring_timer = 0.0
 	
 func calculate_and_log_performance():
-	if frame_counts.is_empty(): return
 
-	# Hitung FPS
+	if frame_counts.is_empty():
+		return
+
+	# FPS
 	var avg_fps = 0.0
 	var min_fps = frame_counts[0]
+
 	for f in frame_counts:
 		avg_fps += f
-		if f < min_fps: min_fps = f
+
+		if f < min_fps:
+			min_fps = f
+
 	avg_fps /= frame_counts.size()
 
-	# Hitung Waktu Logika
+	# Logic Processing
 	var avg_logic = 0.0
+
 	for d in logic_durations:
 		avg_logic += d
-	avg_logic /= logic_durations.size()
 
-	# OUTPUT DEBUG SESUAI TABEL
-	print("--- PERFORMA NPC Finite State Machine (Interval 1 Menit) ---")
-	print("FPS Rata-rata            : ", snapped(avg_fps, 0.01))
-	print("FPS Minimum             : ", min_fps)
-	print("Waktu Pemrosesan Logika : ", snapped(avg_logic, 0.0001), " ms")
-	print("-----------------------------------------------")
+	if logic_durations.size() > 0:
+		avg_logic /= logic_durations.size()
 
-	# Reset data untuk menit berikutnya
+	# Response Time
+	var avg_response = 0.0
+
+	for r in response_times:
+		avg_response += r
+
+	if response_times.size() > 0:
+		avg_response /= response_times.size()
+
+	# Decision Latency
+	var avg_decision = 0.0
+
+	for d in decision_latencies:
+		avg_decision += d
+
+	if decision_latencies.size() > 0:
+		avg_decision /= decision_latencies.size()
+
+	# Memory Usage
+	var avg_memory = 0.0
+
+	for m in memory_samples:
+		avg_memory += m
+
+	if memory_samples.size() > 0:
+		avg_memory /= memory_samples.size()
+
+	# Attack Success Rate
+	var attack_rate = 0.0
+
+	if total_attacks > 0:
+		attack_rate = (
+			successful_attacks * 100.0
+		) / total_attacks
+
+	print("")
+	print("===== Finite State Machine (Interval 1 Menit) =====")
+	#print("FPS Average            : ", snapped(avg_fps, 0.01))
+	#print("FPS Minimum            : ", min_fps)
+	#print("Logic Processing (ms)  : ", snapped(avg_logic, 0.0001))
+	print("Response Time (ms)     : ", snapped(avg_response, 0.01))
+	print("Decision Latency (ms)  : ", snapped(avg_decision, 0.0001))
+	print("Memory Usage (MB)      : ", snapped(avg_memory, 0.01))
+	print("Transition Frequency   : ", transition_count)
+	print("Attack Success Rate %  : ", snapped(attack_rate, 0.01))
+	print("========================================")
+	print("")
+
 	frame_counts.clear()
 	logic_durations.clear()
+	response_times.clear()
+	decision_latencies.clear()
+	memory_samples.clear()
 
 
 func chase_player():
+	if waiting_response:
+		var response = Time.get_ticks_msec() - detection_time
+		response_times.append(response)
+		waiting_response = false
 	var player_floor_y = player_target.global_position.y + player_y_offset
 	var target_position = Vector2(player_target.global_position.x, player_floor_y)
 	var direction = (target_position - global_position).normalized()
@@ -136,7 +225,7 @@ func take_damage(amount: int):
 	$TextureProgressBar.value = current_health
 	flash_red()
 	if current_health <= FLEE_THRESHOLD and current_health > 0:
-		current_state = FLEE
+		change_state(FLEE)
 		return
 	if current_health <= 0:
 		die()
@@ -171,28 +260,28 @@ func after_die():
 func back_to_state():
 	if current_health > 0:
 		if current_health <= FLEE_THRESHOLD:
-			current_state = FLEE
+			change_state(FLEE)
 		else:
-			current_state = CHASE
+			change_state(CHASE)
 
 func _on_attack_area_range_body_entered(body: Node2D) -> void:
 	if body == player_target:
-		current_state = ATTACK
+		change_state(ATTACK)
 		
 		
 func _on_attack_area_range_body_exited(body: Node2D) -> void:
 	if body == player_target:
 		anim_attack.stop()
 	if current_health <= FLEE_THRESHOLD:
-		current_state = FLEE
+		change_state(FLEE)
 	else:
-		current_state = CHASE
+		change_state(CHASE)
 
 func give_damage_to_player():
 	if player_target:
 		if player_target.has_method("take_damage"):
 			player_target.take_damage(attack_damage_enemy)
-			
+			successful_attacks += 1
 func spawn_coins():
 	if coin_scene == null:
 		return

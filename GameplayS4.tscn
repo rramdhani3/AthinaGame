@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://brer47xrh8pf1"]
+[gd_scene load_steps=121 format=3 uid="uid://brer47xrh8pf1"]
 
 [ext_resource type="Script" uid="uid://deeav3sx00nfi" path="res://Script/gameplay_s_4.gd" id="1_vnrog"]
 [ext_resource type="PackedScene" uid="uid://cyrfyod7bf3u0" path="res://EnemyFSM.tscn" id="2_q3l15"]
@@ -95,8 +95,10 @@
 [ext_resource type="Script" uid="uid://bmfu28j2127p3" path="res://Script/question_pop_up.gd" id="93_onkxe"]
 [ext_resource type="Texture2D" uid="uid://cx00awryk1u5o" path="res://Assets/Pop Up Question/contain.png" id="94_siv45"]
 [ext_resource type="Texture2D" uid="uid://lkp7lkf1ahrw" path="res://Assets/Pop Up Question/option.png" id="95_x3hbr"]
+[ext_resource type="AudioStream" uid="uid://12pesgrio703" path="res://Assets/sfx/freesound_community-wrong-47985.mp3" id="96_craks"]
 [ext_resource type="Script" uid="uid://4qq8tewydaeo" path="res://Script/defeat_pop_up.gd" id="96_qqi2y"]
 [ext_resource type="Texture2D" uid="uid://d4jyhmv2ebsf7" path="res://Assets/Pop UP/Retry.png" id="97_2hnab"]
+[ext_resource type="AudioStream" uid="uid://ds12qomq34nmt" path="res://Assets/sfx/dragon-studio-correct-472358.mp3" id="97_2j42k"]
 [ext_resource type="Texture2D" uid="uid://1x7evtke6hld" path="res://Assets/Pop UP/BackMenu.png" id="98_blrf0"]
 [ext_resource type="AudioStream" uid="uid://cayrj6yrwvlu2" path="res://Assets/sfx/calango_fx_official-game-over-401236.mp3" id="99_fwym0"]
 [ext_resource type="AudioStream" uid="uid://bdcxfi1jusion" path="res://Assets/sfx/freesound_community-defeated-sigh-85637.mp3" id="100_ca64u"]
@@ -930,6 +932,12 @@ offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "null"
+
+[node name="Wrong" type="AudioStreamPlayer" parent="CanvasLayer/QuestionPopUp"]
+stream = ExtResource("96_craks")
+
+[node name="Correct" type="AudioStreamPlayer" parent="CanvasLayer/QuestionPopUp"]
+stream = ExtResource("97_2j42k")
 
 [node name="DefeatPopUp" type="Control" parent="CanvasLayer"]
 visible = false

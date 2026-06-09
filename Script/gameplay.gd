@@ -198,8 +198,8 @@ func setup_questions():
 		# === Bab 3: Usaha, Energi, Pesawat Sederhana ===
 		{
 			"question": "Rumus usaha adalah?",
-			"options": ["W = F x s", "W = m x a", "W = v x t", "W = F / s"],
-			"correct": 0
+			"options": ["W = m x a", "W = F x s", "W = v x t", "W = F / s"],
+			"correct": 1
 		},
 		{
 			"question": "Energi kinetik dipengaruhi oleh?",
@@ -208,13 +208,13 @@ func setup_questions():
 		},
 		{
 			"question": "Rumus energi potensial adalah?",
-			"options": ["Ep = m g h", "Ep = m v", "Ep = F s", "Ep = v t"],
-			"correct": 0
+			"options": ["Ep = m.v", "Ep = m.g.h", "Ep = F.s", "Ep = v.t"],
+			"correct": 1
 		},
 		{
 			"question": "Alat yang termasuk pesawat sederhana adalah?",
-			"options": ["Tuas", "Mesin mobil", "Generator", "Komputer"],
-			"correct": 0
+			"options": ["Generator", "Mesin mobil", "Tuas", "Komputer"],
+			"correct": 2
 		},
 		{
 			"question": "Keuntungan mekanis tuas dipengaruhi oleh?",
@@ -225,13 +225,13 @@ func setup_questions():
 		# === Bab 4: Getaran, Gelombang, Cahaya ===
 		{
 			"question": "Satu getaran adalah?",
-			"options": ["Gerak bolak-balik satu kali penuh", "Gerak lurus", "Gerak melingkar", "Gerak acak"],
-			"correct": 0
+			"options": ["Gerak acak", "Gerak lurus", "Gerak melingkar", "Gerak bolak-balik satu kali penuh"],
+			"correct": 3
 		},
 		{
 			"question": "Frekuensi adalah?",
-			"options": ["Jumlah getaran per detik", "Waktu satu getaran", "Jarak tempuh", "Kecepatan"],
-			"correct": 0
+			"options": ["Waktu satu getaran", "Jumlah getaran per detik", "Jarak tempuh", "Kecepatan"],
+			"correct": 1
 		},
 		{
 			"question": "Rumus cepat rambat gelombang adalah?",
@@ -240,8 +240,8 @@ func setup_questions():
 		},
 		{
 			"question": "Gelombang yang tidak memerlukan medium adalah?",
-			"options": ["Gelombang cahaya", "Gelombang bunyi", "Gelombang air", "Gelombang tali"],
-			"correct": 0
+			"options": ["Gelombang tali", "Gelombang bunyi", "Gelombang air", "Gelombang cahaya"],
+			"correct": 3
 		},
 		{
 			"question": "Pemantulan cahaya mengikuti hukum?",
@@ -250,7 +250,7 @@ func setup_questions():
 		},
 		{
 			"question": "Alat optik yang digunakan untuk melihat benda kecil adalah?",
-			"options": ["Mikroskop", "Teleskop", "Periskop", "Kamera"],
-			"correct": 0
+			"options": ["Periskop", "Teleskop", "Mikroskop", "Kamera"],
+			"correct": 2
 		}
 	]
